@@ -2,20 +2,20 @@ using System;
 
 namespace Assets.__Game.Scripts.Infrastructure
 {
-  public class StateMachine
+  public class GameStateMachine
   {
-    public event Action<IState> StateChanged;
+    public event Action<State> StateChanged;
 
-    public IState CurrentState { get; private set; }
-    public IState PreviousState { get; private set; }
+    public State CurrentState { get; private set; }
+    public State PreviousState { get; private set; }
 
-    public void Init(IState initState)
+    public void Init(State initState)
     {
       CurrentState = initState;
       CurrentState.Enter();
     }
 
-    public void ChangeState(IState newState)
+    public void ChangeState(State newState)
     {
       if (newState == CurrentState) return;
 
@@ -23,7 +23,6 @@ namespace Assets.__Game.Scripts.Infrastructure
       CurrentState.Exit();
       CurrentState = newState;
       CurrentState.Enter();
-
       StateChanged?.Invoke(CurrentState);
     }
   }
