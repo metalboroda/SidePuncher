@@ -6,7 +6,7 @@ namespace Assets.__Game.Scripts.Game.GameStates
   public abstract class GameBaseState : State
   {
     protected GameBootstrapper GameBootstrapper;
-    protected GameStateMachine GameStateMachine;
+    protected StateMachine GameStateMachine;
     protected SceneLoader SceneLoader;
 
     public GameBaseState(GameBootstrapper gameBootstrapper)

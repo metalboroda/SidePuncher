@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 05fd8a95eb67dff429048f8d8c0ee742
+guid: 87518b3e3b3594340b64bc1864690baa
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,18 +33,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Roundhouse_Kick_Left_1
+      name: Fighting_Idle_1_Mirror
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 65
+      lastFrame: 99
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

@@ -2,7 +2,7 @@ using System;
 
 namespace Assets.__Game.Scripts.Infrastructure
 {
-  public class GameStateMachine
+  public class StateMachine
   {
     public event Action<State> StateChanged;
 

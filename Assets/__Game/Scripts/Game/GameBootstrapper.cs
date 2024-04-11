@@ -9,12 +9,12 @@ namespace Assets.__Game.Scripts.Game
   {
     public static GameBootstrapper Instance { get; private set; }
 
-    public GameStateMachine GameStateMachine { get; private set; }
+    public StateMachine GameStateMachine { get; private set; }
     public SceneLoader SceneLoader { get; private set; }
 
     public GameBootstrapper()
     {
-      GameStateMachine = new GameStateMachine();
+      GameStateMachine = new StateMachine();
     }
 
     private void Awake()
