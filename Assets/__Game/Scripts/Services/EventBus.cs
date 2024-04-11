@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Assets.__Game.Scripts.Infrastructure
+namespace Assets.__Game.Scripts.Services
 {
   public class EventBus
   {
