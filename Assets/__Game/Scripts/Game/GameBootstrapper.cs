@@ -9,13 +9,12 @@ namespace Assets.__Game.Scripts.Game
   {
     public static GameBootstrapper Instance { get; private set; }
 
-    private readonly GameStateMachine _stateMachine;
-
+    public GameStateMachine GameStateMachine { get; private set; }
     public SceneLoader SceneLoader { get; private set; }
 
     public GameBootstrapper()
     {
-      _stateMachine = new GameStateMachine();
+      GameStateMachine = new GameStateMachine();
     }
 
     private void Awake()
@@ -36,7 +35,7 @@ namespace Assets.__Game.Scripts.Game
 
     public void Start()
     {
-      _stateMachine.Init(new MainMenuState(this));
+      GameStateMachine.Init(new MainMenuState(this));
     }
   }
 }

@@ -6,20 +6,14 @@ namespace Assets.__Game.Scripts.Game.GameStates
   public abstract class GameBaseState : State
   {
     protected GameBootstrapper GameBootstrapper;
+    protected GameStateMachine GameStateMachine;
     protected SceneLoader SceneLoader;
 
     public GameBaseState(GameBootstrapper gameBootstrapper)
     {
       GameBootstrapper = gameBootstrapper;
+      GameStateMachine = gameBootstrapper.GameStateMachine;
       SceneLoader = gameBootstrapper.SceneLoader;
-    }
-
-    public virtual void Enter()
-    {
-    }
-
-    public virtual void Exit()
-    {
     }
   }
 }

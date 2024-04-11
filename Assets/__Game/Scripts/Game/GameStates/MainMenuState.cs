@@ -1,6 +1,4 @@
-﻿using Assets.__Game.Scripts.Utils;
-
-namespace Assets.__Game.Scripts.Game.GameStates
+﻿namespace Assets.__Game.Scripts.Game.GameStates
 {
   public class MainMenuState : GameBaseState
   {

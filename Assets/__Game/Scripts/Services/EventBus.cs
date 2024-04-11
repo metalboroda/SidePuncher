@@ -12,22 +12,18 @@ namespace Assets.__Game.Scripts.Services
       Type messageType = typeof(T);
 
       if (_subscribers.TryGetValue(messageType, out var subscribers))
-      {
         foreach (var subscriber in subscribers)
         {
           ((Action<T>)subscriber)(message);
         }
-      }
     }
 
     public void Subscribe<T>(Action<T> callback)
     {
       Type messageType = typeof(T);
 
-      if (!_subscribers.ContainsKey(messageType))
-      {
+      if (_subscribers.ContainsKey(messageType) == false)
         _subscribers[messageType] = new List<object>();
-      }
 
       _subscribers[messageType].Add(callback);
     }
@@ -37,9 +33,7 @@ namespace Assets.__Game.Scripts.Services
       Type messageType = typeof(T);
 
       if (_subscribers.TryGetValue(messageType, out var subscribers))
-      {
         subscribers.Remove(callback);
-      }
     }
   }
 }
