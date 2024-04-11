@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Assets.__Game.Scripts.Infrastructure
 {
-  public class EventBusService
+  public class EventBus
   {
     private readonly Dictionary<Type, List<object>> _subscribers = new Dictionary<Type, List<object>>();
 

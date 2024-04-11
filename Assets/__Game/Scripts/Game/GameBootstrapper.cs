@@ -1,8 +1,7 @@
 ﻿using Assets.__Game.Scripts.Game.GameStates;
 using Assets.__Game.Scripts.Infrastructure;
-using System;
+using Assets.__Game.Scripts.Services;
 using UnityEngine;
-using Zenject;
 
 namespace Assets.__Game.Scripts.Game
 {
@@ -14,13 +13,9 @@ namespace Assets.__Game.Scripts.Game
 
     public SceneLoader SceneLoader { get; private set; }
 
-    [Inject] private readonly EventBusService _eventBus;
-
-    [Inject]
-    public GameBootstrapper(EventBusService eventBus)
+    public GameBootstrapper()
     {
       _stateMachine = new StateMachine();
-      _eventBus = eventBus;
     }
 
     private void Awake()
@@ -35,27 +30,13 @@ namespace Assets.__Game.Scripts.Game
       }
 
       DontDestroyOnLoad(this);
+
       SceneLoader = new SceneLoader();
     }
 
     public void Start()
     {
       _stateMachine.Init(new MainMenuState(this));
-    }
-
-    public void Publish<T>(T message)
-    {
-      _eventBus.Publish(message);
-    }
-
-    public void Subscribe<T>(Action<T> callback)
-    {
-      _eventBus.Subscribe(callback);
-    }
-
-    public void Unsubscribe<T>(Action<T> callback)
-    {
-      _eventBus.Unsubscribe(callback);
     }
   }
 }

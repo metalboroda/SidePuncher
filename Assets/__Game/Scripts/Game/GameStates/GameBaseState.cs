@@ -1,16 +1,17 @@
 ﻿using Assets.__Game.Scripts.Infrastructure;
+using Assets.__Game.Scripts.Services;
 
 namespace Assets.__Game.Scripts.Game.GameStates
 {
   public abstract class GameBaseState : IState
   {
-    protected GameBootstrapper _gameBootstrapper;
-    protected SceneLoader _sceneLoader;
+    protected GameBootstrapper GameBootstrapper;
+    protected SceneLoader SceneLoader;
 
     public GameBaseState(GameBootstrapper gameBootstrapper)
     {
-      _gameBootstrapper = gameBootstrapper;
-      _sceneLoader = gameBootstrapper.SceneLoader;
+      GameBootstrapper = gameBootstrapper;
+      SceneLoader = gameBootstrapper.SceneLoader;
     }
 
     public virtual void Enter()
