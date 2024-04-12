@@ -21,10 +21,9 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     private void FixedUpdate()
     {
-      DetectEnemyAndAlly();
     }
 
-    private void DetectEnemyAndAlly()
+    public void DetectEnemyAndAlly()
     {
       Vector3 origin = rayPoint.position;
       Vector3 direction = transform.forward;

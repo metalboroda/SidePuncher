@@ -28,3 +28,7 @@ MonoBehaviour:
   - {fileID: -203655887218126122, guid: 0cfe72041d6497f4da9b03fdc40b91ec, type: 3}
   - {fileID: -203655887218126122, guid: cd95500f7e7dea14eac0ffd1516a6016, type: 3}
   - {fileID: -203655887218126122, guid: 4668e0046e5a25b4caa97c1d845ac460, type: 3}
+  deathAnimations:
+  - {fileID: -203655887218126122, guid: 9749510e3f786434a9291e789ad1d422, type: 3}
+  - {fileID: -203655887218126122, guid: 551e0a0fdb083eb42a2b61e3aaee17fb, type: 3}
+  - {fileID: -203655887218126122, guid: 22ca77036394f51498a8ba412288fb33, type: 3}

@@ -7,8 +7,10 @@ namespace Assets.__Game.Scripts.Characters.Player
   {
     private PlayerController _playerController;
 
-    private void Awake()
+    protected override void Awake()
     {
+      base.Awake();
+
       _playerController = GetComponent<PlayerController>();
     }
 
@@ -24,7 +26,7 @@ namespace Assets.__Game.Scripts.Characters.Player
       if (CurrentHealth <= 0)
       {
         CurrentHealth = 0;
-
+        CapsuleCollider.enabled = false;
         _playerController.StateMachine.ChangeState(new PlayerDeathState(_playerController));
       }
     }

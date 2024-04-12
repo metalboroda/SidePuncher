@@ -12,6 +12,13 @@ namespace Assets.__Game.Scripts.Characters
 
     protected int CurrentHealth;
 
+    protected CapsuleCollider CapsuleCollider;
+
+    protected virtual void Awake()
+    {
+      CapsuleCollider = GetComponent<CapsuleCollider>();
+    }
+
     protected virtual void Start()
     {
       CurrentHealth = MaxHealth;

@@ -1,5 +1,3 @@
-using Assets.__Game.Scripts.Characters.Player.PlayerStates;
-using Assets.__Game.Scripts.Services;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -15,32 +13,6 @@ namespace Assets.__Game.Scripts.Characters.Player
     [SerializeField] private float allowAttackTime = 0.15f;
 
     private bool _canAttack = true;
-
-    private InputService _inputService;
-    private PlayerController _playerController;
-
-    private void Awake()
-    {
-      _inputService = new InputService();
-      _playerController = GetComponent<PlayerController>();
-    }
-
-    private void OnEnable()
-    {
-      _inputService.LeftAttackTriggered += LeftAttack;
-      _inputService.RightAttackTriggered += RightAttack;
-    }
-
-    private void OnDisable()
-    {
-      _inputService.LeftAttackTriggered -= LeftAttack;
-      _inputService.RightAttackTriggered -= RightAttack;
-    }
-
-    private void OnDestroy()
-    {
-      _inputService.Dispose();
-    }
 
     public void LeftAttack()
     {

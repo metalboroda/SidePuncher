@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Assets.__Game.Scripts.Characters
 {
@@ -11,6 +12,8 @@ namespace Assets.__Game.Scripts.Characters
 
     [Header("Param's")]
     [SerializeField] protected float CrossDur = 0.2f;
+
+    private Coroutine _animationEndRoutine;
 
     protected Animator Animator;
 
@@ -29,16 +32,31 @@ namespace Assets.__Game.Scripts.Characters
       PlayCrossfade(AnimationsSO.GetRandomWalkAnimation());
     }
 
+    public void PlayRandomDeathAnimation()
+    {
+      PlayCrossfade(AnimationsSO.GetRandomDeathAnimation());
+    }
+
+    public void DeathRandomRotation()
+    {
+      int rand = Random.Range(50, 70);
+      Vector3 eulerAngle = transform.rotation.eulerAngles;
+      eulerAngle.y += Random.Range(-rand, rand);
+
+      transform.rotation = Quaternion.Euler(eulerAngle);
+    }
+
     public void PlayCrossfade(string animationName)
     {
       if (Animator.GetCurrentAnimatorStateInfo(0).IsName(animationName)) return;
 
+      Animator.StopPlayback();
       Animator.CrossFadeInFixedTime(animationName, CrossDur);
     }
 
     public void OnAnimtionEnds(float endPercent, Action action = null)
     {
-      StartCoroutine(DoWaitForAnimationToEnd(endPercent, action));
+      _animationEndRoutine = StartCoroutine(DoWaitForAnimationToEnd(endPercent, action));
     }
 
     private IEnumerator DoWaitForAnimationToEnd(float endPercent, Action callback)
@@ -51,6 +69,12 @@ namespace Assets.__Game.Scripts.Characters
       }
 
       callback?.Invoke();
+    }
+
+    public void StopCoroutines()
+    {
+      if (_animationEndRoutine != null)
+        StopCoroutine(_animationEndRoutine);
     }
 
     #region Adding animations in runtime

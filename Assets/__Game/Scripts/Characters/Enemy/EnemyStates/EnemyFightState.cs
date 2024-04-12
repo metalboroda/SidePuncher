@@ -11,5 +11,10 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
       EnemyAnimationHandler.PlayRandomIdleAnimation();
       EnemyAttackHandler.AttackWithRate();
     }
+
+    public override void Exit()
+    {
+      EnemyAttackHandler.StopCoroutines();
+    }
   }
 }

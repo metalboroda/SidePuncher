@@ -2,13 +2,16 @@
 {
   internal class EnemyIdleState : EnemyBaseState
   {
-    public EnemyIdleState(EnemyController enemyController) : base(enemyController)
-    {
-    }
+    public EnemyIdleState(EnemyController enemyController) : base(enemyController) { }
 
     public override void Enter()
     {
       EnemyAnimationHandler.PlayRandomIdleAnimation();
+    }
+
+    public override void FixedUpdate()
+    {
+      EnemyMovementHandler.DetectEnemyAndAlly();
     }
   }
 }

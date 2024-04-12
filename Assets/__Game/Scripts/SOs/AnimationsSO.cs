@@ -7,12 +7,9 @@ namespace Assets.__Game.Scripts.SOs
   public class AnimationsSO : ScriptableObject
   {
     public List<AnimationClip> idleAnimations = new List<AnimationClip>();
-
-    [Space]
     public List<AnimationClip> walkAnimations = new List<AnimationClip>();
-
-    [Space]
     public List<AnimationClip> attackAnimations = new List<AnimationClip>();
+    public List<AnimationClip> deathAnimations = new List<AnimationClip>(); 
 
     public string GetRandomIdleAnimation()
     {
@@ -27,6 +24,11 @@ namespace Assets.__Game.Scripts.SOs
     public string GetRandomAttackAnimation()
     {
       return GetRandomAnimation(attackAnimations);
+    }
+
+    public string GetRandomDeathAnimation()
+    {
+      return GetRandomAnimation(deathAnimations);
     }
 
     private string GetRandomAnimation(List<AnimationClip> animations)

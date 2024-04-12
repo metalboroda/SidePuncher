@@ -2,8 +2,12 @@
 {
   internal class PlayerDeathState : PlayerBaseState
   {
-    public PlayerDeathState(PlayerController playerController) : base(playerController)
+    public PlayerDeathState(PlayerController playerController) : base(playerController) { }
+
+    public override void Enter()
     {
+      PlayerAnimationHandler.PlayRandomDeathAnimation();
+      PlayerAnimationHandler.DeathRandomRotation();
     }
   }
 }

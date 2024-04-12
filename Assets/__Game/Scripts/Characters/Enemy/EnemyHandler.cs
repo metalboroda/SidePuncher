@@ -10,8 +10,10 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     private EnemyController _enemyController;
 
-    private void Awake()
+    protected override void Awake()
     {
+      base.Awake();
+
       _enemyController = GetComponent<EnemyController>();
     }
 
@@ -27,6 +29,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
       if (CurrentHealth <= 0)
       {
         CurrentHealth = 0;
+        CapsuleCollider.enabled = false;
         _enemyController.StateMachine.ChangeState(new EnemyDeathState(_enemyController));
         EnemyDead?.Invoke();
       }

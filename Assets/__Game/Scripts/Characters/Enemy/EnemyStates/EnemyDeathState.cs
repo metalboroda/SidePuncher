@@ -2,13 +2,14 @@
 {
   public class EnemyDeathState : EnemyBaseState
   {
-    public EnemyDeathState(EnemyController enemyController) : base(enemyController)
-    {
-    }
+    public EnemyDeathState(EnemyController enemyController) : base(enemyController) { }
 
     public override void Enter()
     {
-      EnemyHandler.Death();
+      EnemyAnimationHandler.StopCoroutines();
+      EnemyAnimationHandler.PlayRandomDeathAnimation();
+      EnemyAnimationHandler.DeathRandomRotation();
+      EnemyHandler.Death(3);
     }
   }
 }

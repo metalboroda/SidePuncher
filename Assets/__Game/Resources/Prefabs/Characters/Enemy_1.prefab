@@ -193,8 +193,6 @@ MonoBehaviour:
   rightHandCollider: {fileID: 5778072821101322345}
   leftFootCollider: {fileID: 5769636719406029850}
   rightFootCollider: {fileID: 6065367501692172998}
-  minAttackDelay: 0.35
-  maxAttackDelay: 0.75
   minAttackRate: 0.75
   maxAttackRate: 1.25
 --- !u!114 &1575915129049682916
@@ -225,7 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MovementSpeed>k__BackingField: 1.5
   rayPoint: {fileID: 7503897363340079971}
-  rayDistance: 0.7
+  rayDistance: 0.5
   allyLayer:
     serializedVersion: 2
     m_Bits: 512
