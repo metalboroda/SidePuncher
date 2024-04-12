@@ -158,8 +158,8 @@ MonoBehaviour:
   rightHandCollider: {fileID: 1297234001323582911}
   leftFootCollider: {fileID: 1314694757021718988}
   rightFootCollider: {fileID: 1586364888545591056}
-  rotationSpeed: 0.1
-  allowAttackTime: 0.4
+  rotationDuration: 0.1
+  allowAttackTime: 0.35
 --- !u!114 &988346409267597696
 MonoBehaviour:
   m_ObjectHideFlags: 0

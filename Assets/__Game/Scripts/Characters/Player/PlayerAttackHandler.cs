@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Assets.__Game.Scripts.Characters.Player
     public event Action AttackTriggered;
 
     [Space]
-    [SerializeField] private float rotationSpeed = 0.1f;
+    [SerializeField] private float rotationDuration = 0.1f;
     [SerializeField] private float allowAttackTime = 0.15f;
 
     private bool _canAttack = true;
@@ -24,7 +25,7 @@ namespace Assets.__Game.Scripts.Characters.Player
     {
       if (_canAttack == false) return;
 
-      StartCoroutine(DoSmoothRotateY(-90));
+      SmoothRotateY(-90);
       OnAttack();
     }
 
@@ -32,7 +33,7 @@ namespace Assets.__Game.Scripts.Characters.Player
     {
       if (_canAttack == false) return;
 
-      StartCoroutine(DoSmoothRotateY(90));
+      SmoothRotateY(90);
       OnAttack();
     }
 
@@ -43,20 +44,11 @@ namespace Assets.__Game.Scripts.Characters.Player
       _lastAttackTime = Time.time;
     }
 
-    private IEnumerator DoSmoothRotateY(float y)
+    private void SmoothRotateY(float y)
     {
       Quaternion targetRotation = Quaternion.Euler(transform.rotation.x, y, transform.rotation.z);
-      float elapsedTime = 0f;
 
-      while (elapsedTime < rotationSpeed)
-      {
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, elapsedTime / rotationSpeed);
-        elapsedTime += Time.deltaTime;
-
-        yield return null;
-      }
-
-      transform.rotation = targetRotation;
+      transform.DORotateQuaternion(targetRotation, rotationDuration);
     }
 
     private void AllowAttackTimer()

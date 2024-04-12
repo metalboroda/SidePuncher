@@ -55,6 +55,9 @@ namespace Assets.__Game.Scripts.Characters
 
     public void OnAnimtionEnds(float endPercent, Action action = null)
     {
+      if(_animationEndRoutine != null)
+        StopCoroutine(_animationEndRoutine);
+
       _animationEndRoutine = StartCoroutine(DoWaitForAnimationToEnd(endPercent, action));
     }
 
