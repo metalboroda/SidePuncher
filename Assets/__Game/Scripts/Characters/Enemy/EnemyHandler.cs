@@ -25,10 +25,5 @@ namespace Assets.__Game.Scripts.Characters.Enemy
         enemyController.StateMachine.ChangeState(new EnemyDeathState(enemyController));
       }
     }
-
-    public void Death()
-    {
-      Destroy(gameObject);
-    }
   }
 }

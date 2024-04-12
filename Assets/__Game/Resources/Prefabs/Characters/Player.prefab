@@ -151,7 +151,7 @@ MonoBehaviour:
   AnimationsSO: {fileID: 11400000, guid: 4053e3dc399a5c6408e90b1ed06a274e, type: 2}
   CrossDur: 0.1
   Animator: {fileID: 473117914742572401}
-  attackHandler: {fileID: 8563391468943247292}
+  playerAttackHandler: {fileID: 8563391468943247292}
 --- !u!1001 &1375943399740023679
 PrefabInstance:
   m_ObjectHideFlags: 0

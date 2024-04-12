@@ -1,9 +1,7 @@
-﻿using Assets.__Game.Scripts.Services;
-using Assets.__Game.Scripts.SOs;
+﻿using Assets.__Game.Scripts.SOs;
 using System;
 using System.Collections;
 using UnityEngine;
-using Zenject;
 
 namespace Assets.__Game.Scripts.Characters
 {
@@ -16,14 +14,6 @@ namespace Assets.__Game.Scripts.Characters
 
     [Space]
     [SerializeField] protected Animator Animator;
-
-    protected EventBus EventBus;
-
-    [Inject]
-    public void Construct(EventBus eventBus)
-    {
-      EventBus = eventBus;
-    }
 
     public void PlayRandomIdleAnimation()
     {

@@ -5,5 +5,10 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
     public EnemyFightState(EnemyController enemyController) : base(enemyController)
     {
     }
+
+    public override void Enter()
+    {
+      EnemyAttackHandler.AttackWithRate();
+    }
   }
 }

@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3272763518188164638}
   - component: {fileID: 2755316305794722336}
   - component: {fileID: 480485425013499487}
+  - component: {fileID: 1311987120642836199}
+  - component: {fileID: 1575915129049682916}
   m_Layer: 0
   m_Name: Enemy_1
   m_TagString: Untagged
@@ -121,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyHandler: {fileID: 480485425013499487}
+  EnemyAttackHandler: {fileID: 1311987120642836199}
 --- !u!114 &480485425013499487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +142,40 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   enemyController: {fileID: 2755316305794722336}
+--- !u!114 &1311987120642836199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969656959339069279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa8b97b92043f242a1063c2af1579cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHandCollider: {fileID: 732128456544139774}
+  rightHandCollider: {fileID: 5778072821101322345}
+  leftFootCollider: {fileID: 5769636719406029850}
+  rightFootCollider: {fileID: 6065367501692172998}
+  minAttackRate: 1
+  maxAttackRate: 1.5
+--- !u!114 &1575915129049682916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969656959339069279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8c7909c1aaa37419ca470c98ac7ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimationsSO: {fileID: 11400000, guid: 4053e3dc399a5c6408e90b1ed06a274e, type: 2}
+  CrossDur: 0.2
+  Animator: {fileID: 3780166075965629906}
+  enemyAttackHandler: {fileID: 1311987120642836199}
 --- !u!1001 &1225183938384979457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -207,9 +244,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e912fe8e376ed554bbcb87f8d999dbfd, type: 3}
+--- !u!136 &732128456544139774 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 1957289848288567295, guid: e912fe8e376ed554bbcb87f8d999dbfd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1225183938384979457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5280601156110844219 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6361559370923403066, guid: e912fe8e376ed554bbcb87f8d999dbfd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1225183938384979457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &5769636719406029850 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 4688638964394654235, guid: e912fe8e376ed554bbcb87f8d999dbfd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1225183938384979457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &5778072821101322345 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 4697092589661587048, guid: e912fe8e376ed554bbcb87f8d999dbfd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1225183938384979457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &6065367501692172998 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 4984422485815205063, guid: e912fe8e376ed554bbcb87f8d999dbfd,
     type: 3}
   m_PrefabInstance: {fileID: 1225183938384979457}
   m_PrefabAsset: {fileID: 0}

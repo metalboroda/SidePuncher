@@ -16,5 +16,10 @@ namespace Assets.__Game.Scripts.Characters
     {
       CurrentHealth = MaxHealth;
     }
+
+    public void Death()
+    {
+      Destroy(gameObject);
+    }
   }
 }

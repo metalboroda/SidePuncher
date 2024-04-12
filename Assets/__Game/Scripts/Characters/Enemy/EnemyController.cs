@@ -5,6 +5,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
   public class EnemyController : CharacterControllerBase
   {
     public EnemyHandler EnemyHandler;
+    public EnemyAttackHandler EnemyAttackHandler;
 
     protected override void Awake()
     {

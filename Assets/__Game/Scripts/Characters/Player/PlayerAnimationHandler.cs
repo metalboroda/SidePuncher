@@ -5,16 +5,16 @@ namespace Assets.__Game.Scripts.Characters.Player
   public class PlayerAnimationHandler : CharacterAnimationHandler
   {
     [Space]
-    [SerializeField] private PlayerAttackHandler attackHandler;
+    [SerializeField] private PlayerAttackHandler playerAttackHandler;
 
     private void OnEnable()
     {
-      attackHandler.AttackTriggered += PlayRandomAttackAnimation;
+      playerAttackHandler.AttackTriggered += PlayRandomAttackAnimation;
     }
 
     private void OnDisable()
     {
-      attackHandler.AttackTriggered -= PlayRandomAttackAnimation;
+      playerAttackHandler.AttackTriggered -= PlayRandomAttackAnimation;
     }
 
     public void PlayRandomAttackAnimation()
