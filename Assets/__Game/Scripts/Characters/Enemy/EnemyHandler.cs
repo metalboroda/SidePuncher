@@ -1,13 +1,19 @@
-using Assets.__Game.Scripts.Characters.Enemy.EnemyStates;
+﻿using Assets.__Game.Scripts.Characters.Enemy.EnemyStates;
 using Assets.__Game.Scripts.Interfaces;
-using UnityEngine;
+using System;
 
 namespace Assets.__Game.Scripts.Characters.Enemy
 {
   public class EnemyHandler : CharacterHandlerBase, IDamageable
   {
-    [Space]
-    [SerializeField] private EnemyController enemyController;
+    public event Action EnemyDead;
+
+    private EnemyController _enemyController;
+
+    private void Awake()
+    {
+      _enemyController = GetComponent<EnemyController>();
+    }
 
     protected override void Start()
     {
@@ -21,8 +27,8 @@ namespace Assets.__Game.Scripts.Characters.Enemy
       if (CurrentHealth <= 0)
       {
         CurrentHealth = 0;
-
-        enemyController.StateMachine.ChangeState(new EnemyDeathState(enemyController));
+        _enemyController.StateMachine.ChangeState(new EnemyDeathState(_enemyController));
+        EnemyDead?.Invoke();
       }
     }
   }

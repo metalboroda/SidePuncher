@@ -17,9 +17,9 @@ namespace Assets.__Game.Scripts.Characters
       CurrentHealth = MaxHealth;
     }
 
-    public void Death()
+    public void Death(int delay = 0)
     {
-      Destroy(gameObject);
+      Destroy(gameObject, delay);
     }
   }
 }

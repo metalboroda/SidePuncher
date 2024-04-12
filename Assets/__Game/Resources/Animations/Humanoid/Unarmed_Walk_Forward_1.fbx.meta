@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f6445bffee34aab4492f56c139d86a09
+guid: 395989ed975cf6143b48bf45c6881145
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: BouncingFight_Idle_1_Mirror
+      name: Unarmed_Walk_Forward_1
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 89
+      lastFrame: 41
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

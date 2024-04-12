@@ -6,8 +6,12 @@ namespace Assets.__Game.Scripts.Characters.Player
 {
   public class PlayerHandler : CharacterHandlerBase, IDamageable
   {
-    [Space]
-    [SerializeField] private PlayerController playerController;
+    private PlayerController _playerController;
+
+    private void Awake()
+    {
+      _playerController = GetComponent<PlayerController>();
+    }
 
     protected override void Start()
     {
@@ -22,7 +26,7 @@ namespace Assets.__Game.Scripts.Characters.Player
       {
         CurrentHealth = 0;
 
-        playerController.StateMachine.ChangeState(new PlayerDeathState(playerController));
+        _playerController.StateMachine.ChangeState(new PlayerDeathState(_playerController));
       }
     }
   }

@@ -4,17 +4,23 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 {
   public class EnemyAnimationHandler : CharacterAnimationHandler
   {
-    [Space]
-    [SerializeField] private EnemyAttackHandler enemyAttackHandler;
+    private EnemyController _enemyController;
+
+    protected override void Awake()
+    {
+      base.Awake();
+
+      _enemyController = GetComponent<EnemyController>();
+    }
 
     private void OnEnable()
     {
-      enemyAttackHandler.AttackTriggered += PlayRandomAttackAnimation;
+      _enemyController.EnemyAttackHandler.AttackTriggered += PlayRandomAttackAnimation;
     }
 
     private void OnDisable()
     {
-      enemyAttackHandler.AttackTriggered -= PlayRandomAttackAnimation;
+      _enemyController.EnemyAttackHandler.AttackTriggered -= PlayRandomAttackAnimation;
     }
 
     public void PlayRandomAttackAnimation()

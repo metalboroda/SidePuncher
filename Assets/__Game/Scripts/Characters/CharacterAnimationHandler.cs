@@ -12,12 +12,21 @@ namespace Assets.__Game.Scripts.Characters
     [Header("Param's")]
     [SerializeField] protected float CrossDur = 0.2f;
 
-    [Space]
-    [SerializeField] protected Animator Animator;
+    protected Animator Animator;
+
+    protected virtual void Awake()
+    {
+      Animator = GetComponent<Animator>();
+    }
 
     public void PlayRandomIdleAnimation()
     {
       PlayCrossfade(AnimationsSO.GetRandomIdleAnimation());
+    }
+
+    public void PlayRandomWalkAnimation()
+    {
+      PlayCrossfade(AnimationsSO.GetRandomWalkAnimation());
     }
 
     public void PlayCrossfade(string animationName)

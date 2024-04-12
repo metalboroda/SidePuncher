@@ -7,12 +7,16 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
     protected EnemyController EnemyController;
     protected EnemyHandler EnemyHandler;
     protected EnemyAttackHandler EnemyAttackHandler;
+    protected EnemyMovementHandler EnemyMovementHandler;
+    protected EnemyAnimationHandler EnemyAnimationHandler;
 
     public EnemyBaseState(EnemyController enemyController)
     {
       EnemyController = enemyController;
       EnemyHandler = EnemyController.EnemyHandler;
       EnemyAttackHandler = EnemyController.EnemyAttackHandler;
+      EnemyMovementHandler = EnemyController.EnemyMovementHandler;
+      EnemyAnimationHandler = EnemyController.EnemyAnimationHandler;
     }
   }
 }

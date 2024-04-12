@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1298258299706444815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7503897363340079971}
+  m_Layer: 0
+  m_Name: RayPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7503897363340079971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298258299706444815}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0.3}
+  m_LocalScale: {x: 0, y: 1, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7271693946459431167}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1969656959339069279
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,7 +47,8 @@ GameObject:
   - component: {fileID: 480485425013499487}
   - component: {fileID: 1311987120642836199}
   - component: {fileID: 1575915129049682916}
-  m_Layer: 0
+  - component: {fileID: 8433304009422700037}
+  m_Layer: 9
   m_Name: Enemy_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,6 +69,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5280601156110844219}
+  - {fileID: 1525911410307956809}
+  - {fileID: 7503897363340079971}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!95 &3780166075965629906
@@ -124,6 +158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyHandler: {fileID: 480485425013499487}
   EnemyAttackHandler: {fileID: 1311987120642836199}
+  EnemyMovementHandler: {fileID: 8433304009422700037}
+  EnemyAnimationHandler: {fileID: 1575915129049682916}
 --- !u!114 &480485425013499487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +177,6 @@ MonoBehaviour:
   <EnemyLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 256
-  enemyController: {fileID: 2755316305794722336}
 --- !u!114 &1311987120642836199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +193,8 @@ MonoBehaviour:
   rightHandCollider: {fileID: 5778072821101322345}
   leftFootCollider: {fileID: 5769636719406029850}
   rightFootCollider: {fileID: 6065367501692172998}
+  minAttackDelay: 0.2
+  maxAttackDelay: 0.6
   minAttackRate: 1
   maxAttackRate: 1.5
 --- !u!114 &1575915129049682916
@@ -174,8 +211,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnimationsSO: {fileID: 11400000, guid: 4053e3dc399a5c6408e90b1ed06a274e, type: 2}
   CrossDur: 0.2
-  Animator: {fileID: 3780166075965629906}
-  enemyAttackHandler: {fileID: 1311987120642836199}
+--- !u!114 &8433304009422700037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969656959339069279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7cca2bcf9e998a468306a9d4f8965e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 1.5
+  rayPoint: {fileID: 7503897363340079971}
+  rayDistance: 0.7
+  allyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+--- !u!1 &2333427380891835410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1525911410307956809}
+  m_Layer: 0
+  m_Name: ---------------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1525911410307956809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2333427380891835410}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.00000011920929, y: 0, z: 1.0000001}
+  m_LocalScale: {x: 0.99999976, y: 1, z: 0.99999976}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7271693946459431167}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1225183938384979457
 PrefabInstance:
   m_ObjectHideFlags: 0

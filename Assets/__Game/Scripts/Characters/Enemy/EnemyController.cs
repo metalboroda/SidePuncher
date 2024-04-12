@@ -6,6 +6,8 @@ namespace Assets.__Game.Scripts.Characters.Enemy
   {
     public EnemyHandler EnemyHandler;
     public EnemyAttackHandler EnemyAttackHandler;
+    public EnemyMovementHandler EnemyMovementHandler;
+    public EnemyAnimationHandler EnemyAnimationHandler;
 
     protected override void Awake()
     {
@@ -14,7 +16,12 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     private void Start()
     {
-      StateMachine.Init(new EnemyFightState(this));
+      StateMachine.Init(new EnemyMovementState(this));
+    }
+
+    public void ToDeathState()
+    {
+      StateMachine.ChangeState(new EnemyDeathState(this));
     }
   }
 }

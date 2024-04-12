@@ -11,5 +11,15 @@ namespace Assets.__Game.Scripts.Characters
     {
       StateMachine = new StateMachine();
     }
+
+    private void Update()
+    {
+      StateMachine.CurrentState.Update();
+    }
+
+    private void FixedUpdate()
+    {
+      StateMachine.CurrentState.FixedUpdate();
+    }
   }
 }

@@ -19,6 +19,10 @@ MonoBehaviour:
   - {fileID: -203655887218126122, guid: 87518b3e3b3594340b64bc1864690baa, type: 3}
   - {fileID: -203655887218126122, guid: f0f62b3af1e92a8459de2910540f17cc, type: 3}
   - {fileID: -203655887218126122, guid: fd5ec0a98c75fa648b6c2225a4a765f7, type: 3}
+  walkAnimations:
+  - {fileID: -203655887218126122, guid: 395989ed975cf6143b48bf45c6881145, type: 3}
+  - {fileID: -203655887218126122, guid: a350862f3fc41014d913594aa3a22512, type: 3}
+  - {fileID: -203655887218126122, guid: 567d9a195b276024ea6d985b0274bd4a, type: 3}
   attackAnimations:
   - {fileID: -203655887218126122, guid: 0bc47ceb4516a0140953001e11267181, type: 3}
   - {fileID: -203655887218126122, guid: 0cfe72041d6497f4da9b03fdc40b91ec, type: 3}

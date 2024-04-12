@@ -5,5 +5,10 @@
     public EnemyMovementState(EnemyController enemyController) : base(enemyController)
     {
     }
+
+    public override void Enter()
+    {
+      EnemyAnimationHandler.PlayRandomWalkAnimation();
+    }
   }
 }

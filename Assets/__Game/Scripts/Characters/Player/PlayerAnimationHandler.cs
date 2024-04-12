@@ -4,17 +4,23 @@ namespace Assets.__Game.Scripts.Characters.Player
 {
   public class PlayerAnimationHandler : CharacterAnimationHandler
   {
-    [Space]
-    [SerializeField] private PlayerAttackHandler playerAttackHandler;
+    private PlayerAttackHandler _playerAttackHandler;
+
+    protected override void Awake()
+    {
+      base.Awake();
+
+      _playerAttackHandler = GetComponent<PlayerAttackHandler>();
+    }
 
     private void OnEnable()
     {
-      playerAttackHandler.AttackTriggered += PlayRandomAttackAnimation;
+      _playerAttackHandler.AttackTriggered += PlayRandomAttackAnimation;
     }
 
     private void OnDisable()
     {
-      playerAttackHandler.AttackTriggered -= PlayRandomAttackAnimation;
+      _playerAttackHandler.AttackTriggered -= PlayRandomAttackAnimation;
     }
 
     public void PlayRandomAttackAnimation()

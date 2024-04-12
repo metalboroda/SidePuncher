@@ -9,11 +9,19 @@ namespace Assets.__Game.Scripts.SOs
     public List<AnimationClip> idleAnimations = new List<AnimationClip>();
 
     [Space]
+    public List<AnimationClip> walkAnimations = new List<AnimationClip>();
+
+    [Space]
     public List<AnimationClip> attackAnimations = new List<AnimationClip>();
 
     public string GetRandomIdleAnimation()
     {
       return GetRandomAnimation(idleAnimations);
+    }
+
+    public string GetRandomWalkAnimation()
+    {
+      return GetRandomAnimation(walkAnimations);
     }
 
     public string GetRandomAttackAnimation()
@@ -23,8 +31,7 @@ namespace Assets.__Game.Scripts.SOs
 
     private string GetRandomAnimation(List<AnimationClip> animations)
     {
-      if (animations.Count == 0)
-        return null;
+      if (animations.Count == 0) return null;
 
       int randomIndex = Random.Range(0, animations.Count);
 

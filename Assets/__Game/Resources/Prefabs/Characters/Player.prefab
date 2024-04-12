@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6682048079071267070}
   - component: {fileID: 473117914742572401}
   - component: {fileID: 1917592801698634731}
+  - component: {fileID: 5091445461603626436}
   - component: {fileID: 5320626718500506825}
   - component: {fileID: 9010677809054682995}
   - component: {fileID: 8563391468943247292}
@@ -86,6 +87,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &5091445461603626436
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8843420206218184337}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &5320626718500506825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,11 +137,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  <Power>k__BackingField: 25
+  <Power>k__BackingField: 100
   <EnemyLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 512
-  playerController: {fileID: 5320626718500506825}
 --- !u!114 &8563391468943247292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,8 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnimationsSO: {fileID: 11400000, guid: 4053e3dc399a5c6408e90b1ed06a274e, type: 2}
   CrossDur: 0.1
-  Animator: {fileID: 473117914742572401}
-  playerAttackHandler: {fileID: 8563391468943247292}
 --- !u!1001 &1375943399740023679
 PrefabInstance:
   m_ObjectHideFlags: 0

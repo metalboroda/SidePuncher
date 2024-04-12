@@ -8,6 +8,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
 
     public override void Enter()
     {
+      EnemyAnimationHandler.PlayRandomIdleAnimation();
       EnemyAttackHandler.AttackWithRate();
     }
   }
