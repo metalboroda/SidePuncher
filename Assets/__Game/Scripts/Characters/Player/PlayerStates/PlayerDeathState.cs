@@ -8,6 +8,7 @@
     {
       PlayerAnimationHandler.PlayRandomDeathAnimation();
       PlayerAnimationHandler.DeathRandomRotation();
+      PlayerAnimationHandler.StopCoroutines();
     }
   }
 }

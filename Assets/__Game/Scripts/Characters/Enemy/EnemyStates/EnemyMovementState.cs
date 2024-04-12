@@ -18,10 +18,6 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
     public override void Update()
     {
       _movementComponent.MoveForward(EnemyMovementHandler.MovementSpeed, EnemyMovementHandler.transform);
-    }
-
-    public override void FixedUpdate()
-    {
       EnemyMovementHandler.DetectEnemyAndAlly();
     }
   }

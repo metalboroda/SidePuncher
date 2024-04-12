@@ -50,7 +50,6 @@ namespace Assets.__Game.Scripts.Characters
     {
       if (Animator.GetCurrentAnimatorStateInfo(0).IsName(animationName)) return;
 
-      Animator.StopPlayback();
       Animator.CrossFadeInFixedTime(animationName, CrossDur);
     }
 
@@ -61,7 +60,7 @@ namespace Assets.__Game.Scripts.Characters
 
     private IEnumerator DoWaitForAnimationToEnd(float endPercent, Action callback)
     {
-      yield return new WaitForSeconds(CrossDur + 0.0001f);
+      yield return new WaitForSeconds(CrossDur);
 
       while (Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < endPercent)
       {

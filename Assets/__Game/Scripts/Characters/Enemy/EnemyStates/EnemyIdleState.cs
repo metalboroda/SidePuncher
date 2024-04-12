@@ -9,7 +9,7 @@
       EnemyAnimationHandler.PlayRandomIdleAnimation();
     }
 
-    public override void FixedUpdate()
+    public override void Update()
     {
       EnemyMovementHandler.DetectEnemyAndAlly();
     }

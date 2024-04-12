@@ -84,7 +84,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1fba8009ba08a29499cd722bdac92e37, type: 3}
   m_Controller: {fileID: 9100000, guid: cd669a870ed4c914a98abef963ef4fce, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -193,8 +193,8 @@ MonoBehaviour:
   rightHandCollider: {fileID: 5778072821101322345}
   leftFootCollider: {fileID: 5769636719406029850}
   rightFootCollider: {fileID: 6065367501692172998}
-  minAttackRate: 0.75
-  maxAttackRate: 1.25
+  minAttackRate: 1
+  maxAttackRate: 2
 --- !u!114 &1575915129049682916
 MonoBehaviour:
   m_ObjectHideFlags: 0

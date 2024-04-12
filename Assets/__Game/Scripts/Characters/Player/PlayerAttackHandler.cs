@@ -13,6 +13,12 @@ namespace Assets.__Game.Scripts.Characters.Player
     [SerializeField] private float allowAttackTime = 0.15f;
 
     private bool _canAttack = true;
+    private float _lastAttackTime;
+
+    private void Update()
+    {
+      AllowAttackTimer();
+    }
 
     public void LeftAttack()
     {
@@ -34,8 +40,7 @@ namespace Assets.__Game.Scripts.Characters.Player
     {
       AttackTriggered?.Invoke();
       _canAttack = false;
-
-      StartCoroutine(DoAllowAttack());
+      _lastAttackTime = Time.time;
     }
 
     private IEnumerator DoSmoothRotateY(float y)
@@ -54,11 +59,10 @@ namespace Assets.__Game.Scripts.Characters.Player
       transform.rotation = targetRotation;
     }
 
-    private IEnumerator DoAllowAttack()
+    private void AllowAttackTimer()
     {
-      yield return new WaitForSeconds(allowAttackTime);
-
-      _canAttack = true;
+      if (_canAttack == false && Time.time - _lastAttackTime >= allowAttackTime)
+        _canAttack = true;
     }
   }
 }
