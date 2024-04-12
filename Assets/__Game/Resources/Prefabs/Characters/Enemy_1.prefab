@@ -193,10 +193,10 @@ MonoBehaviour:
   rightHandCollider: {fileID: 5778072821101322345}
   leftFootCollider: {fileID: 5769636719406029850}
   rightFootCollider: {fileID: 6065367501692172998}
-  minAttackDelay: 0.2
-  maxAttackDelay: 0.6
-  minAttackRate: 1
-  maxAttackRate: 1.5
+  minAttackDelay: 0.35
+  maxAttackDelay: 0.75
+  minAttackRate: 0.75
+  maxAttackRate: 1.25
 --- !u!114 &1575915129049682916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7cca2bcf9e998a468306a9d4f8965e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1.5
+  <MovementSpeed>k__BackingField: 1.5
   rayPoint: {fileID: 7503897363340079971}
   rayDistance: 0.7
   allyLayer:
