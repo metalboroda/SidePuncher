@@ -28,6 +28,10 @@ MonoBehaviour:
   - {fileID: -203655887218126122, guid: 0cfe72041d6497f4da9b03fdc40b91ec, type: 3}
   - {fileID: -203655887218126122, guid: cd95500f7e7dea14eac0ffd1516a6016, type: 3}
   - {fileID: -203655887218126122, guid: 4668e0046e5a25b4caa97c1d845ac460, type: 3}
+  hitAnimations:
+  - {fileID: -203655887218126122, guid: 8d22fc259bf86064e8b8d085e962a010, type: 3}
+  - {fileID: -203655887218126122, guid: 7be85ce8f7659154fbfefee5c88249c4, type: 3}
+  - {fileID: -203655887218126122, guid: 512c62066cb035c4a9dd074685797ecc, type: 3}
   deathAnimations:
   - {fileID: -203655887218126122, guid: 9749510e3f786434a9291e789ad1d422, type: 3}
   - {fileID: -203655887218126122, guid: 551e0a0fdb083eb42a2b61e3aaee17fb, type: 3}

@@ -9,7 +9,8 @@ namespace Assets.__Game.Scripts.SOs
     public List<AnimationClip> idleAnimations = new List<AnimationClip>();
     public List<AnimationClip> walkAnimations = new List<AnimationClip>();
     public List<AnimationClip> attackAnimations = new List<AnimationClip>();
-    public List<AnimationClip> deathAnimations = new List<AnimationClip>(); 
+    public List<AnimationClip> hitAnimations = new List<AnimationClip>();
+    public List<AnimationClip> deathAnimations = new List<AnimationClip>();
 
     public string GetRandomIdleAnimation()
     {
@@ -24,6 +25,11 @@ namespace Assets.__Game.Scripts.SOs
     public string GetRandomAttackAnimation()
     {
       return GetRandomAnimation(attackAnimations);
+    }
+
+    public string GetRandomHitAnimation()
+    {
+      return GetRandomAnimation(hitAnimations);
     }
 
     public string GetRandomDeathAnimation()

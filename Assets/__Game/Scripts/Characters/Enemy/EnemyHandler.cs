@@ -26,6 +26,8 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     {
       CurrentHealth -= damage;
 
+      _enemyController.StateMachine.ChangeState(new EnemyHitState(_enemyController));
+
       if (CurrentHealth <= 0)
       {
         CurrentHealth = 0;

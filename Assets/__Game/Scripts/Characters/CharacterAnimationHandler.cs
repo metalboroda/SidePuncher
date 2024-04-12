@@ -32,6 +32,11 @@ namespace Assets.__Game.Scripts.Characters
       PlayCrossfade(AnimationsSO.GetRandomWalkAnimation());
     }
 
+    public void PlayRandomHitAnimation()
+    {
+      PlayCrossfade(AnimationsSO.GetRandomHitAnimation());
+    }
+
     public void PlayRandomDeathAnimation()
     {
       PlayCrossfade(AnimationsSO.GetRandomDeathAnimation());
@@ -55,7 +60,7 @@ namespace Assets.__Game.Scripts.Characters
 
     public void OnAnimtionEnds(float endPercent, Action action = null)
     {
-      if(_animationEndRoutine != null)
+      if (_animationEndRoutine != null)
         StopCoroutine(_animationEndRoutine);
 
       _animationEndRoutine = StartCoroutine(DoWaitForAnimationToEnd(endPercent, action));

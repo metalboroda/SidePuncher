@@ -19,6 +19,11 @@ namespace Assets.__Game.Scripts.Characters.Enemy
       StateMachine.Init(new EnemyMovementState(this));
     }
 
+    public void ToFightState()
+    {
+      StateMachine.ChangeState(new EnemyFightState(this));
+    }
+
     public void ToDeathState()
     {
       StateMachine.ChangeState(new EnemyDeathState(this));
