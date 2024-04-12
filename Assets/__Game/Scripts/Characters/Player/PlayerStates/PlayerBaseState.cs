@@ -6,12 +6,14 @@ namespace Assets.__Game.Scripts.Characters.Player.PlayerStates
   {
     protected PlayerController PlayerController;
     protected PlayerHandler PlayerHandler;
+    protected PlayerAttackHandler PlayerAttackHandler;
     protected PlayerAnimationHandler PlayerAnimationHandler;
 
     public PlayerBaseState(PlayerController playerController)
     {
       PlayerController = playerController;
       PlayerHandler = PlayerController.PlayerHandler;
+      PlayerAttackHandler = PlayerController.PlayerAttackHandler;
       PlayerAnimationHandler = PlayerController.PlayerAnimationHandler;
     }
   }

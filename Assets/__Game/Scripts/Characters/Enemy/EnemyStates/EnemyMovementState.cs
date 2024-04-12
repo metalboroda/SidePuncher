@@ -6,13 +6,12 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
   {
     private MovementComponent _movementComponent;
 
-    public EnemyMovementState(EnemyController enemyController) : base(enemyController)
-    {
-      _movementComponent = new MovementComponent();
-    }
+    public EnemyMovementState(EnemyController enemyController) : base(enemyController) { }
 
     public override void Enter()
     {
+      _movementComponent = new MovementComponent();
+
       EnemyAnimationHandler.PlayRandomWalkAnimation();
     }
 

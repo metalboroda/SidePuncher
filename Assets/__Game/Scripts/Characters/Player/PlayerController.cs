@@ -6,6 +6,7 @@ namespace Assets.__Game.Scripts.Characters.Player
   public class PlayerController : CharacterControllerBase
   {
     public PlayerHandler PlayerHandler;
+    public PlayerAttackHandler PlayerAttackHandler;
     public PlayerAnimationHandler PlayerAnimationHandler;
 
     protected override void Awake()

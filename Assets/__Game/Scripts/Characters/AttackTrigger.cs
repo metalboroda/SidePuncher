@@ -14,7 +14,8 @@ namespace Assets.__Game.Scripts.Characters
 
     private void OnTriggerEnter(Collider other)
     {
-      if ((1 << other.gameObject.layer) != 0 && other.TryGetComponent(out IDamageable damageable))
+      if ((_characterHandler.EnemyLayer & 1 << other.gameObject.layer) != 0
+        && other.TryGetComponent(out IDamageable damageable))
       {
         damageable.Damage(_characterHandler.Power);
       }

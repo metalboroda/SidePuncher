@@ -1,3 +1,4 @@
+using Assets.__Game.Scripts.Characters.Player.PlayerStates;
 using Assets.__Game.Scripts.Services;
 using System;
 using System.Collections;
@@ -16,10 +17,12 @@ namespace Assets.__Game.Scripts.Characters.Player
     private bool _canAttack = true;
 
     private InputService _inputService;
+    private PlayerController _playerController;
 
     private void Awake()
     {
       _inputService = new InputService();
+      _playerController = GetComponent<PlayerController>();
     }
 
     private void OnEnable()
@@ -39,7 +42,7 @@ namespace Assets.__Game.Scripts.Characters.Player
       _inputService.Dispose();
     }
 
-    private void LeftAttack()
+    public void LeftAttack()
     {
       if (_canAttack == false) return;
 
@@ -47,7 +50,7 @@ namespace Assets.__Game.Scripts.Characters.Player
       OnAttack();
     }
 
-    private void RightAttack()
+    public void RightAttack()
     {
       if (_canAttack == false) return;
 

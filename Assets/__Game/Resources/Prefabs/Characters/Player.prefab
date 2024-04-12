@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerHandler: {fileID: 9010677809054682995}
+  PlayerAttackHandler: {fileID: 8563391468943247292}
   PlayerAnimationHandler: {fileID: 988346409267597696}
 --- !u!114 &9010677809054682995
 MonoBehaviour:
