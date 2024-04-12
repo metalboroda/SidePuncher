@@ -1,24 +1,21 @@
 using Assets.__Game.Scripts.Characters.Player.PlayerStates;
 using Assets.__Game.Scripts.Infrastructure;
-using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters.Player
 {
-  public class PlayerController : MonoBehaviour
+  public class PlayerController : CharacterControllerBase
   {
     public PlayerHandler PlayerHandler;
     public PlayerAnimationHandler PlayerAnimationHandler;
 
-    private StateMachine _stateMachine;
-
-    private void Awake()
+    protected override void Awake()
     {
-      _stateMachine = new StateMachine();
+      base.Awake();
     }
 
     private void Start()
     {
-      _stateMachine.Init(new PlayerFightState(this));
+      StateMachine.Init(new PlayerFightState(this));
     }
   }
 }

@@ -1,6 +1,20 @@
 ﻿using UnityEngine;
 
-public abstract class CharacterHandlerBase : MonoBehaviour
+namespace Assets.__Game.Scripts.Characters
 {
-  [SerializeField] protected int Health = 100;
+  public abstract class CharacterHandlerBase : MonoBehaviour
+  {
+    [SerializeField] protected int MaxHealth = 100;
+    [field: SerializeField] public int Power { get; private set; } = 25;
+
+    [field: Space]
+    [field: SerializeField] public LayerMask EnemyLayer { get; private set; }
+
+    protected int CurrentHealth;
+
+    protected virtual void Start()
+    {
+      CurrentHealth = MaxHealth;
+    }
+  }
 }

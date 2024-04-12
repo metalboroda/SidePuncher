@@ -1,21 +1,23 @@
-﻿using Assets.__Game.Scripts.Services;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters.Player
 {
   public class PlayerAnimationHandler : CharacterAnimationHandler
   {
+    [Space]
+    [SerializeField] private PlayerAttackHandler attackHandler;
+
     private void OnEnable()
     {
-      EventBus.AttackTriggered += PlayRandomLeftAttackAnimation;
+      attackHandler.AttackTriggered += PlayRandomAttackAnimation;
     }
 
     private void OnDisable()
     {
-      EventBus.AttackTriggered -= PlayRandomLeftAttackAnimation;
+      attackHandler.AttackTriggered -= PlayRandomAttackAnimation;
     }
 
-    public void PlayRandomLeftAttackAnimation()
+    public void PlayRandomAttackAnimation()
     {
       Animator.CrossFadeInFixedTime(AnimationsSO.GetRandomAttackAnimation(), CrossDur);
       OnAnimtionEnds(0.8f, PlayRandomIdleAnimation);

@@ -1,25 +1,21 @@
 using Assets.__Game.Scripts.Services;
+using System;
 using System.Collections;
 using UnityEngine;
-using Zenject;
 
 namespace Assets.__Game.Scripts.Characters.Player
 {
-  public class PlayerAttackHandler : MonoBehaviour
+  public class PlayerAttackHandler : CharacterAttackHandlerBase
   {
+    public event Action AttackTriggered;
+
+    [Space]
     [SerializeField] private float rotationSpeed = 0.1f;
     [SerializeField] private float allowAttackTime = 0.15f;
 
     private bool _canAttack = true;
 
     private InputService _inputService;
-    private EventBus _eventBus;
-
-    [Inject]
-    public void Construct(EventBus eventBus)
-    {
-      _eventBus = eventBus;
-    }
 
     private void Awake()
     {
@@ -61,7 +57,7 @@ namespace Assets.__Game.Scripts.Characters.Player
 
     private void OnAttack()
     {
-      _eventBus.RaiseAttackTriggered();
+      AttackTriggered?.Invoke();
       _canAttack = false;
 
       StartCoroutine(DoAllowAttack());
