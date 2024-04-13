@@ -4868,8 +4868,8 @@ MonoBehaviour:
   rightHandCollider: {fileID: 5038437709696954369}
   leftFootCollider: {fileID: 4227693506672359561}
   rightFootCollider: {fileID: 312804796704921908}
-  minAttackRate: 0.25
-  maxAttackRate: 0.75
+  minAttackRate: 0.2
+  maxAttackRate: 0.6
 --- !u!114 &3367549294986639519
 MonoBehaviour:
   m_ObjectHideFlags: 0
