@@ -11,13 +11,8 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     public event Action EnemyDead;
 
     private EnemyController _enemyController;
-    private EventBus _eventBus;
 
-    [Inject]
-    public void Construct(EventBus eventBus)
-    {
-      _eventBus = eventBus;
-    }
+    [Inject] private readonly EventBus _eventBus;
 
     protected override void Awake()
     {

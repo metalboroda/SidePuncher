@@ -13,6 +13,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
       _movementComponent = new MovementComponent();
 
       EnemyAnimationHandler.PlayRandomWalkAnimation();
+      CharacterPuppetHandler.DisableRagdoll();
     }
 
     public override void Update()

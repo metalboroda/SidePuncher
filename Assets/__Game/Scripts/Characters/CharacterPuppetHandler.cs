@@ -12,6 +12,12 @@ namespace Assets.__Game.Scripts.Characters
     [Space]
     [SerializeField] private PuppetMaster puppetMaster;
 
+    public void DisableRagdoll()
+    {
+      if (puppetMaster.state != PuppetMaster.State.Alive)
+        puppetMaster.state = PuppetMaster.State.Alive;
+    }
+
     public void EnableRagdoll()
     {
       StartCoroutine(DoEnableRagdoll(Random.Range(minEnableDelay, maxEnableDelay)));
