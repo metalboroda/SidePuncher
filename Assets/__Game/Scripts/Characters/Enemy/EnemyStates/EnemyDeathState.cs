@@ -11,7 +11,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
       EnemyAnimationHandler.StopCoroutines();
       EnemyAnimationHandler.PlayRandomDeathAnimation();
       EnemyAnimationHandler.DeathRandomRotation();
-      CharacterPuppetHandler.EnableRagdoll(Random.Range(0.2f, 0.5f));
+      CharacterPuppetHandler.EnableRagdoll();
       EnemyHandler.Death();
     }
   }

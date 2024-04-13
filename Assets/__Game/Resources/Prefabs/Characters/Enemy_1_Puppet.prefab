@@ -148,7 +148,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.1
   m_Height: 0.1
@@ -2073,7 +2073,7 @@ MonoBehaviour:
   stateSettings:
     killDuration: 1
     deadMuscleWeight: 0.01
-    deadMuscleDamper: 100
+    deadMuscleDamper: 75
     maxFreezeSqrVelocity: 0.02
     freezePermanently: 0
     enableAngularLimitsOnKill: 1
@@ -4416,7 +4416,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.1
   m_Height: 0.1
@@ -4914,6 +4914,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb07791fc485884591c84a6e11b7deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minEnableDelay: 0.25
+  maxEnableDelay: 0.75
   puppetMaster: {fileID: 4920037264003663662}
 --- !u!1 &7206644140457441862
 GameObject:
@@ -5322,7 +5324,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.1
   m_Height: 0.1
@@ -5823,7 +5825,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.1
   m_Height: 0.1

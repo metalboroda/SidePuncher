@@ -8,6 +8,7 @@ namespace Assets.__Game.Scripts.Characters.Player.PlayerStates
     protected PlayerHandler PlayerHandler;
     protected PlayerAttackHandler PlayerAttackHandler;
     protected PlayerAnimationHandler PlayerAnimationHandler;
+    protected CharacterPuppetHandler CharacterPuppetHandler;
 
     public PlayerBaseState(PlayerController playerController)
     {
@@ -15,6 +16,7 @@ namespace Assets.__Game.Scripts.Characters.Player.PlayerStates
       PlayerHandler = PlayerController.PlayerHandler;
       PlayerAttackHandler = PlayerController.PlayerAttackHandler;
       PlayerAnimationHandler = PlayerController.PlayerAnimationHandler;
+      CharacterPuppetHandler = PlayerController.CharacterPuppetHandler;
     }
   }
 }

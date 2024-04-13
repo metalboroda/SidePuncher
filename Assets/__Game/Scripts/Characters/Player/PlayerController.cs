@@ -8,6 +8,7 @@ namespace Assets.__Game.Scripts.Characters.Player
     public PlayerHandler PlayerHandler;
     public PlayerAttackHandler PlayerAttackHandler;
     public PlayerAnimationHandler PlayerAnimationHandler;
+    public CharacterPuppetHandler CharacterPuppetHandler;
 
     protected override void Awake()
     {

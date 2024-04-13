@@ -6,11 +6,15 @@ namespace Assets.__Game.Scripts.Characters
 {
   public class CharacterPuppetHandler : MonoBehaviour
   {
+    [SerializeField] private float minEnableDelay = 0.25f;
+    [SerializeField] private float maxEnableDelay = 0.75f;
+
+    [Space]
     [SerializeField] private PuppetMaster puppetMaster;
 
-    public void EnableRagdoll(float delay = 0)
+    public void EnableRagdoll()
     {
-      StartCoroutine(DoEnableRagdoll(delay));
+      StartCoroutine(DoEnableRagdoll(Random.Range(minEnableDelay, maxEnableDelay)));
     }
 
     private IEnumerator DoEnableRagdoll(float delay)
