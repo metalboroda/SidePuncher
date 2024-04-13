@@ -37,6 +37,11 @@ namespace Assets.__Game.Scripts.Characters
       PlayCrossfade(AnimationsSO.GetRandomHitAnimation());
     }
 
+    public void PlayRandomVictoryAnimation()
+    {
+      PlayCrossfade(AnimationsSO.GetRandomVictoryAnimation());
+    }
+
     public void PlayRandomDeathAnimation()
     {
       PlayCrossfade(AnimationsSO.GetRandomDeathAnimation());

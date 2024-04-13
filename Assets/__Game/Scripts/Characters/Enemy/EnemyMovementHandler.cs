@@ -19,10 +19,6 @@ namespace Assets.__Game.Scripts.Characters.Enemy
       _enemyController = GetComponent<EnemyController>();
     }
 
-    private void FixedUpdate()
-    {
-    }
-
     public void DetectEnemyAndAlly()
     {
       Vector3 origin = rayPoint.position;

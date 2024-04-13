@@ -1,4 +1,6 @@
-﻿namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
+﻿using UnityEngine;
+
+namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
 {
   public class EnemyDeathState : EnemyBaseState
   {
@@ -9,7 +11,8 @@
       EnemyAnimationHandler.StopCoroutines();
       EnemyAnimationHandler.PlayRandomDeathAnimation();
       EnemyAnimationHandler.DeathRandomRotation();
-      EnemyHandler.Death(3);
+      CharacterPuppetHandler.EnableRagdoll(Random.Range(0.2f, 0.5f));
+      EnemyHandler.Death();
     }
   }
 }

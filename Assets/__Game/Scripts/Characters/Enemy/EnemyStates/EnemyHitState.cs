@@ -8,7 +8,7 @@
     {
       EnemyAnimationHandler.PlayRandomHitAnimation();
       EnemyAnimationHandler.StopCoroutines();
-      EnemyAnimationHandler.OnAnimtionEnds(0.95f, EnemyController.ToFightState);
+      EnemyAnimationHandler.OnAnimtionEnds(0.95f, EnemyController.ToPreviousState);
     }
   }
 }

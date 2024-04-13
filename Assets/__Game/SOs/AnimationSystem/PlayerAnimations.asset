@@ -32,6 +32,11 @@ MonoBehaviour:
   - {fileID: -203655887218126122, guid: 8d22fc259bf86064e8b8d085e962a010, type: 3}
   - {fileID: -203655887218126122, guid: 7be85ce8f7659154fbfefee5c88249c4, type: 3}
   - {fileID: -203655887218126122, guid: 512c62066cb035c4a9dd074685797ecc, type: 3}
+  victoryAnimations:
+  - {fileID: -203655887218126122, guid: 80086961393261749a7c52e379fe3d62, type: 3}
+  - {fileID: -203655887218126122, guid: 63d890ccf3fb52948a1b755f1f027b9e, type: 3}
+  - {fileID: -203655887218126122, guid: 6c7f1d0a8f13ed64d88de68bd6ef6f27, type: 3}
+  - {fileID: -203655887218126122, guid: 1c193955f64e5e84f979a5b8e82d4a62, type: 3}
   deathAnimations:
   - {fileID: -203655887218126122, guid: 9749510e3f786434a9291e789ad1d422, type: 3}
   - {fileID: -203655887218126122, guid: 551e0a0fdb083eb42a2b61e3aaee17fb, type: 3}
