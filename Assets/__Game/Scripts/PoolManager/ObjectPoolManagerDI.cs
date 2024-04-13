@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Assets.__Game.Scripts.PoolManager
 {
-  public class ObjectPoolManager
+  public class ObjectPoolManagerDI
   {
     [Inject] private readonly DiContainer _container;
 

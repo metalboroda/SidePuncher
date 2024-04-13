@@ -8,7 +8,7 @@ namespace Assets.__Game.Scripts.Level
   {
     [SerializeField] private GameObject enemyPrefab;
 
-    [Inject] private readonly ObjectPoolManager _objectPoolManager;
+    [Inject] private readonly ObjectPoolManagerDI _objectPoolManager;
 
     private void Awake()
     {

@@ -9,7 +9,7 @@ namespace Assets.__Game.Scripts.Installers
     public override void InstallBindings()
     {
       Container.Bind<EventBus>().AsSingle();
-      Container.Bind<ObjectPoolManager>().AsSingle();
+      Container.Bind<ObjectPoolManagerDI>().AsSingle();
     }
   }
 }
