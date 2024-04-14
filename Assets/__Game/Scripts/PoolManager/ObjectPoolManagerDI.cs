@@ -31,40 +31,55 @@ namespace Assets.__Game.Scripts.PoolManager
     public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent = null)
     {
       if (_pools.ContainsKey(prefab) == false)
-      {
         InitializePool(prefab, 10);
-      }
 
       List<GameObject> pool = _pools[prefab];
       GameObject obj = pool.Find(go => !go.activeSelf);
 
       if (obj == null)
       {
-        obj = _container.InstantiatePrefab(prefab, position, rotation, parent);
-        pool.Add(obj);
+        obj = pool.OrderBy(go => go.GetInstanceID()).FirstOrDefault();
+
+        if (obj != null)
+        {
+          obj.transform.SetPositionAndRotation(position, rotation);
+          obj.SetActive(true);
+
+          IPoolable[] poolables = obj.GetComponents<IPoolable>();
+          IPoolable[] poolablesInChildren = obj.GetComponentsInChildren<IPoolable>();
+
+          foreach (IPoolable poolable in poolablesInChildren.Concat(poolables))
+          {
+            poolable.OnSpawned();
+          }
+
+          return obj;
+        }
+
+        return null;
       }
       else
       {
-        obj.transform.position = position;
-        obj.transform.rotation = rotation;
+        obj.transform.SetPositionAndRotation(position, rotation);
+        obj.SetActive(true);
+
+        IPoolable[] poolables = obj.GetComponents<IPoolable>();
+        IPoolable[] poolablesInChildren = obj.GetComponentsInChildren<IPoolable>();
+
+        foreach (IPoolable poolable in poolablesInChildren.Concat(poolables))
+        {
+          poolable.OnSpawned();
+        }
+
+        return obj;
       }
-
-      obj.SetActive(true);
-
-      IPoolable[] poolables = obj.GetComponents<IPoolable>();
-      IPoolable[] poolablesInChildren = obj.GetComponentsInChildren<IPoolable>();
-
-      foreach (IPoolable poolable in poolablesInChildren.Concat(poolables))
-      {
-        poolable.OnSpawned();
-      }
-
-      return obj;
     }
 
     public async void Despawn(GameObject obj, float delay = 0)
     {
       await Task.Delay((int)(delay * 1000));
+
+      if (obj == null) return;
 
       obj.SetActive(false);
 

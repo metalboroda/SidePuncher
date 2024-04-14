@@ -4852,6 +4852,7 @@ MonoBehaviour:
   <EnemyLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 256
+  enemyController: {fileID: 4520992716121676699}
 --- !u!114 &6323924879684928012
 MonoBehaviour:
   m_ObjectHideFlags: 0

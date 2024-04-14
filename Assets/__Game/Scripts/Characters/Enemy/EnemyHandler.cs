@@ -13,7 +13,8 @@ namespace Assets.__Game.Scripts.Characters.Enemy
   {
     public event Action EnemyDead;
 
-    private EnemyController _enemyController;
+    [Space]
+    [SerializeField] private EnemyController enemyController;
 
     [Inject] private readonly EventBus _eventBus;
     [Inject] private readonly ObjectPoolManagerDI _objectPoolManagerDI;
@@ -21,8 +22,6 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     protected override void Awake()
     {
       base.Awake();
-
-      _enemyController = GetComponent<EnemyController>();
     }
 
     private void OnEnable()
@@ -44,13 +43,13 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     {
       CurrentHealth -= damage;
 
-      _enemyController.StateMachine.ChangeState(new EnemyHitState(_enemyController));
+      enemyController.StateMachine.ChangeState(new EnemyHitState(enemyController));
 
       if (CurrentHealth <= 0)
       {
         CurrentHealth = 0;
         CapsuleCollider.enabled = false;
-        _enemyController.StateMachine.ChangeState(new EnemyDeathState(_enemyController));
+        enemyController.StateMachine.ChangeState(new EnemyDeathState(enemyController));
         EnemyDead?.Invoke();
       }
     }
@@ -62,7 +61,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     public override void Victory()
     {
-      _enemyController.StateMachine.ChangeState(new EnemyVictoryState(_enemyController));
+      enemyController.StateMachine.ChangeState(new EnemyVictoryState(enemyController));
     }
 
     public void OnSpawned()
