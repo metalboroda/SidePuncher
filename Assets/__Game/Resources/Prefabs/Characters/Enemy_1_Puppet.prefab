@@ -4869,8 +4869,8 @@ MonoBehaviour:
   rightHandCollider: {fileID: 5038437709696954369}
   leftFootCollider: {fileID: 4227693506672359561}
   rightFootCollider: {fileID: 312804796704921908}
-  minAttackRate: 0.5
-  maxAttackRate: 1
+  minAttackRate: 0.3
+  maxAttackRate: 0.7
 --- !u!114 &3367549294986639519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4915,8 +4915,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb07791fc485884591c84a6e11b7deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minEnableDelay: 0.15
-  maxEnableDelay: 0.4
+  minEnableDelay: 0.3
+  maxEnableDelay: 0.5
   RagdollObject: {fileID: 2354465571941495414}
   puppetMaster: {fileID: 4920037264003663662}
 --- !u!1 &7206644140457441862

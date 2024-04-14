@@ -38,7 +38,7 @@ namespace Assets.__Game.Scripts.Characters
 
     private IEnumerator DoDisableRagdollObject()
     {
-      float disableDelay = 6f;
+      float disableDelay = 5.75f;
 
       yield return new WaitForSeconds(disableDelay);
 

@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d50d9e777a591624399bf4b0bd39fe4c, type: 2}
+    - target: {fileID: 2501024918338619541, guid: 6066be2ee848e6c439ff15b546837207,
+        type: 3}
+      propertyPath: MaxHealth
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
         type: 3}
       propertyPath: m_Name

@@ -33,5 +33,10 @@ namespace Assets.__Game.Scripts.Game
     {
       GameStateMachine.Init(new MainMenuState(this));
     }
+
+    public void ToGameplayState()
+    {
+      GameStateMachine.ChangeState(new GameplayState(this));
+    }
   }
 }

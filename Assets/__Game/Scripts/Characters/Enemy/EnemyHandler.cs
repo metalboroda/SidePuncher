@@ -17,7 +17,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     private Renderer[] _renderers;
 
-    private EventBinding<PlayerDeathEvent> _onPlayerDeathEvent;
+    private EventBinding<PlayerDeathEvent> _playerDeathEvent;
 
     protected override void Awake()
     {
@@ -28,12 +28,12 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     private void OnEnable()
     {
-      _onPlayerDeathEvent = new EventBinding<PlayerDeathEvent>(Victory);
+      _playerDeathEvent = new EventBinding<PlayerDeathEvent>(Victory);
     }
 
     private void OnDisable()
     {
-      _onPlayerDeathEvent.Remove(Victory);
+      _playerDeathEvent.Remove(Victory);
     }
 
     protected override void Start()
@@ -65,6 +65,11 @@ namespace Assets.__Game.Scripts.Characters.Enemy
         CurrentHealth = 0;
         enemyController.StateMachine.ChangeState(new EnemyDeathState(enemyController));
         EnemyDead?.Invoke();
+
+        EventBus<EnemyDeathEvent>.Raise(new EnemyDeathEvent()
+        {
+          gameObject = transform.root.gameObject
+        });
       }
     }
 
