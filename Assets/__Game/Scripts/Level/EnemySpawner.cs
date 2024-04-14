@@ -1,6 +1,7 @@
-using Assets.__Game.Scripts.PoolManager;
 using UnityEngine;
 using Zenject;
+using System.Collections;
+using Assets.__Game.Scripts.PoolManager;
 
 namespace Assets.__Game.Scripts.Level
 {
@@ -8,16 +9,62 @@ namespace Assets.__Game.Scripts.Level
   {
     [SerializeField] private GameObject enemyPrefab;
 
-    [Inject] private readonly ObjectPoolManagerDI _objectPoolManager;
+    [Space]
+    [SerializeField] private float spawnRate = 0.5f;
+    [SerializeField] private int spawnLimit = 10;
+
+    [Space]
+    [SerializeField] private Quaternion spawnRotation;
+
+    [Inject] private readonly ObjectPoolManagerDI _objectPoolManagerDI;
+
+    private Coroutine spawnCoroutine;
+    private int enemiesSpawned = 0;
 
     private void Awake()
     {
-      _objectPoolManager.InitializePool(enemyPrefab, 5);
+      _objectPoolManagerDI.InitializePool(enemyPrefab, spawnLimit);
     }
 
     private void Start()
     {
-      _objectPoolManager.Spawn(enemyPrefab, transform.position, transform.rotation);
+      StartSpawning();
+    }
+
+    private void StartSpawning()
+    {
+      if (spawnCoroutine != null)
+        StopCoroutine(spawnCoroutine);
+
+      spawnCoroutine = StartCoroutine(SpawnEnemiesCoroutine());
+    }
+
+    private IEnumerator SpawnEnemiesCoroutine()
+    {
+      while (enemiesSpawned < spawnLimit)
+      {
+        yield return new WaitForSeconds(spawnRate);
+
+        SpawnEnemy();
+
+        enemiesSpawned++;
+      }
+    }
+
+    private void SpawnEnemy()
+    {
+      _objectPoolManagerDI.Spawn(enemyPrefab, transform.position, spawnRotation);
+    }
+
+    public void PauseSpawning()
+    {
+      if (spawnCoroutine != null)
+        StopCoroutine(spawnCoroutine);
+    }
+
+    public void ResumeSpawning()
+    {
+      StartSpawning();
     }
   }
 }

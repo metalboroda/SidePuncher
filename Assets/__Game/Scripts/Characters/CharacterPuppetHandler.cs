@@ -14,8 +14,7 @@ namespace Assets.__Game.Scripts.Characters
 
     public void DisableRagdoll()
     {
-      if (puppetMaster.state != PuppetMaster.State.Alive)
-        puppetMaster.state = PuppetMaster.State.Alive;
+      puppetMaster.state = PuppetMaster.State.Alive;
     }
 
     public void EnableRagdoll()

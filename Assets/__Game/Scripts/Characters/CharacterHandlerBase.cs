@@ -27,10 +27,7 @@ namespace Assets.__Game.Scripts.Characters
       CurrentHealth = MaxHealth;
     }
 
-    public void Death()
-    {
-      Destroy(transform.root.gameObject, deathTime);
-    }
+    public virtual void Death() { }
 
     public virtual void Victory() { }
   }
