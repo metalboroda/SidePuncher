@@ -1,4 +1,4 @@
-﻿using Assets.__Game.Scripts.Characters.Enemy.EnemyStates;
+﻿using System;
 using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters.Enemy
@@ -10,51 +10,21 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     [Header("Enemy detection params")]
     [SerializeField] private Transform rayPoint;
     [SerializeField] private float rayDistance;
-    [SerializeField] private LayerMask allyLayer;
+    public LayerMask AllyLayer;
 
-    private EnemyController _enemyController;
-
-    private void Awake()
-    {
-      _enemyController = GetComponent<EnemyController>();
-    }
-
-    public void DetectEnemyAndAlly()
-    {
-      RaycastHit hit;
-
-      if (RaycastForLayer(_enemyController.EnemyHandler.EnemyLayer, out hit))
-      {
-        ChangeStateBasedOnCurrentState(new EnemyFightState(_enemyController));
-      }
-      else if (RaycastForLayer(allyLayer, out hit))
-      {
-        ChangeStateBasedOnCurrentState(new EnemyIdleState(_enemyController));
-      }
-      else
-      {
-        ChangeStateBasedOnCurrentState(new EnemyMovementState(_enemyController));
-      }
-    }
-
-    private bool RaycastForLayer(LayerMask layerMask, out RaycastHit hit)
+    public void RaycastAndState(LayerMask layerMask, Action trueAction = null, Action falseACtion = null)
     {
       Vector3 origin = rayPoint.position;
       Vector3 direction = transform.forward;
+      RaycastHit hit;
 
       if (Physics.Raycast(origin, direction, out hit, rayDistance, layerMask))
       {
-        return true;
+        trueAction?.Invoke();
       }
-
-      return false;
-    }
-
-    private void ChangeStateBasedOnCurrentState(EnemyBaseState newState)
-    {
-      if (!(_enemyController.StateMachine.CurrentState.GetType() == newState.GetType()))
+      else
       {
-        _enemyController.StateMachine.ChangeState(newState);
+        falseACtion?.Invoke();
       }
     }
   }

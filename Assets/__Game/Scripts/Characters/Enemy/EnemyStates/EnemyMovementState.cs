@@ -18,7 +18,8 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
     public override void Update()
     {
       _movementComponent.MoveForward(EnemyMovementHandler.MovementSpeed, EnemyMovementHandler.transform);
-      EnemyMovementHandler.DetectEnemyAndAlly();
+      EnemyMovementHandler.RaycastAndState(EnemyHandler.EnemyLayer, EnemyController.ToFightState);
+      EnemyMovementHandler.RaycastAndState(EnemyMovementHandler.AllyLayer, EnemyController.ToIdleState);
     }
   }
 }

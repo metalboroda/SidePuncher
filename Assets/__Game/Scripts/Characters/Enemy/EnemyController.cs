@@ -25,6 +25,16 @@ namespace Assets.__Game.Scripts.Characters.Enemy
       StateMachine.ChangeState(StateMachine.PreviousState);
     }
 
+    public void ToIdleState()
+    {
+      StateMachine.ChangeState(new EnemyIdleState(this));
+    }
+
+    public void ToMovementState()
+    {
+      StateMachine.ChangeState(new EnemyMovementState(this));
+    }
+
     public void ToFightState()
     {
       StateMachine.ChangeState(new EnemyFightState(this));

@@ -860,6 +860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1737572877}
   - component: {fileID: 1737572876}
+  - component: {fileID: 1737572878}
   m_Layer: 0
   m_Name: EnemiesPool
   m_TagString: Untagged
@@ -882,8 +883,8 @@ MonoBehaviour:
   prefab: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207, type: 3}
   notification: 3
   strategy: 0
-  preload: 5
-  capacity: 10
+  preload: 10
+  capacity: 15
   recycle: 1
   persist: 0
   stamp: 0
@@ -907,6 +908,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 184572234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1737572878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737572875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea08375da243a441b88d1e6b0713006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 951866369213845890, guid: 6453dc80baa663e4b9e83d51afd09e0b, type: 3}
+  notification: 3
+  strategy: 0
+  preload: 2
+  capacity: 2
+  recycle: 1
+  persist: 0
+  stamp: 0
+  warnings: 1
+  spawnedClonesList: []
+  despawnedClones: []
+  delays: []
+  deactivatedChild: {fileID: 0}
 --- !u!1 &2110380482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,11 +1044,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_Puppet
-      objectReference: {fileID: 0}
-    - target: {fileID: 7557711554821899619, guid: e55951cd01f7ed340a3629ed13bf79a6,
-        type: 3}
-      propertyPath: MaxHealth
-      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 8230928796269328679, guid: e55951cd01f7ed340a3629ed13bf79a6,
         type: 3}

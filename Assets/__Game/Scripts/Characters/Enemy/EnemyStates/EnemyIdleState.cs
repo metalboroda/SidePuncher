@@ -11,7 +11,12 @@
 
     public override void Update()
     {
-      EnemyMovementHandler.DetectEnemyAndAlly();
+      CheckIfCanMoveForward();
+    }
+
+    private void CheckIfCanMoveForward()
+    {
+      EnemyMovementHandler.RaycastAndState(EnemyMovementHandler.AllyLayer, null, EnemyController.ToMovementState);
     }
   }
 }

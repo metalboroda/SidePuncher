@@ -4,7 +4,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
 {
   public class EnemyDeathState : EnemyBaseState
   {
-    private int _maxDyingChance = 4;
+    private readonly int _maxDyingChance = 4;
 
     public EnemyDeathState(EnemyController enemyController) : base(enemyController) { }
 
@@ -20,7 +20,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
         EnemyAnimationHandler.OnAnimtionEnds(0.8f, EnemyAnimationHandler.PlayRandomDyingAnimation);
 
       CharacterPuppetHandler.EnableRagdoll();
-      EnemyHandler.Death(10);
+      EnemyHandler.Death(6);
     }
   }
 }

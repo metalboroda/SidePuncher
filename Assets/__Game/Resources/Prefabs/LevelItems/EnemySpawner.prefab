@@ -48,7 +48,7 @@ MonoBehaviour:
     type: 3}
   heavyEnemy: {fileID: 951866369213845890, guid: 6453dc80baa663e4b9e83d51afd09e0b,
     type: 3}
-  minSpawnRate: 2
-  maxSpawnRate: 4
+  minSpawnRate: 1.5
+  maxSpawnRate: 3.5
   heavySpawnPeriod: 10
   spawnLimit: 100

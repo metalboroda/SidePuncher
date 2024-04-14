@@ -13,9 +13,6 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     public event Action EnemyDead;
 
     [Space]
-    [SerializeField] private GameObject puppetObject;
-
-    [Space]
     [SerializeField] private EnemyController enemyController;
 
     private Renderer[] _renderers;
@@ -64,8 +61,8 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
       if (CurrentHealth <= 0)
       {
-        CurrentHealth = 0;
         CapsuleCollider.enabled = false;
+        CurrentHealth = 0;
         enemyController.StateMachine.ChangeState(new EnemyDeathState(enemyController));
         EnemyDead?.Invoke();
       }
@@ -78,7 +75,8 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     public override void Victory()
     {
-      enemyController.StateMachine.ChangeState(new EnemyVictoryState(enemyController));
+      if (enemyController.StateMachine.CurrentState is not EnemyDeathState)
+        enemyController.StateMachine.ChangeState(new EnemyVictoryState(enemyController));
     }
 
     private void SwitchModelVisibility(bool enable, float delay = 0)
@@ -90,7 +88,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     {
       yield return new WaitForSeconds(delay);
 
-      puppetObject.SetActive(enable);
+      enemyController.CharacterPuppetHandler.RagdollObject.SetActive(enable);
 
       foreach (var renderer in _renderers)
       {

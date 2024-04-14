@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 5660365633004082358}
   - component: {fileID: 1443145033594916593}
   - component: {fileID: 3251957808889318227}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -941,7 +941,7 @@ GameObject:
   - component: {fileID: 5007395712027567028}
   - component: {fileID: 8152797907450230858}
   - component: {fileID: 8428090124147404921}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1256,7 +1256,7 @@ GameObject:
   - component: {fileID: 5196090475388506639}
   - component: {fileID: 1585317556363926929}
   - component: {fileID: 2499768309159353019}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1443,7 +1443,7 @@ GameObject:
   - component: {fileID: 4616556188725011109}
   - component: {fileID: 7305052939633210218}
   - component: {fileID: 1617566235904436042}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1630,7 +1630,7 @@ GameObject:
   - component: {fileID: 7017455078835624017}
   - component: {fileID: 6214031532236751444}
   - component: {fileID: 3424855650092879136}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1945,7 +1945,7 @@ GameObject:
   - component: {fileID: 7512067197378289200}
   - component: {fileID: 4654011814540577901}
   - component: {fileID: 3695965188610692550}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2133,7 +2133,7 @@ GameObject:
   - component: {fileID: 50148742579982848}
   - component: {fileID: 6374245983376594433}
   - component: {fileID: 1147500690023307171}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2492,7 +2492,7 @@ MonoBehaviour:
   leftFootCollider: {fileID: 258735139188853659}
   rightFootCollider: {fileID: 9077197014863484421}
   rotationDuration: 0.1
-  allowAttackTime: 0.35
+  allowAttackTime: 0.25
 --- !u!114 &5727253782857265961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2521,6 +2521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minEnableDelay: 0.2
   maxEnableDelay: 0.4
+  RagdollObject: {fileID: 8466362905793800789}
   puppetMaster: {fileID: 8483927367354305181}
 --- !u!1 &4012488857513631702
 GameObject:
@@ -2564,7 +2565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8229633570857333914}
   - component: {fileID: 3518974041654302979}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Foot Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2652,7 +2653,7 @@ GameObject:
   - component: {fileID: 6728135193703586317}
   - component: {fileID: 7624521872662395350}
   - component: {fileID: 1035232553440460977}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2986,7 +2987,7 @@ GameObject:
   - component: {fileID: 2727612628178915043}
   - component: {fileID: 7350096192699000826}
   - component: {fileID: 967209742251801}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3173,7 +3174,7 @@ GameObject:
   - component: {fileID: 8699299750681970939}
   - component: {fileID: 5505914428943527506}
   - component: {fileID: 5515360990366329379}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3886,7 +3887,7 @@ GameObject:
   - component: {fileID: 2773740670446617540}
   - component: {fileID: 3649494993974254716}
   - component: {fileID: 2395661459954886375}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4178,7 +4179,7 @@ GameObject:
   - component: {fileID: 4522315733759083631}
   - component: {fileID: 8052823097443317690}
   - component: {fileID: 3401803398061155871}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4395,7 +4396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8813900433906232920}
   - component: {fileID: 493468821207980027}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Foot Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4816,7 +4817,7 @@ GameObject:
   - component: {fileID: 6436457950481939902}
   - component: {fileID: 6175746066365847685}
   - component: {fileID: 7133456232717085258}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5130,7 +5131,7 @@ GameObject:
   - component: {fileID: 3006860140849997905}
   - component: {fileID: 1861871396583573090}
   - component: {fileID: 6309217684894029070}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5348,7 +5349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1186309525754492785}
   - component: {fileID: 8483927367354305181}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: PuppetMaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6179,7 +6180,7 @@ GameObject:
   - component: {fileID: 1638768298080173410}
   - component: {fileID: 7841907424629265593}
   - component: {fileID: 4667433212423683792}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: mixamorig:LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

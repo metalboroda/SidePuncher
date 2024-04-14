@@ -66,8 +66,6 @@ namespace Assets.__Game.Scripts.Characters
 
     public void PlayCrossfade(string animationName)
     {
-      if (Animator.GetCurrentAnimatorStateInfo(0).IsName(animationName)) return;
-
       Animator.CrossFadeInFixedTime(animationName, CrossDur);
     }
 
