@@ -1,6 +1,7 @@
 using Assets.__Game.Scripts.Characters.Player.PlayerStates;
 using Assets.__Game.Scripts.Interfaces;
 using EventBus;
+using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters.Player
 {
@@ -32,7 +33,7 @@ namespace Assets.__Game.Scripts.Characters.Player
       }
     }
 
-    public override void Death()
+    public override void Death(float delay)
     {
       EventBus<PlayerDeathEvent>.Raise(new PlayerDeathEvent());
     }

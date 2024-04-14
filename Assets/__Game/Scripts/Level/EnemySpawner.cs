@@ -1,22 +1,36 @@
-using UnityEngine;
-using Zenject;
+﻿using Assets.__Game.Scripts.Characters.Enemy;
+using EventBus;
+using Lean.Pool;
 using System.Collections;
-using Assets.__Game.Scripts.PoolManager;
+using UnityEngine;
 
 namespace Assets.__Game.Scripts.Level
 {
   public class EnemySpawner : MonoBehaviour
   {
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject standardEnemy;
+    [SerializeField] private GameObject heavyEnemy;
 
     [Space]
-    [SerializeField] private float spawnRate = 0.5f;
+    [SerializeField] private float minSpawnRate = 1f;
+    [SerializeField] private float maxSpawnRate = 4f;
+    [SerializeField] private int heavySpawnPeriod = 10;
     [SerializeField] private int spawnLimit = 10;
 
-    [Inject] private readonly ObjectPoolManagerDI _objectPoolManagerDI;
-
-    private Coroutine spawnCoroutine; 
+    private Coroutine spawnCoroutine;
     private int enemiesSpawned = 0;
+
+    private EventBinding<PlayerDeathEvent> _onPlayerDeathEvent;
+
+    private void OnEnable()
+    {
+      _onPlayerDeathEvent = new EventBinding<PlayerDeathEvent>(PauseSpawning);
+    }
+
+    private void OnDisable()
+    {
+      _onPlayerDeathEvent.Remove(PauseSpawning);
+    }
 
     private void Start()
     {
@@ -35,9 +49,11 @@ namespace Assets.__Game.Scripts.Level
     {
       while (enemiesSpawned < spawnLimit)
       {
-        SpawnEnemy();
+        float randDelay = Random.Range(minSpawnRate, maxSpawnRate);
 
-        yield return new WaitForSeconds(spawnRate);
+        yield return new WaitForSeconds(randDelay);
+
+        SpawnEnemy();
 
         enemiesSpawned++;
       }
@@ -45,8 +61,20 @@ namespace Assets.__Game.Scripts.Level
 
     private void SpawnEnemy()
     {
-      Instantiate(enemyPrefab, transform.position, transform.rotation);
+      GameObject enemyPrefab = standardEnemy;
+
+      if (enemiesSpawned > 0 && enemiesSpawned % heavySpawnPeriod == 0)
+      {
+        enemyPrefab = heavyEnemy;
+      }
+
+      var spawnedEnemy = LeanPool.Spawn(enemyPrefab).GetComponentInChildren<EnemyHandler>();
+
+      spawnedEnemy.SpawnInit(transform.position, transform.rotation);
+
+      enemiesSpawned++;
     }
+
 
     public void PauseSpawning()
     {

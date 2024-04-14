@@ -27,7 +27,7 @@ namespace Assets.__Game.Scripts.Characters
       CurrentHealth = MaxHealth;
     }
 
-    public virtual void Death() { }
+    public virtual void Death(float delay) { }
 
     public virtual void Victory() { }
   }

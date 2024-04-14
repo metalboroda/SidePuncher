@@ -9,12 +9,11 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
     public override void Enter()
     {
       EnemyAnimationHandler.PlayRandomIdleAnimation();
-      EnemyAttackHandler.AttackWithRate();
     }
 
-    public override void Exit()
+    public override void Update()
     {
-      EnemyAttackHandler.StopCoroutines();
+      EnemyAttackHandler.AttackWithRate();
     }
   }
 }

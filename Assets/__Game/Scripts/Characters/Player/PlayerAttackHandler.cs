@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters.Player

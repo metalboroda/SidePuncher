@@ -2032,7 +2032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4135996720158942465}
   - component: {fileID: 4920037264003663662}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: PuppetMaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2647,7 +2647,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 431acac3482404144aaaa9827bc4ed81, type: 2}
+  - {fileID: 2100000, guid: acbaaeab796c68a44bf31e84b40301a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3397,7 +3397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8268895976923967277}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Enemy_1_Puppet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4852,6 +4852,7 @@ MonoBehaviour:
   <EnemyLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 256
+  puppetObject: {fileID: 2354465571941495414}
   enemyController: {fileID: 4520992716121676699}
 --- !u!114 &6323924879684928012
 MonoBehaviour:
@@ -4869,8 +4870,8 @@ MonoBehaviour:
   rightHandCollider: {fileID: 5038437709696954369}
   leftFootCollider: {fileID: 4227693506672359561}
   rightFootCollider: {fileID: 312804796704921908}
-  minAttackRate: 0.2
-  maxAttackRate: 0.6
+  minAttackRate: 0.5
+  maxAttackRate: 1
 --- !u!114 &3367549294986639519
 MonoBehaviour:
   m_ObjectHideFlags: 0

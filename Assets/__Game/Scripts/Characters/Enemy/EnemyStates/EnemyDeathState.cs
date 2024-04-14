@@ -20,7 +20,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
         EnemyAnimationHandler.OnAnimtionEnds(0.8f, EnemyAnimationHandler.PlayRandomDyingAnimation);
 
       CharacterPuppetHandler.EnableRagdoll();
-      EnemyHandler.Death();
+      EnemyHandler.Death(10);
     }
   }
 }

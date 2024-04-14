@@ -1,7 +1,9 @@
 ﻿using Assets.__Game.Scripts.Characters.Enemy.EnemyStates;
 using Assets.__Game.Scripts.Interfaces;
 using EventBus;
+using Lean.Pool;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters.Enemy
@@ -11,13 +13,20 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     public event Action EnemyDead;
 
     [Space]
+    [SerializeField] private GameObject puppetObject;
+
+    [Space]
     [SerializeField] private EnemyController enemyController;
 
-    EventBinding<PlayerDeathEvent> _onPlayerDeathEvent;
+    private Renderer[] _renderers;
+
+    private EventBinding<PlayerDeathEvent> _onPlayerDeathEvent;
 
     protected override void Awake()
     {
       base.Awake();
+
+      _renderers = transform.root.GetComponentsInChildren<Renderer>();
     }
 
     private void OnEnable()
@@ -35,6 +44,18 @@ namespace Assets.__Game.Scripts.Characters.Enemy
       base.Start();
     }
 
+    public void SpawnInit(Vector3 position, Quaternion rotation)
+    {
+      SwitchModelVisibility(false);
+      enemyController.StateMachine.ChangeStateWithDelay(new EnemyMovementState(enemyController), 0.0001f, this);
+      transform.position = position;
+      transform.rotation = rotation;
+      enemyController.CharacterPuppetHandler.DisableRagdoll();
+      CapsuleCollider.enabled = true;
+      CurrentHealth = MaxHealth;
+      SwitchModelVisibility(true, 0.1f);
+    }
+
     public void Damage(int damage)
     {
       CurrentHealth -= damage;
@@ -50,14 +71,30 @@ namespace Assets.__Game.Scripts.Characters.Enemy
       }
     }
 
-    public override void Death()
+    public override void Death(float delay)
     {
-      Destroy(transform.root.gameObject, 6);
+      LeanPool.Despawn(transform.root.gameObject, delay);
     }
 
     public override void Victory()
     {
       enemyController.StateMachine.ChangeState(new EnemyVictoryState(enemyController));
+    }
+
+    private void SwitchModelVisibility(bool enable, float delay = 0)
+    {
+      StartCoroutine(DoSwitchModelVisibility(enable, delay));
+    }
+
+    private IEnumerator DoSwitchModelVisibility(bool enable, float delay)
+    {
+      yield return new WaitForSeconds(delay);
+
+      foreach (var renderer in _renderers)
+      {
+        renderer.enabled = enable;
+        puppetObject.SetActive(enable);
+      }
     }
   }
 }

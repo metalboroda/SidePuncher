@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,34 +12,27 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     [SerializeField] private float minAttackRate = 1;
     [SerializeField] private float maxAttackRate = 1.5f;
 
-    private Coroutine _attackRoutine;
+    private float _attackTimer;
 
     public void AttackWithRate()
     {
-      _attackRoutine = StartCoroutine(DoAttackWithRate());
-    }
+      _attackTimer -= Time.deltaTime;
 
-    private IEnumerator DoAttackWithRate()
-    {
-      while (true)
+      if (_attackTimer <= 0f)
       {
-        yield return new WaitForSeconds(Random.Range(minAttackRate, maxAttackRate));
-
-        AttackTriggered?.Invoke();
+        TriggerAttack();
+        ResetAttackTimer();
       }
     }
 
-    public void StopCoroutines()
+    private void TriggerAttack()
     {
-      if (_attackRoutine != null)
-        StopCoroutine(_attackRoutine);
+      AttackTriggered?.Invoke();
     }
 
-    /*private IEnumerator DoPerformAttack()
+    private void ResetAttackTimer()
     {
-      yield return new WaitForSeconds(Random.Range(minAttackDelay, maxAttackDelay));
-
-      AttackTriggered?.Invoke();
-    }*/
+      _attackTimer = Random.Range(minAttackRate, maxAttackRate);
+    }
   }
 }
