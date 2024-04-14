@@ -90,10 +90,11 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     {
       yield return new WaitForSeconds(delay);
 
+      puppetObject.SetActive(enable);
+
       foreach (var renderer in _renderers)
       {
         renderer.enabled = enable;
-        puppetObject.SetActive(enable);
       }
     }
   }
