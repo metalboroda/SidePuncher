@@ -9,8 +9,8 @@ namespace Assets.__Game.Scripts.Game
   {
     public static GameBootstrapper Instance { get; private set; }
 
-    public StateMachine GameStateMachine { get; private set; }
-    public SceneLoader SceneLoader { get; private set; }
+    public StateMachine GameStateMachine;
+    public SceneLoader SceneLoader;
 
     public GameBootstrapper()
     {
@@ -20,13 +20,9 @@ namespace Assets.__Game.Scripts.Game
     private void Awake()
     {
       if (Instance != null && Instance != this)
-      {
         Destroy(this);
-      }
       else
-      {
         Instance = this;
-      }
 
       DontDestroyOnLoad(this);
 
