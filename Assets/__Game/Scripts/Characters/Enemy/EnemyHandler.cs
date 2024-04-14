@@ -1,23 +1,19 @@
 ﻿using Assets.__Game.Scripts.Characters.Enemy.EnemyStates;
 using Assets.__Game.Scripts.Interfaces;
-using Assets.__Game.Scripts.PoolManager;
-using Assets.__Game.Scripts.Services;
+using EventBus;
 using System;
 using UnityEngine;
-using Zenject;
-using IPoolable = Assets.__Game.Scripts.PoolManager.IPoolable;
 
 namespace Assets.__Game.Scripts.Characters.Enemy
 {
-  public class EnemyHandler : CharacterHandlerBase, IDamageable, IPoolable
+  public class EnemyHandler : CharacterHandlerBase, IDamageable
   {
     public event Action EnemyDead;
 
     [Space]
     [SerializeField] private EnemyController enemyController;
 
-    [Inject] private readonly EventBus _eventBus;
-    [Inject] private readonly ObjectPoolManagerDI _objectPoolManagerDI;
+    EventBinding<PlayerDeathEvent> _onPlayerDeathEvent;
 
     protected override void Awake()
     {
@@ -26,12 +22,12 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     private void OnEnable()
     {
-      _eventBus.PlayerDead += Victory;
+      _onPlayerDeathEvent = new EventBinding<PlayerDeathEvent>(Victory);
     }
 
     private void OnDisable()
     {
-      _eventBus.PlayerDead -= Victory;
+      _onPlayerDeathEvent.Remove(Victory);
     }
 
     protected override void Start()
@@ -56,22 +52,12 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     public override void Death()
     {
-      _objectPoolManagerDI.Despawn(transform.root.gameObject, 5);
+      Destroy(transform.root.gameObject, 6);
     }
 
     public override void Victory()
     {
       enemyController.StateMachine.ChangeState(new EnemyVictoryState(enemyController));
-    }
-
-    public void OnSpawned()
-    {
-      Debug.Log("Spawned");
-    }
-
-    public void OnDespawned()
-    {
-      Debug.Log("Despawned");
     }
   }
 }

@@ -21,27 +21,40 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     public void DetectEnemyAndAlly()
     {
-      Vector3 origin = rayPoint.position;
-      Vector3 direction = transform.forward;
       RaycastHit hit;
 
-      if (Physics.Raycast(origin, direction, out hit, rayDistance, _enemyController.EnemyHandler.EnemyLayer))
+      if (RaycastForLayer(_enemyController.EnemyHandler.EnemyLayer, out hit))
       {
-        if (_enemyController.StateMachine.CurrentState is EnemyFightState) return;
-
-        _enemyController.StateMachine.ChangeState(new EnemyFightState(_enemyController));
+        ChangeStateBasedOnCurrentState(new EnemyFightState(_enemyController));
       }
-      else if (Physics.Raycast(origin, direction, out hit, rayDistance, allyLayer))
+      else if (RaycastForLayer(allyLayer, out hit))
       {
-        if (_enemyController.StateMachine.CurrentState is EnemyIdleState) return;
-
-        _enemyController.StateMachine.ChangeState(new EnemyIdleState(_enemyController));
+        ChangeStateBasedOnCurrentState(new EnemyIdleState(_enemyController));
       }
       else
       {
-        if (_enemyController.StateMachine.CurrentState is EnemyMovementState) return;
+        ChangeStateBasedOnCurrentState(new EnemyMovementState(_enemyController));
+      }
+    }
 
-        _enemyController.StateMachine.ChangeState(new EnemyMovementState(_enemyController));
+    private bool RaycastForLayer(LayerMask layerMask, out RaycastHit hit)
+    {
+      Vector3 origin = rayPoint.position;
+      Vector3 direction = transform.forward;
+
+      if (Physics.Raycast(origin, direction, out hit, rayDistance, layerMask))
+      {
+        return true;
+      }
+
+      return false;
+    }
+
+    private void ChangeStateBasedOnCurrentState(EnemyBaseState newState)
+    {
+      if (!(_enemyController.StateMachine.CurrentState.GetType() == newState.GetType()))
+      {
+        _enemyController.StateMachine.ChangeState(newState);
       }
     }
   }

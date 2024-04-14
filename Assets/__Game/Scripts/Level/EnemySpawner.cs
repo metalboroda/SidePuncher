@@ -13,18 +13,10 @@ namespace Assets.__Game.Scripts.Level
     [SerializeField] private float spawnRate = 0.5f;
     [SerializeField] private int spawnLimit = 10;
 
-    [Space]
-    [SerializeField] private Quaternion spawnRotation;
-
     [Inject] private readonly ObjectPoolManagerDI _objectPoolManagerDI;
 
-    private Coroutine spawnCoroutine;
+    private Coroutine spawnCoroutine; 
     private int enemiesSpawned = 0;
-
-    private void Awake()
-    {
-      _objectPoolManagerDI.InitializePool(enemyPrefab, spawnLimit);
-    }
 
     private void Start()
     {
@@ -43,9 +35,9 @@ namespace Assets.__Game.Scripts.Level
     {
       while (enemiesSpawned < spawnLimit)
       {
-        yield return new WaitForSeconds(spawnRate);
-
         SpawnEnemy();
+
+        yield return new WaitForSeconds(spawnRate);
 
         enemiesSpawned++;
       }
@@ -53,7 +45,7 @@ namespace Assets.__Game.Scripts.Level
 
     private void SpawnEnemy()
     {
-      _objectPoolManagerDI.Spawn(enemyPrefab, transform.position, spawnRotation);
+      Instantiate(enemyPrefab, transform.position, transform.rotation);
     }
 
     public void PauseSpawning()

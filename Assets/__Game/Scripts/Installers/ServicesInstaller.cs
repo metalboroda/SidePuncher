@@ -1,5 +1,4 @@
 using Assets.__Game.Scripts.PoolManager;
-using Assets.__Game.Scripts.Services;
 using Zenject;
 
 namespace Assets.__Game.Scripts.Installers
@@ -8,7 +7,6 @@ namespace Assets.__Game.Scripts.Installers
   {
     public override void InstallBindings()
     {
-      Container.Bind<EventBus>().AsSingle();
       Container.Bind<ObjectPoolManagerDI>().AsSingle();
     }
   }

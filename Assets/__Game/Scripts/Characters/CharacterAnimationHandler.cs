@@ -1,4 +1,5 @@
 ﻿using Assets.__Game.Scripts.SOs;
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -47,13 +48,20 @@ namespace Assets.__Game.Scripts.Characters
       PlayCrossfade(AnimationsSO.GetRandomDeathAnimation());
     }
 
+    public void PlayRandomDyingAnimation()
+    {
+      PlayCrossfade(AnimationsSO.GetRandomDyingAnimation());
+    }
+
     public void DeathRandomRotation()
     {
       int rand = Random.Range(50, 70);
       Vector3 eulerAngle = transform.rotation.eulerAngles;
+      float rotationDuration = 0.15f;
+
       eulerAngle.y += Random.Range(-rand, rand);
 
-      transform.rotation = Quaternion.Euler(eulerAngle);
+      transform.DORotate(eulerAngle, rotationDuration);
     }
 
     public void PlayCrossfade(string animationName)

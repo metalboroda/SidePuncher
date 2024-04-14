@@ -1,20 +1,12 @@
 using Assets.__Game.Scripts.Characters.Player.PlayerStates;
 using Assets.__Game.Scripts.Interfaces;
-using Assets.__Game.Scripts.Services;
-using Zenject;
+using EventBus;
 
 namespace Assets.__Game.Scripts.Characters.Player
 {
   public class PlayerHandler : CharacterHandlerBase, IDamageable
   {
     private PlayerController _playerController;
-    private EventBus _eventBus;
-
-    [Inject]
-    public void Construct(EventBus eventBus)
-    {
-      _eventBus = eventBus;
-    }
 
     protected override void Awake()
     {
@@ -37,8 +29,12 @@ namespace Assets.__Game.Scripts.Characters.Player
         CurrentHealth = 0;
         CapsuleCollider.enabled = false;
         _playerController.StateMachine.ChangeState(new PlayerDeathState(_playerController));
-        _eventBus.RaisePlayerDead();
       }
+    }
+
+    public override void Death()
+    {
+      EventBus<PlayerDeathEvent>.Raise(new PlayerDeathEvent());
     }
   }
 }

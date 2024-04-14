@@ -2071,7 +2071,7 @@ MonoBehaviour:
   targetRoot: {fileID: 8330768383785512788}
   state: 0
   stateSettings:
-    killDuration: 1
+    killDuration: 3
     deadMuscleWeight: 0.01
     deadMuscleDamper: 75
     maxFreezeSqrVelocity: 0.02
@@ -4915,8 +4915,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb07791fc485884591c84a6e11b7deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minEnableDelay: 0.25
-  maxEnableDelay: 0.75
+  minEnableDelay: 0.2
+  maxEnableDelay: 0.4
   puppetMaster: {fileID: 4920037264003663662}
 --- !u!1 &7206644140457441862
 GameObject:

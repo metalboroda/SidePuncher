@@ -10,6 +10,7 @@
       PlayerAnimationHandler.DeathRandomRotation();
       PlayerAnimationHandler.StopCoroutines();
       CharacterPuppetHandler.EnableRagdoll();
+      PlayerHandler.Death();
     }
   }
 }
