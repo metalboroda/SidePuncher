@@ -2347,6 +2347,7 @@ GameObject:
   - component: {fileID: 2751107105811738737}
   - component: {fileID: 5727253782857265961}
   - component: {fileID: 1866179658415802142}
+  - component: {fileID: 6662622917879847467}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -2523,6 +2524,19 @@ MonoBehaviour:
   maxEnableDelay: 0.5
   RagdollObject: {fileID: 8466362905793800789}
   puppetMaster: {fileID: 8483927367354305181}
+--- !u!114 &6662622917879847467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3940116538902047895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b1d5d129148ad489b3b8c55970d0a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 0}
 --- !u!1 &4012488857513631702
 GameObject:
   m_ObjectHideFlags: 0

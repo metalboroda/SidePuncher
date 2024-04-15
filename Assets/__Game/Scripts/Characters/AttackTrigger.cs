@@ -19,6 +19,9 @@ namespace Assets.__Game.Scripts.Characters
       {
         damageable.Damage(_characterHandler.Power);
       }
+
+      if (other.TryGetComponent(out ISurfaceEffect surfaceEffect))
+        surfaceEffect.SpawnEffect(other);
     }
   }
 }
