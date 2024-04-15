@@ -11,11 +11,7 @@ namespace Assets.__Game.Scripts.Level
   public class WaveSpawner : MonoBehaviour
   {
     [SerializeField] private Wave[] waves;
-
-    [Space]
     [SerializeField] private GameObject[] spawnPoints;
-
-    [Space]
     [SerializeField] private float timeBetweenWaves;
     [SerializeField] private int limitPerRow;
 
@@ -23,14 +19,12 @@ namespace Assets.__Game.Scripts.Level
     private readonly List<GameObject> _spawnedEnemies = new List<GameObject>();
     private EventBinding<EnemyDead> _enemyDeathEvent;
     private List<Wave> _randomWaves = new List<Wave>();
-    private List<Wave> _remainingWaves = new List<Wave>();
 
     private void OnEnable()
     {
-      _enemyDeathEvent = new EventBinding<EnemyDead>(RemoveDeadEnemyFromList);
-      _remainingWaves.AddRange(waves);
+      _randomWaves.AddRange(waves);
 
-      StartCoroutine(SpawnWaves());
+      _enemyDeathEvent = new EventBinding<EnemyDead>(RemoveDeadEnemyFromList);
     }
 
     private void OnDisable()
@@ -38,36 +32,29 @@ namespace Assets.__Game.Scripts.Level
       _enemyDeathEvent.Remove(RemoveDeadEnemyFromList);
     }
 
-    private IEnumerator SpawnWaves()
+    private void Start()
     {
-      while (_remainingWaves.Count > 0)
+      StartCoroutine(DoSpawnWaves());
+    }
+
+    private IEnumerator DoSpawnWaves()
+    {
+      while (_randomWaves.Count > 0)
       {
-        if (_randomWaves.Count == 0)
+        Wave currentWave = _randomWaves[Random.Range(0, _randomWaves.Count)];
+
+        yield return StartCoroutine(SpawnWave(currentWave));
+
+        _waveCount++;
+
+        EventBus<WaveCompleted>.Raise(new WaveCompleted
         {
-          foreach (Wave wave in _remainingWaves)
-          {
-            yield return StartCoroutine(SpawnWave(wave));
+          waveCount = _waveCount
+        });
 
-            _waveCount++;
+        yield return new WaitForSeconds(timeBetweenWaves);
 
-            EventBus<WaveCompleted>.Raise(new WaveCompleted
-            {
-              waveCount = _waveCount
-            });
-
-            yield return new WaitForSeconds(timeBetweenWaves);
-          }
-          _remainingWaves.Clear();
-        }
-        else
-        {
-          int randomIndex = Random.Range(0, _randomWaves.Count);
-          Wave randomWave = _randomWaves[randomIndex];
-
-          yield return StartCoroutine(SpawnWave(randomWave));
-
-          _randomWaves.RemoveAt(randomIndex);
-        }
+        _randomWaves.Remove(currentWave);
       }
     }
 
