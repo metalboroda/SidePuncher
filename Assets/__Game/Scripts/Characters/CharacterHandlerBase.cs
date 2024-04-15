@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters
 {
   public abstract class CharacterHandlerBase : MonoBehaviour
   {
-    [SerializeField] protected int MaxHealth = 100;
+    public event Action<int> HealthChanged;
+
+    [field: SerializeField] public int MaxHealth { get; private set; } = 100;
     [field: SerializeField] public int Power { get; private set; } = 25;
 
     [Space]
@@ -13,7 +16,18 @@ namespace Assets.__Game.Scripts.Characters
     [field: Space]
     [field: SerializeField] public LayerMask EnemyLayer { get; private set; }
 
-    protected int CurrentHealth;
+    private int _currentHealth;
+
+    protected int CurrentHealth
+    {
+      get => _currentHealth;
+      set
+      {
+        _currentHealth = value;
+
+        HealthChanged?.Invoke(_currentHealth);
+      }
+    }
 
     protected CapsuleCollider CapsuleCollider;
 

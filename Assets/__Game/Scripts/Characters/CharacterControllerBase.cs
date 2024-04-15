@@ -5,6 +5,8 @@ namespace Assets.__Game.Scripts.Characters
 {
   public abstract class CharacterControllerBase : MonoBehaviour
   {
+    public CharacterUIHandler characterUIHandler;
+
     public StateMachine StateMachine;
 
     protected virtual void Awake()

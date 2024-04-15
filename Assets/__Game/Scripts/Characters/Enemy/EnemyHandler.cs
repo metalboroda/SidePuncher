@@ -53,6 +53,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
       enemyController.CharacterPuppetHandler.DisableRagdoll();
       CapsuleCollider.enabled = true;
       CurrentHealth = MaxHealth;
+      enemyController.characterUIHandler.ResetParams();
       SwitchModelVisibility(true, 0.1f);
     }
 
