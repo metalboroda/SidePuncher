@@ -1,10 +1,13 @@
 ﻿using Assets.__Game.Scripts.Interfaces;
+using Lean.Pool;
 using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters
 {
-  public class AttackTrigger : MonoBehaviour
+  public class AttackTrigger : MonoBehaviour, IAttackEffect
   {
+    [SerializeField] private GameObject effectPrefab;
+
     private CharacterHandlerBase _characterHandler;
 
     private void Awake()
@@ -18,10 +21,14 @@ namespace Assets.__Game.Scripts.Characters
         && other.TryGetComponent(out IDamageable damageable))
       {
         damageable.Damage(_characterHandler.Power);
-      }
 
-      if (other.TryGetComponent(out ISurfaceEffect surfaceEffect))
-        surfaceEffect.SpawnEffect(other);
+        SpawnEffect();
+      }
+    }
+
+    public void SpawnEffect()
+    {
+      Instantiate(effectPrefab, transform.position, transform.rotation);
     }
   }
 }
