@@ -1438,7 +1438,7 @@ MonoBehaviour:
   waves:
   - regularEnemy: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
       type: 3}
-    toughEnemy: {fileID: 951866369213845890, guid: 6453dc80baa663e4b9e83d51afd09e0b,
+    toughEnemy: {fileID: 8833424359732942742, guid: fb16d2864d9ab2f4c839b83b4979cac2,
       type: 3}
     spawnPoints:
     - {fileID: 1064196707}
@@ -1448,7 +1448,7 @@ MonoBehaviour:
     toughEnemyPerWave: 1
   - regularEnemy: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
       type: 3}
-    toughEnemy: {fileID: 951866369213845890, guid: 6453dc80baa663e4b9e83d51afd09e0b,
+    toughEnemy: {fileID: 8833424359732942742, guid: fb16d2864d9ab2f4c839b83b4979cac2,
       type: 3}
     spawnPoints:
     - {fileID: 1064196707}
@@ -1456,6 +1456,36 @@ MonoBehaviour:
     spawnRate: 0.8
     regularEnemyPerWave: 10
     toughEnemyPerWave: 2
+  - regularEnemy: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
+      type: 3}
+    toughEnemy: {fileID: 951866369213845890, guid: 6453dc80baa663e4b9e83d51afd09e0b,
+      type: 3}
+    spawnPoints:
+    - {fileID: 1064196707}
+    - {fileID: 588796895}
+    spawnRate: 0.8
+    regularEnemyPerWave: 10
+    toughEnemyPerWave: 3
+  - regularEnemy: {fileID: 8833424359732942742, guid: fb16d2864d9ab2f4c839b83b4979cac2,
+      type: 3}
+    toughEnemy: {fileID: 951866369213845890, guid: 6453dc80baa663e4b9e83d51afd09e0b,
+      type: 3}
+    spawnPoints:
+    - {fileID: 1064196707}
+    - {fileID: 588796895}
+    spawnRate: 0.8
+    regularEnemyPerWave: 5
+    toughEnemyPerWave: 5
+  - regularEnemy: {fileID: 8833424359732942742, guid: fb16d2864d9ab2f4c839b83b4979cac2,
+      type: 3}
+    toughEnemy: {fileID: 951866369213845890, guid: 6453dc80baa663e4b9e83d51afd09e0b,
+      type: 3}
+    spawnPoints:
+    - {fileID: 1064196707}
+    - {fileID: 588796895}
+    spawnRate: 0.8
+    regularEnemyPerWave: 10
+    toughEnemyPerWave: 5
   timeBetweenWaves: 1.5
   limitPerRow: 6
 --- !u!1 &1468858601

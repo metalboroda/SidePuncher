@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4842698742182715719
+--- !u!1001 &3789687917572777811
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -12,21 +12,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 38383b26495d3d248bb1f4043fdf4ef9, type: 2}
+      objectReference: {fileID: 2100000, guid: d50d9e777a591624399bf4b0bd39fe4c, type: 2}
     - target: {fileID: 2501024918338619541, guid: 6066be2ee848e6c439ff15b546837207,
         type: 3}
       propertyPath: MaxHealth
-      value: 75
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2501024918338619541, guid: 6066be2ee848e6c439ff15b546837207,
+        type: 3}
+      propertyPath: <Power>k__BackingField
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
         type: 3}
       propertyPath: m_Name
-      value: Enemy_2_Puppet
+      value: Enemy_3_Puppet
       objectReference: {fileID: 0}
+    - target: {fileID: 5124401186801352641, guid: 6066be2ee848e6c439ff15b546837207,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: acbaaeab796c68a44bf31e84b40301a6, type: 2}
     - target: {fileID: 6981439034778719020, guid: 6066be2ee848e6c439ff15b546837207,
         type: 3}
       propertyPath: m_Name
-      value: Enemy_2
+      value: Enemy_3
       objectReference: {fileID: 0}
     - target: {fileID: 8268895976923967277, guid: 6066be2ee848e6c439ff15b546837207,
         type: 3}

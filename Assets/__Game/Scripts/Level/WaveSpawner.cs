@@ -14,14 +14,18 @@ namespace Assets.__Game.Scripts.Level
     [SerializeField] private float timeBetweenWaves;
     [SerializeField] private int limitPerRow;
 
+    private const int EnemiesTypesCounter = 2;
     private int _waveCount;
     private readonly List<GameObject> _spawnedEnemies = new List<GameObject>();
     private EventBinding<EnemyDead> _enemyDeathEvent;
-    private const int EnemyTypesCount = 2;
+    private List<Wave> _randomWaves = new List<Wave>();
+    private List<Wave> _remainingWaves = new List<Wave>();
 
     private void OnEnable()
     {
       _enemyDeathEvent = new EventBinding<EnemyDead>(RemoveDeadEnemyFromList);
+
+      _remainingWaves.AddRange(waves);
 
       StartCoroutine(SpawnWaves());
     }
@@ -33,26 +37,39 @@ namespace Assets.__Game.Scripts.Level
 
     private IEnumerator SpawnWaves()
     {
-      while (_waveCount < waves.Length)
+      while (_remainingWaves.Count > 0)
       {
-        yield return StartCoroutine(SpawnWave());
-
-        _waveCount++;
-
-        EventBus<WaveCompleted>.Raise(new WaveCompleted()
+        if (_randomWaves.Count == 0)
         {
-          waveCount = _waveCount
-        });
+          foreach (Wave wave in _remainingWaves)
+          {
+            yield return StartCoroutine(SpawnWave(wave));
 
-        yield return new WaitForSeconds(timeBetweenWaves);
+            _waveCount++;
+
+            EventBus<WaveCompleted>.Raise(new WaveCompleted()
+            {
+              waveCount = _waveCount
+            });
+
+            yield return new WaitForSeconds(timeBetweenWaves);
+          }
+        }
+        else
+        {
+          int randomIndex = Random.Range(0, _randomWaves.Count);
+          Wave randomWave = _randomWaves[randomIndex];
+
+          yield return StartCoroutine(SpawnWave(randomWave));
+
+          _randomWaves.RemoveAt(randomIndex);
+        }
       }
     }
 
-    private IEnumerator SpawnWave()
+    private IEnumerator SpawnWave(Wave currentWave)
     {
-      Wave currentWave = waves[_waveCount];
-
-      int[] enemiesSpawned = new int[EnemyTypesCount];
+      int[] enemiesSpawned = new int[EnemiesTypesCounter];
 
       while (enemiesSpawned[0] < currentWave.regularEnemyPerWave || enemiesSpawned[1] < currentWave.toughEnemyPerWave)
       {
