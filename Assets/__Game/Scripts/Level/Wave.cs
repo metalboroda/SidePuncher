@@ -6,15 +6,18 @@ namespace Assets.__Game.Scripts.Level
   [Serializable]
   public class Wave
   {
-    public GameObject regularEnemy;
-    public GameObject toughEnemy;
+    public WaveEnemy[] WaveEnemies;
 
     [Space]
-    public GameObject[] spawnPoints;
+    public float SpawnRate;
+  }
 
-    [Header("Param's")]
-    public float spawnRate;
-    public int regularEnemyPerWave;
-    public int toughEnemyPerWave;
+  [Serializable]
+  public class WaveEnemy
+  {
+    public GameObject Enemy;
+
+    [Space]
+    public int amount;
   }
 }

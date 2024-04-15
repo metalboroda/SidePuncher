@@ -11,10 +11,14 @@ namespace Assets.__Game.Scripts.Level
   public class WaveSpawner : MonoBehaviour
   {
     [SerializeField] private Wave[] waves;
+
+    [Space]
+    [SerializeField] private GameObject[] spawnPoints;
+
+    [Space]
     [SerializeField] private float timeBetweenWaves;
     [SerializeField] private int limitPerRow;
 
-    private const int EnemiesTypesCounter = 2;
     private int _waveCount;
     private readonly List<GameObject> _spawnedEnemies = new List<GameObject>();
     private EventBinding<EnemyDead> _enemyDeathEvent;
@@ -24,7 +28,6 @@ namespace Assets.__Game.Scripts.Level
     private void OnEnable()
     {
       _enemyDeathEvent = new EventBinding<EnemyDead>(RemoveDeadEnemyFromList);
-
       _remainingWaves.AddRange(waves);
 
       StartCoroutine(SpawnWaves());
@@ -47,13 +50,14 @@ namespace Assets.__Game.Scripts.Level
 
             _waveCount++;
 
-            EventBus<WaveCompleted>.Raise(new WaveCompleted()
+            EventBus<WaveCompleted>.Raise(new WaveCompleted
             {
               waveCount = _waveCount
             });
 
             yield return new WaitForSeconds(timeBetweenWaves);
           }
+          _remainingWaves.Clear();
         }
         else
         {
@@ -69,31 +73,31 @@ namespace Assets.__Game.Scripts.Level
 
     private IEnumerator SpawnWave(Wave currentWave)
     {
-      int[] enemiesSpawned = new int[EnemiesTypesCounter];
-
-      while (enemiesSpawned[0] < currentWave.regularEnemyPerWave || enemiesSpawned[1] < currentWave.toughEnemyPerWave)
+      foreach (WaveEnemy waveEnemy in currentWave.WaveEnemies)
       {
-        if (_spawnedEnemies.Count >= limitPerRow)
-          yield return StartCoroutine(WaitForEnemiesCountBelow(limitPerRow));
+        for (int i = 0; i < waveEnemy.amount; i++)
+        {
+          if (_spawnedEnemies.Count >= limitPerRow)
+          {
+            yield return StartCoroutine(WaitForEnemiesCountBelow(limitPerRow));
+          }
 
-        SpawnEnemy(currentWave, ref enemiesSpawned);
+          SpawnEnemy(waveEnemy.Enemy);
 
-        yield return new WaitForSeconds(currentWave.spawnRate);
+          yield return new WaitForSeconds(currentWave.SpawnRate);
+        }
       }
-
       yield return StartCoroutine(CheckWaveCompletion());
     }
 
-    private void SpawnEnemy(Wave wave, ref int[] enemiesSpawned)
+    private void SpawnEnemy(GameObject enemy)
     {
-      int enemyType = (enemiesSpawned[0] < wave.regularEnemyPerWave) ? 0 : 1;
-      GameObject enemyObject = LeanPool.Spawn((enemyType == 0) ? wave.regularEnemy : wave.toughEnemy);
+      GameObject enemyObject = LeanPool.Spawn(enemy);
       EnemyHandler enemyHandler = enemyObject.GetComponentInChildren<EnemyHandler>();
-      GameObject spawnPoint = wave.spawnPoints[Random.Range(0, wave.spawnPoints.Length)];
+      GameObject spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
       enemyHandler.SpawnInit(spawnPoint.transform.position, spawnPoint.transform.rotation);
       _spawnedEnemies.Add(enemyObject);
-      enemiesSpawned[enemyType]++;
     }
 
     private IEnumerator WaitForEnemiesCountBelow(int targetCount)
