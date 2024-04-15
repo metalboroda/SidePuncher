@@ -1444,12 +1444,56 @@ MonoBehaviour:
   - WaveEnemies:
     - Enemy: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
         type: 3}
+      amount: 5
+    - Enemy: {fileID: 8833424359732942742, guid: fb16d2864d9ab2f4c839b83b4979cac2,
+        type: 3}
       amount: 3
+    SpawnRate: 1
+  - WaveEnemies:
+    - Enemy: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
+        type: 3}
+      amount: 5
+    - Enemy: {fileID: 8833424359732942742, guid: fb16d2864d9ab2f4c839b83b4979cac2,
+        type: 3}
+      amount: 3
+    SpawnRate: 1
+  - WaveEnemies:
+    - Enemy: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
+        type: 3}
+      amount: 5
+    - Enemy: {fileID: 8833424359732942742, guid: fb16d2864d9ab2f4c839b83b4979cac2,
+        type: 3}
+      amount: 2
+    - Enemy: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
+        type: 3}
+      amount: 5
+    SpawnRate: 1
+  - WaveEnemies:
+    - Enemy: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
+        type: 3}
+      amount: 5
+    - Enemy: {fileID: 8833424359732942742, guid: fb16d2864d9ab2f4c839b83b4979cac2,
+        type: 3}
+      amount: 5
+    - Enemy: {fileID: 951866369213845890, guid: 6453dc80baa663e4b9e83d51afd09e0b,
+        type: 3}
+      amount: 2
+    SpawnRate: 1
+  - WaveEnemies:
+    - Enemy: {fileID: 8833424359732942742, guid: fb16d2864d9ab2f4c839b83b4979cac2,
+        type: 3}
+      amount: 5
+    - Enemy: {fileID: 951866369213845890, guid: 6453dc80baa663e4b9e83d51afd09e0b,
+        type: 3}
+      amount: 5
+    - Enemy: {fileID: 8833424359732942742, guid: fb16d2864d9ab2f4c839b83b4979cac2,
+        type: 3}
+      amount: 5
     SpawnRate: 1
   spawnPoints:
   - {fileID: 1064196707}
   - {fileID: 588796895}
-  timeBetweenWaves: 2
+  timeBetweenWaves: 2.5
   limitPerRow: 6
 --- !u!1 &1468858601
 GameObject:
