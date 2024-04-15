@@ -13,6 +13,9 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     public event Action EnemyDead;
 
     [Space]
+    [SerializeField] private int healthRecoveryValue = 10;
+
+    [Space]
     [SerializeField] private EnemyController enemyController;
 
     private Renderer[] _renderers;
@@ -68,7 +71,8 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
         EventBus<EnemyDead>.Raise(new EnemyDead()
         {
-          gameObject = transform.root.gameObject
+          gameObject = transform.root.gameObject,
+          healthRecoveryValue = this.healthRecoveryValue,
         });
       }
     }

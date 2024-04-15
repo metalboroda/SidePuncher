@@ -12,6 +12,7 @@ namespace EventBus
   public struct EnemyDead : IEvent
   {
     public GameObject gameObject;
+    public int healthRecoveryValue;
   }
   #endregion
 
