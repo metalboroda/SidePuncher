@@ -16,6 +16,8 @@ namespace Assets.__Game.Scripts.Level
 
     private int _wavesPassed = 0;
     private readonly List<GameObject> _spawnedEnemies = new List<GameObject>();
+    private int _previousRandomWave = -1;
+
     private EventBinding<EnemyDead> _enemyDeathEvent;
 
     private void OnEnable()
@@ -62,7 +64,16 @@ namespace Assets.__Game.Scripts.Level
 
     private IEnumerator SpawnRandomWave()
     {
-      Wave randomWave = waves[Random.Range(0, waves.Length)];
+      int randomIndex;
+
+      do
+      {
+        randomIndex = Random.Range(0, waves.Length);
+      } while (randomIndex == _previousRandomWave);
+
+      _previousRandomWave = randomIndex;
+
+      Wave randomWave = waves[randomIndex];
 
       yield return StartCoroutine(SpawnWave(randomWave));
     }
