@@ -784,7 +784,7 @@ Transform:
   m_GameObject: {fileID: 588796895}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 7, y: 0, z: 0}
+  m_LocalPosition: {x: 8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1065,7 +1065,7 @@ Transform:
   m_GameObject: {fileID: 1064196707}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071064, z: -0, w: 0.7071072}
-  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalPosition: {x: -8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1114,38 +1114,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1342661224}
-  - component: {fileID: 1342661223}
+  - component: {fileID: 1342661225}
   m_Layer: 0
-  m_Name: SpawnersManager
+  m_Name: WaveSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1342661223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1342661222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2326bc009a609a247a23d8316ba17389, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  regularEnemy: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
-    type: 3}
-  toughEnemy: {fileID: 951866369213845890, guid: 6453dc80baa663e4b9e83d51afd09e0b,
-    type: 3}
-  minSpawnRate: 0.5
-  maxSpawnRate: 1.5
-  toughEnemyPeriod: 10
-  rowSpawnLimit: 6
-  overallSpawnLimit: 100
-  spawnPoints:
-  - {fileID: 1064196707}
-  - {fileID: 588796895}
 --- !u!4 &1342661224
 Transform:
   m_ObjectHideFlags: 0
@@ -1161,6 +1137,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1342661225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342661222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2326bc009a609a247a23d8316ba17389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - regularEnemy: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
+      type: 3}
+    toughEnemy: {fileID: 951866369213845890, guid: 6453dc80baa663e4b9e83d51afd09e0b,
+      type: 3}
+    spawnPoints:
+    - {fileID: 1064196707}
+    - {fileID: 588796895}
+    spawnRate: 0.8
+    regularEnemyPerWave: 5
+    toughEnemyPerWave: 1
+  - regularEnemy: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207,
+      type: 3}
+    toughEnemy: {fileID: 951866369213845890, guid: 6453dc80baa663e4b9e83d51afd09e0b,
+      type: 3}
+    spawnPoints:
+    - {fileID: 1064196707}
+    - {fileID: 588796895}
+    spawnRate: 0.8
+    regularEnemyPerWave: 10
+    toughEnemyPerWave: 2
+  timeBetweenWaves: 1.5
+  limitPerRow: 6
 --- !u!1 &1468858601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,8 +1358,8 @@ MonoBehaviour:
   prefab: {fileID: 4152908737748809425, guid: 6066be2ee848e6c439ff15b546837207, type: 3}
   notification: 3
   strategy: 0
-  preload: 10
-  capacity: 15
+  preload: 5
+  capacity: 5
   recycle: 0
   persist: 0
   stamp: 0
@@ -1440,6 +1451,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_Puppet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557711554821899619, guid: e55951cd01f7ed340a3629ed13bf79a6,
+        type: 3}
+      propertyPath: MaxHealth
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 8230928796269328679, guid: e55951cd01f7ed340a3629ed13bf79a6,
         type: 3}
