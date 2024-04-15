@@ -4,7 +4,6 @@ using Lean.Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Assets.__Game.Scripts.Level
 {
@@ -15,15 +14,13 @@ namespace Assets.__Game.Scripts.Level
     [SerializeField] private float timeBetweenWaves;
     [SerializeField] private int limitPerRow;
 
-    private int _waveCount;
+    private int _wavesPassed = 0;
     private readonly List<GameObject> _spawnedEnemies = new List<GameObject>();
+
     private EventBinding<EnemyDead> _enemyDeathEvent;
-    private List<Wave> _randomWaves = new List<Wave>();
 
     private void OnEnable()
     {
-      _randomWaves.AddRange(waves);
-
       _enemyDeathEvent = new EventBinding<EnemyDead>(RemoveDeadEnemyFromList);
     }
 
@@ -34,27 +31,22 @@ namespace Assets.__Game.Scripts.Level
 
     private void Start()
     {
-      StartCoroutine(DoSpawnWaves());
+      StartCoroutine(SpawnWaves());
     }
 
-    private IEnumerator DoSpawnWaves()
+    private IEnumerator SpawnWaves()
     {
-      while (_randomWaves.Count > 0)
+      for (int i = 0; i < waves.Length; i++)
       {
-        Wave currentWave = _randomWaves[Random.Range(0, _randomWaves.Count)];
+        Wave currentWave = waves[i];
 
         yield return StartCoroutine(SpawnWave(currentWave));
 
-        _waveCount++;
+        _wavesPassed++;
 
-        EventBus<WaveCompleted>.Raise(new WaveCompleted
-        {
-          waveCount = _waveCount
-        });
+        EventBus<WaveCompleted>.Raise(new WaveCompleted { waveCount = _wavesPassed });
 
         yield return new WaitForSeconds(timeBetweenWaves);
-
-        _randomWaves.Remove(currentWave);
       }
     }
 
@@ -65,15 +57,14 @@ namespace Assets.__Game.Scripts.Level
         for (int i = 0; i < waveEnemy.amount; i++)
         {
           if (_spawnedEnemies.Count >= limitPerRow)
-          {
             yield return StartCoroutine(WaitForEnemiesCountBelow(limitPerRow));
-          }
 
           SpawnEnemy(waveEnemy.Enemy);
 
           yield return new WaitForSeconds(currentWave.SpawnRate);
         }
       }
+
       yield return StartCoroutine(CheckWaveCompletion());
     }
 
@@ -90,13 +81,17 @@ namespace Assets.__Game.Scripts.Level
     private IEnumerator WaitForEnemiesCountBelow(int targetCount)
     {
       while (_spawnedEnemies.Count >= targetCount)
+      {
         yield return null;
+      }
     }
 
     private IEnumerator CheckWaveCompletion()
     {
       while (_spawnedEnemies.Count > 0)
+      {
         yield return null;
+      }
     }
 
     private void RemoveDeadEnemyFromList(EnemyDead enemyDeathEvent)
