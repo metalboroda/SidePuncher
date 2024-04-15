@@ -35,7 +35,7 @@ namespace Assets.__Game.Scripts.Characters.Player
 
     public override void Death(float delay)
     {
-      EventBus<PlayerDeathEvent>.Raise(new PlayerDeathEvent());
+      EventBus<PlayerDead>.Raise(new PlayerDead());
     }
   }
 }

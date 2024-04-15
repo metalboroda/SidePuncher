@@ -4,10 +4,21 @@ namespace EventBus
 {
   public class EventStructs { }
 
-  public struct PlayerDeathEvent : IEvent { }
+  #region Player
+  public struct PlayerDead : IEvent { }
+  #endregion
 
-  public struct EnemyDeathEvent : IEvent
+  #region Enemy
+  public struct EnemyDead : IEvent
   {
     public GameObject gameObject;
   }
+  #endregion
+
+  #region Spawner
+  public struct WaveCompleted : IEvent
+  {
+    public int waveCount;
+  }
+  #endregion
 }

@@ -1,7 +1,6 @@
 ﻿using Assets.__Game.Scripts.Characters.Enemy;
 using EventBus;
 using Lean.Pool;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,20 +10,18 @@ namespace Assets.__Game.Scripts.Level
 {
   public class WaveSpawner : MonoBehaviour
   {
-    public event Action WaveCompleted;
-
     [SerializeField] private Wave[] waves;
     [SerializeField] private float timeBetweenWaves;
     [SerializeField] private int limitPerRow;
 
     private int _waveCount;
     private readonly List<GameObject> _spawnedEnemies = new List<GameObject>();
-    private EventBinding<EnemyDeathEvent> _enemyDeathEvent;
+    private EventBinding<EnemyDead> _enemyDeathEvent;
     private const int EnemyTypesCount = 2;
 
     private void OnEnable()
     {
-      _enemyDeathEvent = new EventBinding<EnemyDeathEvent>(RemoveDeadEnemyFromList);
+      _enemyDeathEvent = new EventBinding<EnemyDead>(RemoveDeadEnemyFromList);
 
       StartCoroutine(SpawnWaves());
     }
@@ -42,9 +39,10 @@ namespace Assets.__Game.Scripts.Level
 
         _waveCount++;
 
-        WaveCompleted?.Invoke();
-
-        Debug.Log($"Wave {_waveCount} Completed");
+        EventBus<WaveCompleted>.Raise(new WaveCompleted()
+        {
+          waveCount = _waveCount
+        });
 
         yield return new WaitForSeconds(timeBetweenWaves);
       }
@@ -93,7 +91,7 @@ namespace Assets.__Game.Scripts.Level
         yield return null;
     }
 
-    private void RemoveDeadEnemyFromList(EnemyDeathEvent enemyDeathEvent)
+    private void RemoveDeadEnemyFromList(EnemyDead enemyDeathEvent)
     {
       GameObject deadEnemy = enemyDeathEvent.gameObject;
 

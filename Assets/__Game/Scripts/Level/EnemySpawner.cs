@@ -20,11 +20,11 @@ namespace Assets.__Game.Scripts.Level
     private Coroutine spawnCoroutine;
     private int enemiesSpawned = 0;
 
-    private EventBinding<PlayerDeathEvent> _onPlayerDeathEvent;
+    private EventBinding<PlayerDead> _onPlayerDeathEvent;
 
     private void OnEnable()
     {
-      _onPlayerDeathEvent = new EventBinding<PlayerDeathEvent>(PauseSpawning);
+      _onPlayerDeathEvent = new EventBinding<PlayerDead>(PauseSpawning);
     }
 
     private void OnDisable()
