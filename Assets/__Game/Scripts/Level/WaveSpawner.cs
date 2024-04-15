@@ -20,6 +20,7 @@ namespace Assets.__Game.Scripts.Level
     private int _waveCount;
     private readonly List<GameObject> _spawnedEnemies = new List<GameObject>();
     private EventBinding<EnemyDeathEvent> _enemyDeathEvent;
+    private const int EnemyTypesCount = 2;
 
     private void OnEnable()
     {
@@ -43,6 +44,8 @@ namespace Assets.__Game.Scripts.Level
 
         WaveCompleted?.Invoke();
 
+        Debug.Log($"Wave {_waveCount} Completed");
+
         yield return new WaitForSeconds(timeBetweenWaves);
       }
     }
@@ -51,7 +54,7 @@ namespace Assets.__Game.Scripts.Level
     {
       Wave currentWave = waves[_waveCount];
 
-      int[] enemiesSpawned = new int[2];
+      int[] enemiesSpawned = new int[EnemyTypesCount];
 
       while (enemiesSpawned[0] < currentWave.regularEnemyPerWave || enemiesSpawned[1] < currentWave.toughEnemyPerWave)
       {
