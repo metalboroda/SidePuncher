@@ -9,6 +9,8 @@ namespace Assets.__Game.Scripts.Characters.Player
     public event Action AttackTriggered;
 
     [Space]
+    [SerializeField] private float yRotationLeft = -90f;
+    [SerializeField] private float yRotationRight = 90f;
     [SerializeField] private float rotationDuration = 0.1f;
     [SerializeField] private float allowAttackTime = 0.15f;
 
@@ -25,7 +27,7 @@ namespace Assets.__Game.Scripts.Characters.Player
     {
       if (_canAttack == false) return;
 
-      SmoothRotateY(-90);
+      SmoothRotateY(yRotationLeft);
       OnAttack();
     }
 
@@ -33,7 +35,7 @@ namespace Assets.__Game.Scripts.Characters.Player
     {
       if (_canAttack == false) return;
 
-      SmoothRotateY(90);
+      SmoothRotateY(yRotationRight);
       OnAttack();
     }
 
