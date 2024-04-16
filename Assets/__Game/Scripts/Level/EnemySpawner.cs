@@ -68,7 +68,7 @@ namespace Assets.__Game.Scripts.Level
         enemyPrefab = heavyEnemy;
       }
 
-      var spawnedEnemy = LeanPool.Spawn(enemyPrefab).GetComponentInChildren<EnemyHandler>();
+      var spawnedEnemy = LeanPool.Spawn(enemyPrefab).GetComponentInChildren<EnemySpawnInitializer>();
 
       spawnedEnemy.SpawnInit(transform.position, transform.rotation);
 

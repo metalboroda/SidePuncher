@@ -15,10 +15,9 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     [Space]
     [SerializeField] private int healthRecoveryValue = 10;
 
-    [Space]
-    [SerializeField] private EnemyController enemyController;
-
     private Renderer[] _renderers;
+
+    private EnemyController _enemyController;
 
     private EventBinding<PlayerDead> _playerDeathEvent;
 
@@ -26,6 +25,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     {
       base.Awake();
 
+      _enemyController = GetComponent<EnemyController>();
       _renderers = transform.root.GetComponentsInChildren<Renderer>();
     }
 
@@ -44,30 +44,17 @@ namespace Assets.__Game.Scripts.Characters.Enemy
       base.Start();
     }
 
-    public void SpawnInit(Vector3 position, Quaternion rotation)
-    {
-      SwitchModelVisibility(false);
-      enemyController.StateMachine.ChangeStateWithDelay(new EnemyMovementState(enemyController), 0.0001f, this);
-      transform.position = position;
-      transform.rotation = rotation;
-      enemyController.CharacterPuppetHandler.DisableRagdoll();
-      CapsuleCollider.enabled = true;
-      CurrentHealth = MaxHealth;
-      enemyController.characterUIHandler.ResetParams();
-      SwitchModelVisibility(true, 0.1f);
-    }
-
     public void Damage(int damage)
     {
       CurrentHealth -= damage;
 
-      enemyController.StateMachine.ChangeState(new EnemyHitState(enemyController));
+      _enemyController.StateMachine.ChangeState(new EnemyHitState(_enemyController));
 
       if (CurrentHealth <= 0)
       {
         CapsuleCollider.enabled = false;
         CurrentHealth = 0;
-        enemyController.StateMachine.ChangeState(new EnemyDeathState(enemyController));
+        _enemyController.StateMachine.ChangeState(new EnemyDeathState(_enemyController));
         EnemyDead?.Invoke();
 
         EventBus<EnemyDead>.Raise(new EnemyDead()
@@ -85,11 +72,11 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     public override void Victory()
     {
-      if (enemyController.StateMachine.CurrentState is not EnemyDeathState)
-        enemyController.StateMachine.ChangeState(new EnemyVictoryState(enemyController));
+      if (_enemyController.StateMachine.CurrentState is not EnemyDeathState)
+        _enemyController.StateMachine.ChangeState(new EnemyVictoryState(_enemyController));
     }
 
-    private void SwitchModelVisibility(bool enable, float delay = 0)
+    public void SwitchModelVisibility(bool enable, float delay = 0)
     {
       StartCoroutine(DoSwitchModelVisibility(enable, delay));
     }
@@ -98,7 +85,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     {
       yield return new WaitForSeconds(delay);
 
-      enemyController.CharacterPuppetHandler.RagdollObject.SetActive(enable);
+      _enemyController.CharacterPuppetHandler.RagdollObject.SetActive(enable);
 
       foreach (var renderer in _renderers)
       {

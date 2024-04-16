@@ -18,7 +18,7 @@ namespace Assets.__Game.Scripts.Characters
 
     private int _currentHealth;
 
-    protected int CurrentHealth
+    public int CurrentHealth
     {
       get => _currentHealth;
       set
@@ -29,7 +29,8 @@ namespace Assets.__Game.Scripts.Characters
       }
     }
 
-    protected CapsuleCollider CapsuleCollider;
+    [HideInInspector]
+    public CapsuleCollider CapsuleCollider;
 
     protected virtual void Awake()
     {

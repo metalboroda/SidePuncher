@@ -99,10 +99,10 @@ namespace Assets.__Game.Scripts.Level
     private void SpawnEnemy(GameObject enemy)
     {
       GameObject enemyObject = LeanPool.Spawn(enemy);
-      EnemyHandler enemyHandler = enemyObject.GetComponentInChildren<EnemyHandler>();
+      EnemySpawnInitializer enemyInit = enemyObject.GetComponentInChildren<EnemySpawnInitializer>();
       GameObject spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-      enemyHandler.SpawnInit(spawnPoint.transform.position, spawnPoint.transform.rotation);
+      enemyInit.SpawnInit(spawnPoint.transform.position, spawnPoint.transform.rotation);
       _spawnedEnemies.Add(enemyObject);
     }
 
