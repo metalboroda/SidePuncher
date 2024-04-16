@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters.Player
 {
-  [RequireComponent(typeof(AudioSource))]
   public class PlayerAudioHandler : CharacterAudioHandler
   {
     private PlayerController _playerController;
@@ -30,17 +29,17 @@ namespace Assets.__Game.Scripts.Characters.Player
       _playerDeadEvent.Remove(PlayRandomDeathSound);
     }
 
-    protected override void PlayRandomAttackSound()
+    public override void PlayRandomAttackSound()
     {
       base.PlayRandomAttackSound();
     }
 
-    protected override void PlayRandomDamageSound()
+    public override void PlayRandomDamageSound()
     {
       base.PlayRandomDamageSound();
     }
 
-    protected override void PlayRandomDeathSound()
+    public override void PlayRandomDeathSound()
     {
       base.PlayRandomDeathSound();
     }

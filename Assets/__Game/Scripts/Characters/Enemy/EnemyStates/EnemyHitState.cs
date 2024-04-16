@@ -7,6 +7,7 @@
     public override void Enter()
     {
       EnemyAnimationHandler.PlayRandomHitAnimation();
+      CharacterAudioHandler.PlayRandomDamageSound();
       EnemyAnimationHandler.StopCoroutines();
       EnemyAnimationHandler.OnAnimtionEnds(0.8f, EnemyController.ToMovementState);
     }

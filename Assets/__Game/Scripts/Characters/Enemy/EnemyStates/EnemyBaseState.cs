@@ -10,6 +10,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
     protected EnemyMovementHandler EnemyMovementHandler;
     protected EnemyAnimationHandler EnemyAnimationHandler;
     protected CharacterPuppetHandler CharacterPuppetHandler;
+    protected CharacterAudioHandler CharacterAudioHandler;
 
     public EnemyBaseState(EnemyController enemyController)
     {
@@ -19,6 +20,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
       EnemyMovementHandler = EnemyController.EnemyMovementHandler;
       EnemyAnimationHandler = EnemyController.EnemyAnimationHandler;
       CharacterPuppetHandler = EnemyController.CharacterPuppetHandler;
+      CharacterAudioHandler = EnemyController.CharacterAudioHandler;
     }
   }
 }

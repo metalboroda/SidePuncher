@@ -2458,7 +2458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2038e0ee70bfc2c4b8b771a1c748fbe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterUIHandler: {fileID: 1534344699183406436}
+  CharacterUIHandler: {fileID: 1534344699183406436}
+  CharacterAudioHandler: {fileID: 7904934921503306250}
   PlayerHandler: {fileID: 7557711554821899619}
   PlayerAttackHandler: {fileID: 2751107105811738737}
   PlayerAnimationHandler: {fileID: 5727253782857265961}
@@ -2553,10 +2554,11 @@ AudioSource:
   m_GameObject: {fileID: 3940116538902047895}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4342033426434513009, guid: 16f28b03ea10daa4ab6bedd3b7fdd934,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

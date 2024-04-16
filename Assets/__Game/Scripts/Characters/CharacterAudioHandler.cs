@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters
 {
+  [RequireComponent(typeof(AudioSource))]
   public abstract class CharacterAudioHandler : MonoBehaviour
   {
     [SerializeField] protected AudioContainerSO AttackSFX;
@@ -19,22 +20,22 @@ namespace Assets.__Game.Scripts.Characters
       AudioComponent = new AudioComponent(AudioSource);
     }
 
-    protected virtual void PlayRandomAttackSound()
+    public virtual void PlayRandomAttackSound()
     {
       PlayOneShotSound(AttackSFX.GetRandomClip());
     }
 
-    protected virtual void PlayRandomDamageSound()
+    public virtual void PlayRandomDamageSound()
     {
       PlayOneShotSound(DamageSFX.GetRandomClip());
     }
 
-    protected virtual void PlayRandomDeathSound()
+    public virtual void PlayRandomDeathSound()
     {
       PlayOneShotSound(DeathSFX.GetRandomClip());
     }
 
-    protected virtual void PlayOneShotSound(AudioClip audioClip)
+    public virtual void PlayOneShotSound(AudioClip audioClip)
     {
       AudioClip clip = audioClip;
 

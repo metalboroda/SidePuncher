@@ -3,9 +3,11 @@ using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters
 {
+  [SelectionBase]
   public abstract class CharacterControllerBase : MonoBehaviour
   {
-    public CharacterUIHandler characterUIHandler;
+    public CharacterUIHandler CharacterUIHandler;
+    public CharacterAudioHandler CharacterAudioHandler;
 
     public StateMachine StateMachine;
 

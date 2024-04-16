@@ -21,7 +21,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
       _enemyController.CharacterPuppetHandler.DisableRagdoll();
       _enemyController.EnemyHandler.CapsuleCollider.enabled = true;
       _enemyController.EnemyHandler.CurrentHealth = _enemyController.EnemyHandler.MaxHealth;
-      _enemyController.characterUIHandler.ResetParams();
+      _enemyController.CharacterUIHandler.ResetParams();
       _enemyController.EnemyHandler.SwitchModelVisibility(true, 0.1f);
     }
   }
