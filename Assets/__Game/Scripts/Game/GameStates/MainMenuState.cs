@@ -10,7 +10,6 @@ namespace Assets.__Game.Scripts.Game.GameStates
 
     public override void Enter()
     {
-      Debug.Log("MainMenuState");
     }
 
     public override void Exit()

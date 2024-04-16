@@ -1,3 +1,4 @@
+using Assets.__Game.Scripts.Infrastructure;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ namespace Assets.__Game.Scripts.Audio
     private List<int> _previousTracks = new List<int>();
 
     private AudioSource _audioSource;
+
+    private GameSettings _gameSettings;
 
     private void Awake()
     {

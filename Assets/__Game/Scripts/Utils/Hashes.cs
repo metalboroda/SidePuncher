@@ -6,5 +6,10 @@ namespace Assets.__Game.Scripts.Utils
     public const string MainMenuScene = "MainMenu";
     public const string GameScene = "Game";
     #endregion
+
+    #region Settings
+    public const string MusicVolume = "MusicVolume";
+    public const string SFXVolume = "SFXVolume";
+    #endregion
   }
 }

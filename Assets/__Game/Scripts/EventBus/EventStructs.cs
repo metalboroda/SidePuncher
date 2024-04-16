@@ -22,4 +22,9 @@ namespace EventBus
     public int waveCount;
   }
   #endregion
+
+  #region Settings
+  public struct MusicSwitched : IEvent { }
+  public struct SFXSwitched : IEvent { }
+  #endregion
 }
