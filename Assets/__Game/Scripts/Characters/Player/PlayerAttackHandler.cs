@@ -45,9 +45,14 @@ namespace Assets.__Game.Scripts.Characters.Player
 
     private void SmoothRotateY(float y)
     {
-      Quaternion targetRotation = Quaternion.Euler(transform.rotation.x, y, transform.rotation.z);
+      // DOTween goes crazy after restart
+      try
+      {
+        Quaternion targetRotation = Quaternion.Euler(transform.rotation.x, y, transform.rotation.z);
 
-      transform.DORotateQuaternion(targetRotation, rotationDuration);
+        transform.DORotateQuaternion(targetRotation, rotationDuration);
+      }
+      catch { }
     }
 
     private void AllowAttackTimer()

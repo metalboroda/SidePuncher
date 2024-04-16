@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Assets.__Game.Scripts.Managers
 {
-  public class MainMenuUIManager : MonoBehaviour
+  public class MainMenuUIManager : UIManagerBase
   {
     [SerializeField] private Button playBtn;
 

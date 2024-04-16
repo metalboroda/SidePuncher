@@ -1,9 +1,10 @@
 using Assets.__Game.Scripts.Game;
 using Assets.__Game.Scripts.Game.GameStates;
-using Assets.__Game.Scripts.Services;
+using Assets.__Game.Scripts.Infrastructure;
 using Assets.__Game.Scripts.Utils;
 using DG.Tweening;
 using EventBus;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,7 +13,7 @@ using PauseState = Assets.__Game.Scripts.Game.GameStates.PauseState;
 
 namespace Assets.__Game.Scripts.Managers
 {
-  public class GameUIManager : MonoBehaviour
+  public class GameUIManager : UIManagerBase
   {
     [Header("Wave")]
     [SerializeField] private TextMeshProUGUI waveCounterText;
@@ -28,7 +29,11 @@ namespace Assets.__Game.Scripts.Managers
     [SerializeField] private Button pauseRestartButton;
     [SerializeField] private Button pauseExitButton;
     [SerializeField] private Button pauseMusicButton;
+    [SerializeField] private GameObject musicOnIcon;
+    [SerializeField] private GameObject musicOffIcon;
     [SerializeField] private Button pauseSFXButton;
+    [SerializeField] private GameObject sfxOnIcon;
+    [SerializeField] private GameObject sfxOffIcon;
 
     [Header("End")]
     [SerializeField] private GameObject endCanvas;
@@ -39,6 +44,7 @@ namespace Assets.__Game.Scripts.Managers
     private readonly List<GameObject> _canvases = new List<GameObject>();
 
     private GameBootstrapper _gameBootstrapper;
+    private GameSettings _gameSettings;
 
     private EventBinding<WaveCompleted> _waveCompletedEvent;
     private EventBinding<GameStateChanged> _gameStateChangedEvent;
@@ -75,6 +81,7 @@ namespace Assets.__Game.Scripts.Managers
 
     private void SubscribeButtons()
     {
+      // Pause
       pauseContinueButton.onClick.AddListener(() =>
       {
         _gameBootstrapper.GameStateMachine.ChangeState(new GameplayState(_gameBootstrapper));
@@ -85,6 +92,20 @@ namespace Assets.__Game.Scripts.Managers
         _gameBootstrapper.GameStateMachine.ChangeState(new MainMenuState(_gameBootstrapper));
       });
       pauseExitButton.onClick.AddListener(() =>
+      {
+        _gameBootstrapper.SceneLoader.LoadSceneAsync(Hashes.MainMenuScene, () =>
+        {
+          _gameBootstrapper.GameStateMachine.ChangeState(new MainMenuState(_gameBootstrapper));
+        });
+      });
+
+      // End
+      endRestartButton.onClick.AddListener(() =>
+      {
+        _gameBootstrapper.SceneLoader.RestartScene();
+        _gameBootstrapper.GameStateMachine.ChangeState(new MainMenuState(_gameBootstrapper));
+      });
+      endExitButton.onClick.AddListener(() =>
       {
         _gameBootstrapper.SceneLoader.LoadSceneAsync(Hashes.MainMenuScene, () =>
         {
@@ -115,11 +136,21 @@ namespace Assets.__Game.Scripts.Managers
         case PauseState:
           SwitchCanvas(pauseCanvas);
           break;
+        case EndState:
+          SwitchCanvas(endCanvas, 2);
+          break;
       }
     }
 
-    private void SwitchCanvas(GameObject canvas)
+    private void SwitchCanvas(GameObject canvas, float delay = 0)
     {
+      StartCoroutine(DoSwitchCanvas(canvas, delay));
+    }
+
+    private IEnumerator DoSwitchCanvas(GameObject canvas, float delay)
+    {
+      yield return new WaitForSeconds(delay);
+
       foreach (var canvasItem in _canvases)
       {
         if (canvasItem == canvas)
@@ -127,6 +158,44 @@ namespace Assets.__Game.Scripts.Managers
         else
           canvasItem.SetActive(false);
       }
+    }
+
+    private void SwitchMusicVolumeButton()
+    {
+      _gameSettings.IsMusicOn = !_gameSettings.IsMusicOn;
+
+      UpdateMusicButtonVisuals();
+      EventBus<MusicSwitched>.Raise();
+      SettingsManager.SaveSettings(_gameSettings);
+    }
+
+    private void SwitchSFXVolumeButton()
+    {
+      _gameSettings.IsSFXOn = !_gameSettings.IsSFXOn;
+
+      UpdateSFXButtonVisuals();
+      EventBus<SFXSwitched>.Raise();
+      SettingsManager.SaveSettings(_gameSettings);
+    }
+
+    private void UpdateMusicButtonVisuals()
+    {
+      musicOnIcon.SetActive(_gameSettings.IsMusicOn);
+      musicOffIcon.SetActive(!_gameSettings.IsMusicOn);
+    }
+
+    private void UpdateSFXButtonVisuals()
+    {
+      sfxOnIcon.SetActive(_gameSettings.IsSFXOn);
+      sfxOffIcon.SetActive(!_gameSettings.IsSFXOn);
+    }
+
+    private void LoadSettings()
+    {
+      if (_gameSettings == null)
+        _gameSettings = new GameSettings();
+
+      _gameSettings = SettingsManager.LoadSettings<GameSettings>();
     }
   }
 }

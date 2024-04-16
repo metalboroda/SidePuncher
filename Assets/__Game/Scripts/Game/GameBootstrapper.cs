@@ -2,6 +2,8 @@
 using Assets.__Game.Scripts.Infrastructure;
 using Assets.__Game.Scripts.Managers;
 using Assets.__Game.Scripts.Services;
+using Assets.__Game.Scripts.Utils;
+using EventBus;
 using UnityEngine;
 
 namespace Assets.__Game.Scripts.Game
@@ -14,6 +16,8 @@ namespace Assets.__Game.Scripts.Game
 
     public StateMachine GameStateMachine;
     public SceneLoader SceneLoader;
+
+    private EventBinding<PlayerDead> _playerDeadEvent;
 
     public GameBootstrapper()
     {
@@ -32,13 +36,20 @@ namespace Assets.__Game.Scripts.Game
         Instance = this;
 
         DontDestroyOnLoad(gameObject);
+
+        _playerDeadEvent = new EventBinding<PlayerDead>(() =>
+        {
+          GameStateMachine.ChangeState(new EndState(this));
+        });
       }
     }
 
-
     public void Start()
     {
-      GameStateMachine.Init(new MainMenuState(this));
+      SceneLoader.LoadSceneAsync(Hashes.MainMenuScene, () =>
+      {
+        GameStateMachine.Init(new MainMenuState(this));
+      });
     }
   }
 }
