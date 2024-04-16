@@ -1,9 +1,7 @@
 using Assets.__Game.Scripts.Game;
 using Assets.__Game.Scripts.Game.GameStates;
-using Assets.__Game.Scripts.Infrastructure;
 using Assets.__Game.Scripts.Services;
 using Assets.__Game.Scripts.Utils;
-using EventBus;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,17 +25,16 @@ namespace Assets.__Game.Scripts.Managers
     private GameBootstrapper _gameBootstrapper;
     private SceneLoader _sceneLoader;
 
-    private GameSettings _gameSettings;
-
-    private void Awake()
+    protected override void Awake()
     {
+      base.Awake();
+
       _gameBootstrapper = GameBootstrapper.Instance;
       _sceneLoader = _gameBootstrapper.SceneLoader;
     }
 
     private void Start()
     {
-      LoadSettings();
       SubscribeButtons();
       UpdateMusicButtonVisuals();
       UpdateSFXButtonVisuals();
@@ -53,52 +50,20 @@ namespace Assets.__Game.Scripts.Managers
         });
       });
 
-      musicButton.onClick.AddListener(() =>
-      {
-        SwitchMusicVolumeButton();
-      });
-      sfxButton.onClick.AddListener(() =>
-      {
-        SwitchSFXVolumeButton();
-      });
+      musicButton.onClick.AddListener(SwitchMusicVolumeButton);
+      sfxButton.onClick.AddListener(SwitchSFXVolumeButton);
     }
 
-    private void SwitchMusicVolumeButton()
-    {
-      _gameSettings.IsMusicOn = !_gameSettings.IsMusicOn;
-
-      UpdateMusicButtonVisuals();
-      EventBus<MusicSwitched>.Raise();
-      SettingsManager.SaveSettings(_gameSettings);
-    }
-
-    private void SwitchSFXVolumeButton()
-    {
-      _gameSettings.IsSFXOn = !_gameSettings.IsSFXOn;
-
-      UpdateSFXButtonVisuals();
-      EventBus<SFXSwitched>.Raise();
-      SettingsManager.SaveSettings(_gameSettings);
-    }
-
-    private void UpdateMusicButtonVisuals()
+    protected override void UpdateMusicButtonVisuals()
     {
       musicOnIcon.SetActive(_gameSettings.IsMusicOn);
       musicOffIcon.SetActive(!_gameSettings.IsMusicOn);
     }
 
-    private void UpdateSFXButtonVisuals()
+    protected override void UpdateSFXButtonVisuals()
     {
       sfxOnIcon.SetActive(_gameSettings.IsSFXOn);
       sfxOffIcon.SetActive(!_gameSettings.IsSFXOn);
-    }
-
-    private void LoadSettings()
-    {
-      if (_gameSettings == null)
-        _gameSettings = new GameSettings();
-
-      _gameSettings = SettingsManager.LoadSettings<GameSettings>();
     }
   }
 }

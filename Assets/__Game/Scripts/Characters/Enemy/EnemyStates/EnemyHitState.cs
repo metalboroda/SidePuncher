@@ -9,7 +9,7 @@
       EnemyAnimationHandler.PlayRandomHitAnimation();
       CharacterAudioHandler.PlayRandomDamageSound();
       EnemyAnimationHandler.StopCoroutines();
-      EnemyAnimationHandler.OnAnimtionEnds(0.8f, EnemyController.ToMovementState);
+      EnemyAnimationHandler.OnAnimtionEnds(0.8f, EnemyController.ToFightState);
     }
   }
 }

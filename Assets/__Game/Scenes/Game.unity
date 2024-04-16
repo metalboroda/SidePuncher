@@ -2020,10 +2020,15 @@ MonoBehaviour:
   pauseRestartButton: {fileID: 2021718157}
   pauseExitButton: {fileID: 1238828833}
   pauseMusicButton: {fileID: 834467528}
+  musicOnIcon: {fileID: 1983404591}
+  musicOffIcon: {fileID: 289738686}
   pauseSFXButton: {fileID: 1509553736}
+  sfxOnIcon: {fileID: 789383647}
+  sfxOffIcon: {fileID: 1827761524}
   endCanvas: {fileID: 90870919}
   endRestartButton: {fileID: 380604140}
   endExitButton: {fileID: 387289187}
+  waveLabelCounterText: {fileID: 136862469}
 --- !u!1 &582294704
 GameObject:
   m_ObjectHideFlags: 0
