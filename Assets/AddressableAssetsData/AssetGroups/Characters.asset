@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Characters
+  m_EditorClassIdentifier: 
+  m_GroupName: Characters
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 2d1f03d279f9dc846a6022d7ccdf6ff3
+  m_SerializeEntries:
+  - m_GUID: 6066be2ee848e6c439ff15b546837207
+    m_Address: Prefabs/Characters/Enemy_1_Puppet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb16d2864d9ab2f4c839b83b4979cac2
+    m_Address: Prefabs/Characters/Enemy_2_Puppet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6453dc80baa663e4b9e83d51afd09e0b
+    m_Address: Prefabs/Characters/Enemy_3_Puppet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 54186be06c95d0e43bcc72299419f6b8, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0307b50f433622d48af70a040cd87867, type: 2}
+    - {fileID: 11400000, guid: 230b3079ec75ee04589189d9094d9a19, type: 2}

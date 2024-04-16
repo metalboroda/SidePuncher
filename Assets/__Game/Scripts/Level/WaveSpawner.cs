@@ -1,9 +1,10 @@
-﻿using Assets.__Game.Scripts.Characters.Enemy;
-using EventBus;
-using Lean.Pool;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
+using Lean.Pool;
+using UnityEngine.AddressableAssets;
+using Assets.__Game.Scripts.Characters.Enemy;
+using EventBus;
+using System.Collections.Generic;
 
 namespace Assets.__Game.Scripts.Level
 {
@@ -65,7 +66,6 @@ namespace Assets.__Game.Scripts.Level
     private IEnumerator SpawnRandomWave()
     {
       int randomIndex;
-
       do
       {
         randomIndex = Random.Range(0, waves.Length);
@@ -87,8 +87,7 @@ namespace Assets.__Game.Scripts.Level
           if (_spawnedEnemies.Count >= limitPerRow)
             yield return StartCoroutine(WaitForEnemiesCountBelow(limitPerRow));
 
-          SpawnEnemy(waveEnemy.Enemy);
-
+          yield return StartCoroutine(SpawnEnemyAsync(waveEnemy.Enemy));
           yield return new WaitForSeconds(currentWave.SpawnRate);
         }
       }
@@ -96,9 +95,13 @@ namespace Assets.__Game.Scripts.Level
       yield return StartCoroutine(CheckWaveCompletion());
     }
 
-    private void SpawnEnemy(GameObject enemy)
+    private IEnumerator SpawnEnemyAsync(GameObject enemy)
     {
-      GameObject enemyObject = LeanPool.Spawn(enemy);
+      var enemyHandle = Addressables.LoadAssetAsync<GameObject>($"Prefabs/Characters/{enemy.name}");
+
+      yield return enemyHandle;
+
+      GameObject enemyObject = LeanPool.Spawn(enemyHandle.Result);
       EnemySpawnInitializer enemyInit = enemyObject.GetComponentInChildren<EnemySpawnInitializer>();
       GameObject spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
