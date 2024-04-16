@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815e56c9ef8deb14e93c8d87cdef9f7b, type: 3}
+  m_Name: Character_Attack
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: da5c4300a0403d747bb59a3d5e8080e3, type: 3}
+  - {fileID: 8300000, guid: 3b9e2e3ce353ea04d92d0f06ae1943ae, type: 3}
+  - {fileID: 8300000, guid: 5ad942207a663a346b7ee3c6c16faf88, type: 3}
+  - {fileID: 8300000, guid: fe6b95fe00ff3c2439b6e25be18cc0a3, type: 3}
+  - {fileID: 8300000, guid: 9aacacdfdc9e9c74599b2693ddd12e96, type: 3}

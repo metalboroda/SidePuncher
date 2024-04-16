@@ -2556,7 +2556,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.75
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2652,7 +2652,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff29fd436bce844484d90c0c7d36226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSFX: {fileID: 11400000, guid: 9f44ca265dd2e0342b464db5419eefd8, type: 2}
+  AttackSFX: {fileID: 11400000, guid: 9f44ca265dd2e0342b464db5419eefd8, type: 2}
+  DamageSFX: {fileID: 11400000, guid: 0aa24e8fcb973234a8996a277adbd67e, type: 2}
+  DeathSFX: {fileID: 11400000, guid: d013ccaac73394549b8857d5e294d8a5, type: 2}
 --- !u!1 &4012488857513631702
 GameObject:
   m_ObjectHideFlags: 0

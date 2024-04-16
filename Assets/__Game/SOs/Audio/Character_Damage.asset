@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815e56c9ef8deb14e93c8d87cdef9f7b, type: 3}
+  m_Name: Character_Damage
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 70b7f5440be3d214599cd61af9b19303, type: 3}
+  - {fileID: 8300000, guid: 0437b7e2b391f33479b3a8ca6b513fbb, type: 3}
+  - {fileID: 8300000, guid: 622c44f0176d2fc42a4c0bda538adc71, type: 3}
+  - {fileID: 8300000, guid: 34697777a62af65439aa038c10136a4d, type: 3}
+  - {fileID: 8300000, guid: bfabf6f3344e7f74ea0eba6367143853, type: 3}
+  - {fileID: 8300000, guid: 9a2e351f133c9eb438c54b989b649c77, type: 3}
+  - {fileID: 8300000, guid: 3f69c1eb54518f84b8540d7796303a08, type: 3}

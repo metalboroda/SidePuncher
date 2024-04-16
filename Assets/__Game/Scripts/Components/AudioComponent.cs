@@ -11,9 +11,9 @@ namespace Assets.__Game.Scripts.Components
       _audioSource = audioSource;
     }
 
-    public float RandomPitch()
+    public float RandomPitch(float min = 0.9f, float max = 1.1f)
     {
-      return _audioSource.pitch = Random.Range(0.95f, 1.05f);
+      return _audioSource.pitch = Random.Range(min, max);
     }
   }
 }
