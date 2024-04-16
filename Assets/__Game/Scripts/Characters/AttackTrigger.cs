@@ -1,4 +1,5 @@
 ﻿using Assets.__Game.Scripts.Interfaces;
+using Assets.__Game.Scripts.Utils;
 using Lean.Pool;
 using UnityEngine;
 
@@ -28,7 +29,11 @@ namespace Assets.__Game.Scripts.Characters
 
     public void SpawnEffect()
     {
-      Instantiate(effectPrefab, transform.position, transform.rotation);
+      GameObject spawnedEffect = LeanPool.Spawn(effectPrefab, transform.position, transform.rotation);
+      EffectDestroyer effectDestroyer = spawnedEffect.GetComponent<EffectDestroyer>();
+
+      if (effectDestroyer != null)
+        effectDestroyer.DestroyEffect();
     }
   }
 }
