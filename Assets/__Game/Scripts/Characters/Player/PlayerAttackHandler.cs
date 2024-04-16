@@ -14,6 +14,7 @@ namespace Assets.__Game.Scripts.Characters.Player
 
     private bool _canAttack = true;
     private float _lastAttackTime;
+    private Tweener _rotationTween;
 
     private void Update()
     {
@@ -50,7 +51,9 @@ namespace Assets.__Game.Scripts.Characters.Player
       {
         Quaternion targetRotation = Quaternion.Euler(transform.rotation.x, y, transform.rotation.z);
 
-        transform.DORotateQuaternion(targetRotation, rotationDuration);
+        DOTween.Kill(_rotationTween, true);
+
+        _rotationTween = transform.DORotateQuaternion(targetRotation, rotationDuration).SetAutoKill(true);
       }
       catch { }
     }

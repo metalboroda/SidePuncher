@@ -38,6 +38,8 @@ namespace Assets.__Game.Scripts.Characters.Player
     {
       CurrentHealth -= damage;
 
+      EventBus<PlayerDamaged>.Raise(new PlayerDamaged());
+
       if (CurrentHealth <= 0)
       {
         CurrentHealth = 0;

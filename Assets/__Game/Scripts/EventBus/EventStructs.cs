@@ -13,6 +13,7 @@ namespace EventBus
   #endregion
 
   #region Player
+  public struct PlayerDamaged : IEvent { }
   public struct PlayerDead : IEvent { }
   #endregion
 

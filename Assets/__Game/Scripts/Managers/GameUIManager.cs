@@ -21,6 +21,9 @@ namespace Assets.__Game.Scripts.Managers
 
     [Header("Gameplay")]
     [SerializeField] private GameObject gameCanvas;
+    [SerializeField] private Image damageVignette;
+    [SerializeField] private float damageMaxFade = 0.15f;
+    [SerializeField] private float damageDuration = 0.1f;
 
     [Header("Pause")]
     [SerializeField] private GameObject pauseCanvas;
@@ -47,6 +50,7 @@ namespace Assets.__Game.Scripts.Managers
 
     private GameBootstrapper _gameBootstrapper;
 
+    private EventBinding<PlayerDamaged> _playerDamagedEvent;
     private EventBinding<WaveCompleted> _waveCompletedEvent;
     private EventBinding<GameStateChanged> _gameStateChangedEvent;
 
@@ -59,6 +63,7 @@ namespace Assets.__Game.Scripts.Managers
 
     private void OnEnable()
     {
+      _playerDamagedEvent = new EventBinding<PlayerDamaged>(DisplayDamageVignette);
       _waveCompletedEvent = new EventBinding<WaveCompleted>(DisplayWaveCounter);
       _waveCompletedEvent = new EventBinding<WaveCompleted>(DisplayEndWaveCounter);
       _gameStateChangedEvent = new EventBinding<GameStateChanged>(SwitchCanvasByState);
@@ -66,6 +71,7 @@ namespace Assets.__Game.Scripts.Managers
 
     private void OnDisable()
     {
+      _playerDamagedEvent.Remove(DisplayDamageVignette);
       _waveCompletedEvent.Remove(DisplayWaveCounter);
       _waveCompletedEvent.Remove(DisplayEndWaveCounter);
       _gameStateChangedEvent.Remove(SwitchCanvasByState);
@@ -123,6 +129,16 @@ namespace Assets.__Game.Scripts.Managers
       // Audio
       pauseMusicButton.onClick.AddListener(SwitchMusicVolumeButton);
       pauseSFXButton.onClick.AddListener(SwitchSFXVolumeButton);
+    }
+
+    private void DisplayDamageVignette()
+    {
+      Sequence sequence = DOTween.Sequence();
+
+      sequence.Append(damageVignette.DOFade(0, damageDuration));
+      sequence.Append(damageVignette.DOFade(damageMaxFade, damageDuration));
+      sequence.AppendInterval(damageDuration / 5);
+      sequence.Append(damageVignette.DOFade(0, damageDuration));
     }
 
     private void DisplayWaveCounter(WaveCompleted waveCompleted)
