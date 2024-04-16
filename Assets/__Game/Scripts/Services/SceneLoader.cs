@@ -18,5 +18,10 @@ namespace Assets.__Game.Scripts.Services
     {
       SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
+
+    public void RestartScene()
+    {
+      SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    }
   }
 }

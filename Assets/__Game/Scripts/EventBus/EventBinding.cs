@@ -1,11 +1,11 @@
 namespace EventBus
 {
-  using EventBus.Internal;
+  using global::EventBus.EventBus;
   using System;
 
-  namespace Internal
+  namespace EventBus
   {
-    internal interface IEventBindingInternal<T> where T : struct, IEvent
+    public interface IEventBindingInternal<T> where T : struct, IEvent
     {
       public Action<T> OnEvent { get; set; }
       public Action OnEventArgs { get; set; }

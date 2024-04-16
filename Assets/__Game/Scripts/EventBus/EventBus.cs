@@ -4,10 +4,10 @@ namespace EventBus
   using System.Reflection;
   using System.Collections.Generic;
   using UnityEngine;
-  using EventBus.Internal;
 
 #if UNITY_EDITOR
   using UnityEditor;
+  using global::EventBus.EventBus;
 #endif
 
   public static class EventBusUtility

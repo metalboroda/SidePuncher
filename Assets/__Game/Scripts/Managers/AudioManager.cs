@@ -23,15 +23,15 @@ namespace Assets.__Game.Scripts.Managers
 
     private void Awake()
     {
-      if (Instance == null)
+      if (Instance != null && Instance != this)
+      {
+        Destroy(gameObject);
+      }
+      else
       {
         Instance = this;
 
         DontDestroyOnLoad(gameObject);
-      }
-      else
-      {
-        Destroy(gameObject);
       }
     }
 
@@ -43,8 +43,8 @@ namespace Assets.__Game.Scripts.Managers
 
     private void OnDisable()
     {
-      _musicSwitchedEvent.Remove(SwitchMusicVolume);
-      _sfxSwitchedEvent.Remove(SwitchSFXVolume);
+      _musicSwitchedEvent?.Remove(SwitchMusicVolume);
+      _sfxSwitchedEvent?.Remove(SwitchSFXVolume);
     }
 
     private void Start()
@@ -78,7 +78,7 @@ namespace Assets.__Game.Scripts.Managers
     {
       mixer.GetFloat(Hashes.MusicVolume, out float currentVolume);
 
-      if (currentVolume == 0f)
+      if (currentVolume == musicMaxVolume)
       {
         mixer.SetFloat(Hashes.MusicVolume, -80f);
         _gameSettings.IsMusicOn = false;
