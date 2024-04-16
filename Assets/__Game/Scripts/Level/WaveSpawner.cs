@@ -17,26 +17,22 @@ namespace Assets.__Game.Scripts.Level
     private int _wavesPassed = 0;
     private readonly List<GameObject> _spawnedEnemies = new List<GameObject>();
     private int _previousRandomWave = -1;
-    private Coroutine _spawnRoutine;
 
-    private EventBinding<PlayerDead> _playerDeadEvent;
     private EventBinding<EnemyDead> _enemyDeathEvent;
 
     private void OnEnable()
     {
-      _playerDeadEvent = new EventBinding<PlayerDead>(StopSpawn);
       _enemyDeathEvent = new EventBinding<EnemyDead>(RemoveDeadEnemyFromList);
     }
 
     private void OnDisable()
     {
-      _enemyDeathEvent.Remove(StopSpawn);
       _enemyDeathEvent.Remove(RemoveDeadEnemyFromList);
     }
 
     private void Start()
     {
-      _spawnRoutine = StartCoroutine(SpawnWaves());
+      StartCoroutine(SpawnWaves());
     }
 
     private IEnumerator SpawnWaves()
@@ -128,11 +124,6 @@ namespace Assets.__Game.Scripts.Level
 
       if (_spawnedEnemies.Contains(deadEnemy))
         _spawnedEnemies.Remove(deadEnemy);
-    }
-
-    private void StopSpawn()
-    {
-      StopCoroutine(_spawnRoutine);
     }
   }
 }

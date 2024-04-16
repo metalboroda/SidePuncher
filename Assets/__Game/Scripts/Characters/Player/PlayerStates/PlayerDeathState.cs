@@ -6,11 +6,11 @@
 
     public override void Enter()
     {
+      PlayerHandler.Death(0);
       PlayerAnimationHandler.PlayRandomDeathAnimation();
       PlayerAnimationHandler.DeathRandomRotation();
       PlayerAnimationHandler.StopCoroutines();
       CharacterPuppetHandler.EnableRagdoll();
-      PlayerHandler.Death(0);
     }
   }
 }
