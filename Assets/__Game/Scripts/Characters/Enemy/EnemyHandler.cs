@@ -59,8 +59,8 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
         EventBus<EnemyDead>.Raise(new EnemyDead()
         {
-          gameObject = transform.root.gameObject,
-          healthRecoveryValue = this.healthRecoveryValue,
+          GameObject = transform.root.gameObject,
+          HealthRecoveryValue = this.healthRecoveryValue,
         });
       }
     }

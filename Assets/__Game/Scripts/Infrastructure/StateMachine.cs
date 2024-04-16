@@ -1,4 +1,4 @@
-using System;
+using EventBus;
 using System.Collections;
 using UnityEngine;
 
@@ -6,7 +6,6 @@ namespace Assets.__Game.Scripts.Infrastructure
 {
   public class StateMachine
   {
-    public event Action<State> StateChanged;
 
     public State CurrentState { get; private set; }
     public State PreviousState { get; private set; }
@@ -15,6 +14,7 @@ namespace Assets.__Game.Scripts.Infrastructure
     {
       CurrentState = initState;
       CurrentState.Enter();
+      EventBus<GameStateChanged>.Raise(new GameStateChanged { State = CurrentState });
     }
 
     public void ChangeState(State newState)
@@ -25,7 +25,7 @@ namespace Assets.__Game.Scripts.Infrastructure
       CurrentState.Exit();
       CurrentState = newState;
       CurrentState.Enter();
-      StateChanged?.Invoke(CurrentState);
+      EventBus<GameStateChanged>.Raise(new GameStateChanged { State = CurrentState });
     }
 
     public void ChangeStateWithDelay(State newState, float delay, MonoBehaviour monoBehaviour)

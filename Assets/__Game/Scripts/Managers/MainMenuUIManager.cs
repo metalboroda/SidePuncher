@@ -1,4 +1,5 @@
 using Assets.__Game.Scripts.Game;
+using Assets.__Game.Scripts.Game.GameStates;
 using Assets.__Game.Scripts.Infrastructure;
 using Assets.__Game.Scripts.Services;
 using Assets.__Game.Scripts.Utils;
@@ -46,7 +47,10 @@ namespace Assets.__Game.Scripts.Managers
     {
       playBtn.onClick.AddListener(() =>
       {
-        _sceneLoader.LoadSceneAsync(Hashes.GameScene, _gameBootstrapper.ToGameplayState);
+        _sceneLoader.LoadSceneAsync(Hashes.GameScene, () =>
+        {
+          _gameBootstrapper.GameStateMachine.ChangeState(new GameplayState(_gameBootstrapper));
+        });
       });
 
       musicButton.onClick.AddListener(() =>

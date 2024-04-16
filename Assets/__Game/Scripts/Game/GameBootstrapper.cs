@@ -12,11 +12,6 @@ namespace Assets.__Game.Scripts.Game
     public StateMachine GameStateMachine;
     public SceneLoader SceneLoader;
 
-    public GameBootstrapper()
-    {
-      GameStateMachine = new StateMachine();
-    }
-
     private void Awake()
     {
       if (Instance != null && Instance != this)
@@ -27,16 +22,12 @@ namespace Assets.__Game.Scripts.Game
       DontDestroyOnLoad(this);
 
       SceneLoader = new SceneLoader();
+      GameStateMachine = new StateMachine();
     }
 
     public void Start()
     {
       GameStateMachine.Init(new MainMenuState(this));
-    }
-
-    public void ToGameplayState()
-    {
-      GameStateMachine.ChangeState(new GameplayState(this));
     }
   }
 }

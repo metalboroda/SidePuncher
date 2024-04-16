@@ -45,7 +45,7 @@ namespace Assets.__Game.Scripts.Level
 
           _wavesPassed++;
 
-          EventBus<WaveCompleted>.Raise(new WaveCompleted { waveCount = _wavesPassed });
+          EventBus<WaveCompleted>.Raise(new WaveCompleted { WaveCount = _wavesPassed });
         }
         else
         {
@@ -55,7 +55,7 @@ namespace Assets.__Game.Scripts.Level
 
           _wavesPassed++;
 
-          EventBus<WaveCompleted>.Raise(new WaveCompleted { waveCount = _wavesPassed });
+          EventBus<WaveCompleted>.Raise(new WaveCompleted { WaveCount = _wavesPassed });
         }
 
         yield return new WaitForSeconds(timeBetweenWaves);
@@ -120,7 +120,7 @@ namespace Assets.__Game.Scripts.Level
 
     private void RemoveDeadEnemyFromList(EnemyDead enemyDeathEvent)
     {
-      GameObject deadEnemy = enemyDeathEvent.gameObject;
+      GameObject deadEnemy = enemyDeathEvent.GameObject;
 
       if (_spawnedEnemies.Contains(deadEnemy))
         _spawnedEnemies.Remove(deadEnemy);

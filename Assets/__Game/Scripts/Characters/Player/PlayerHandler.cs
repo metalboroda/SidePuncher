@@ -48,7 +48,7 @@ namespace Assets.__Game.Scripts.Characters.Player
 
     public void Recovery(EnemyDead enemyDead)
     {
-      int value = enemyDead.healthRecoveryValue;
+      int value = enemyDead.HealthRecoveryValue;
 
       if (CurrentHealth < MaxHealth)
       {

@@ -1,8 +1,16 @@
-﻿using UnityEngine;
+﻿using Assets.__Game.Scripts.Infrastructure;
+using UnityEngine;
 
 namespace EventBus
 {
   public class EventStructs { }
+
+  #region Game
+  public struct GameStateChanged : IEvent
+  {
+    public State State;
+  }
+  #endregion
 
   #region Player
   public struct PlayerDead : IEvent { }
@@ -11,15 +19,15 @@ namespace EventBus
   #region Enemy
   public struct EnemyDead : IEvent
   {
-    public GameObject gameObject;
-    public int healthRecoveryValue;
+    public GameObject GameObject;
+    public int HealthRecoveryValue;
   }
   #endregion
 
   #region Spawner
   public struct WaveCompleted : IEvent
   {
-    public int waveCount;
+    public int WaveCount;
   }
   #endregion
 

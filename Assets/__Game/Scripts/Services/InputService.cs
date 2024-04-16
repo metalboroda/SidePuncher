@@ -5,6 +5,8 @@ namespace Assets.__Game.Scripts.Services
 {
   public class InputService
   {
+    public event Action PausePressed;
+
     public event Action LeftAttackTriggered;
     public event Action RightAttackTriggered;
 
@@ -15,8 +17,15 @@ namespace Assets.__Game.Scripts.Services
       _inputActions = new PlayerInputActions();
       _inputActions.Enable();
 
+      _inputActions.Navigation.Pause.performed += OnPausePressed;
+
       _inputActions.OnFeet.LeftAttack.performed += OnLeftAttack;
       _inputActions.OnFeet.RightAttack.performed += OnRightAttack;
+    }
+
+    public void OnPausePressed(InputAction.CallbackContext context)
+    {
+      PausePressed?.Invoke();
     }
 
     public void OnLeftAttack(InputAction.CallbackContext context)
@@ -32,6 +41,8 @@ namespace Assets.__Game.Scripts.Services
     public void Dispose()
     {
       _inputActions.Disable();
+
+      _inputActions.Navigation.Pause.performed -= OnPausePressed;
 
       _inputActions.OnFeet.LeftAttack.performed -= OnLeftAttack;
       _inputActions.OnFeet.RightAttack.performed -= OnRightAttack;

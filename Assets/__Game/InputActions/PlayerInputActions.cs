@@ -70,6 +70,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Navigation"",
+            ""id"": ""a8347d14-175d-4985-b62b-52c41bc854d3"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""6b5a6e47-40e5-4cfc-9e98-5d60fd3344e4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c8e073df-e7a1-41ba-afb9-ff4c1cab809e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -78,6 +106,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_OnFeet = asset.FindActionMap("OnFeet", throwIfNotFound: true);
         m_OnFeet_LeftAttack = m_OnFeet.FindAction("LeftAttack", throwIfNotFound: true);
         m_OnFeet_RightAttack = m_OnFeet.FindAction("RightAttack", throwIfNotFound: true);
+        // Navigation
+        m_Navigation = asset.FindActionMap("Navigation", throwIfNotFound: true);
+        m_Navigation_Pause = m_Navigation.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -189,9 +220,59 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public OnFeetActions @OnFeet => new OnFeetActions(this);
+
+    // Navigation
+    private readonly InputActionMap m_Navigation;
+    private List<INavigationActions> m_NavigationActionsCallbackInterfaces = new List<INavigationActions>();
+    private readonly InputAction m_Navigation_Pause;
+    public struct NavigationActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public NavigationActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_Navigation_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Navigation; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(NavigationActions set) { return set.Get(); }
+        public void AddCallbacks(INavigationActions instance)
+        {
+            if (instance == null || m_Wrapper.m_NavigationActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_NavigationActionsCallbackInterfaces.Add(instance);
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+        }
+
+        private void UnregisterCallbacks(INavigationActions instance)
+        {
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+        }
+
+        public void RemoveCallbacks(INavigationActions instance)
+        {
+            if (m_Wrapper.m_NavigationActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(INavigationActions instance)
+        {
+            foreach (var item in m_Wrapper.m_NavigationActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_NavigationActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public NavigationActions @Navigation => new NavigationActions(this);
     public interface IOnFeetActions
     {
         void OnLeftAttack(InputAction.CallbackContext context);
         void OnRightAttack(InputAction.CallbackContext context);
+    }
+    public interface INavigationActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }
