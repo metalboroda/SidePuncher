@@ -13,5 +13,10 @@ namespace Assets.__Game.Scripts.Services
         callback?.Invoke();
       };
     }
+
+    public void LoadScene(string sceneName)
+    {
+      SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+    }
   }
 }

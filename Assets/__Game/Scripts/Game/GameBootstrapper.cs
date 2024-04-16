@@ -15,15 +15,20 @@ namespace Assets.__Game.Scripts.Game
     private void Awake()
     {
       if (Instance != null && Instance != this)
-        Destroy(this);
+      {
+        Destroy(gameObject);
+      }
       else
+      {
         Instance = this;
 
-      DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
 
-      SceneLoader = new SceneLoader();
-      GameStateMachine = new StateMachine();
+        GameStateMachine = new StateMachine();
+        SceneLoader = new SceneLoader();
+      }
     }
+
 
     public void Start()
     {

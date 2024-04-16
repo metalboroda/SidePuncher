@@ -21,6 +21,9 @@ namespace Assets.__Game.Scripts.Managers
     [SerializeField] private float waveFadeDuration = 0.25f;
     [SerializeField] private float waveFadeDelay = 1f;
 
+    [Header("Gameplay")]
+    [SerializeField] private GameObject gameCanvas;
+
     [Header("Pause")]
     [SerializeField] private GameObject pauseCanvas;
     [SerializeField] private Button pauseContinueButton;
@@ -32,6 +35,7 @@ namespace Assets.__Game.Scripts.Managers
     private GameBootstrapper _bootstrapper;
 
     private EventBinding<WaveCompleted> _waveCompletedEvent;
+    private EventBinding<GameStateChanged> _gameStateChangedEvent;
 
     private void Awake()
     {
@@ -41,6 +45,7 @@ namespace Assets.__Game.Scripts.Managers
     private void OnEnable()
     {
       _waveCompletedEvent = new EventBinding<WaveCompleted>(DisplayWaveCounter);
+      _gameStateChangedEvent = new EventBinding<GameStateChanged>(SwitchCanvas);
     }
 
     private void OnDisable()
@@ -55,6 +60,7 @@ namespace Assets.__Game.Scripts.Managers
 
     private void AddCanvasesToList()
     {
+      _canvases.Add(gameCanvas);
       _canvases.Add(pauseCanvas);
     }
 
@@ -71,20 +77,21 @@ namespace Assets.__Game.Scripts.Managers
       sequence.Append(waveCounterText.DOFade(0, waveFadeDuration));
     }
 
-    private void SwitchCanvas(State gameState)
+    private void SwitchCanvas(GameStateChanged gameState)
     {
       foreach (var canvas in _canvases)
       {
         canvas.SetActive(false);
       }
 
-      switch (gameState)
+      switch (gameState.State)
       {
         case GameplayState:
+          gameCanvas.SetActive(true);
           break;
         case PauseState:
+          pauseCanvas.SetActive(true);
           break;
-
       }
     }
   }

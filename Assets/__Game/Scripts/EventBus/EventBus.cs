@@ -45,8 +45,7 @@ namespace EventBus
       {
         if (assemblies[i].GetName().Name == "Assembly-CSharp")
           assemblyCSharp = assemblies[i].GetTypes();
-        else
-            if (assemblies[i].GetName().Name == "Assembly-CSharp-firstpass")
+        else if (assemblies[i].GetName().Name == "Assembly-CSharp-firstpass")
           assemblyCSharpFirstpass = assemblies[i].GetTypes();
 
         if (assemblyCSharp != null && assemblyCSharpFirstpass != null)
@@ -101,10 +100,13 @@ namespace EventBus
     {
       for (int i = 0; i < StaticEventBusesTypes.Count; i++)
       {
-        var type = EventTypes[i];
+        var type = StaticEventBusesTypes[i];
         var clearMethod = type.GetMethod("Clear", BindingFlags.Static | BindingFlags.NonPublic);
 
-        clearMethod.Invoke(null, null);
+        if (clearMethod != null)
+        {
+          clearMethod.Invoke(null, null);
+        }
       }
     }
   }
@@ -255,11 +257,6 @@ namespace EventBus
           + "Callbacks: " + callbacks.Count;
     }
 
-    /// <summary>
-    /// Allocates an Awaiter : EventBinding<T>
-    /// Use to await event in coroutines
-    /// </summary>
-    /// <returns></returns>
     public static Awaiter NewAwaiter()
     {
       // TODO: do it non alloc
