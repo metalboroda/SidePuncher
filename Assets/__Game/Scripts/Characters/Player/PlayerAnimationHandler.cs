@@ -25,8 +25,8 @@ namespace Assets.__Game.Scripts.Characters.Player
 
     public void PlayRandomAttackAnimation()
     {
-      Animator.CrossFadeInFixedTime(AnimationsSO.GetRandomAttackAnimation(), CrossDur);
-      OnAnimtionEnds(0.99f, PlayRandomIdleAnimation);
+      Animator.CrossFadeInFixedTime(AnimationsSO.GetRandomAttackAnimation(), CrossDur / 1.5f);
+      OnAnimtionEnds(0.8f, PlayRandomIdleAnimation);
     }
   }
 }
