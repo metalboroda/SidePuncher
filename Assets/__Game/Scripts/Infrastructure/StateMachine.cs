@@ -6,7 +6,6 @@ namespace Assets.__Game.Scripts.Infrastructure
 {
   public class StateMachine
   {
-
     public State CurrentState { get; private set; }
     public State PreviousState { get; private set; }
 
@@ -14,7 +13,7 @@ namespace Assets.__Game.Scripts.Infrastructure
     {
       CurrentState = initState;
       CurrentState.Enter();
-      EventBus<GameStateChanged>.Raise(new GameStateChanged { State = CurrentState });
+      EventBus<StateChanged>.Raise(new StateChanged { State = CurrentState });
     }
 
     public void ChangeState(State newState)
@@ -25,7 +24,7 @@ namespace Assets.__Game.Scripts.Infrastructure
       CurrentState.Exit();
       CurrentState = newState;
       CurrentState.Enter();
-      EventBus<GameStateChanged>.Raise(new GameStateChanged { State = CurrentState });
+      EventBus<StateChanged>.Raise(new StateChanged { State = CurrentState });
     }
 
     public void ChangeStateWithDelay(State newState, float delay, MonoBehaviour monoBehaviour)

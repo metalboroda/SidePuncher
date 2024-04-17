@@ -5,8 +5,8 @@ namespace EventBus
 {
   public class EventStructs { }
 
-  #region Game
-  public struct GameStateChanged : IEvent
+  #region Infrastructure
+  public struct StateChanged : IEvent
   {
     public State State;
   }

@@ -52,7 +52,7 @@ namespace Assets.__Game.Scripts.Managers
 
     private EventBinding<PlayerDamaged> _playerDamagedEvent;
     private EventBinding<WaveCompleted> _waveCompletedEvent;
-    private EventBinding<GameStateChanged> _gameStateChangedEvent;
+    private EventBinding<StateChanged> _gameStateChangedEvent;
 
     protected override void Awake()
     {
@@ -66,7 +66,7 @@ namespace Assets.__Game.Scripts.Managers
       _playerDamagedEvent = new EventBinding<PlayerDamaged>(DisplayDamageVignette);
       _waveCompletedEvent = new EventBinding<WaveCompleted>(DisplayWaveCounter);
       _waveCompletedEvent = new EventBinding<WaveCompleted>(DisplayEndWaveCounter);
-      _gameStateChangedEvent = new EventBinding<GameStateChanged>(SwitchCanvasByState);
+      _gameStateChangedEvent = new EventBinding<StateChanged>(SwitchCanvasByState);
     }
 
     private void OnDisable()
@@ -160,7 +160,7 @@ namespace Assets.__Game.Scripts.Managers
       waveLabelCounterText.text = $"YOU SURVIVED \n{_waveCounter} WAVES";
     }
 
-    private void SwitchCanvasByState(GameStateChanged gameState)
+    private void SwitchCanvasByState(StateChanged gameState)
     {
       switch (gameState.State)
       {
