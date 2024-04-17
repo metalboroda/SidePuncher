@@ -6492,6 +6492,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7335382255521967397, guid: 5344a4c39bbc5b34db2f6e5f5e444e7f,
+        type: 3}
+      propertyPath: m_Height
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335382255521967397, guid: 5344a4c39bbc5b34db2f6e5f5e444e7f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8947831978708451766, guid: 5344a4c39bbc5b34db2f6e5f5e444e7f,
         type: 3}
       propertyPath: m_Name
@@ -6572,6 +6582,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7335382255521967397, guid: 5344a4c39bbc5b34db2f6e5f5e444e7f,
+        type: 3}
+      propertyPath: m_Height
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335382255521967397, guid: 5344a4c39bbc5b34db2f6e5f5e444e7f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8947831978708451766, guid: 5344a4c39bbc5b34db2f6e5f5e444e7f,
         type: 3}
       propertyPath: m_Name
@@ -6651,6 +6671,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335382255521967397, guid: 5344a4c39bbc5b34db2f6e5f5e444e7f,
+        type: 3}
+      propertyPath: m_Height
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335382255521967397, guid: 5344a4c39bbc5b34db2f6e5f5e444e7f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8947831978708451766, guid: 5344a4c39bbc5b34db2f6e5f5e444e7f,
         type: 3}
@@ -6883,6 +6913,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335382255521967397, guid: 5344a4c39bbc5b34db2f6e5f5e444e7f,
+        type: 3}
+      propertyPath: m_Height
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7335382255521967397, guid: 5344a4c39bbc5b34db2f6e5f5e444e7f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8947831978708451766, guid: 5344a4c39bbc5b34db2f6e5f5e444e7f,
         type: 3}
