@@ -49,15 +49,16 @@ namespace Assets.__Game.Scripts.Characters.Player
     private void SmoothRotateY(float y)
     {
       // DOTween goes crazy after restart
-      try
-      {
+      try {
         Quaternion targetRotation = Quaternion.Euler(transform.rotation.x, y, transform.rotation.z);
 
         DOTween.Kill(_rotationTween, true);
 
         _rotationTween = transform.DORotateQuaternion(targetRotation, rotationDuration).SetAutoKill(true);
       }
-      catch { }
+      catch {
+        Debug.LogWarning("DOTween got crazy. \n I think I need to do something with it. \n But now I'll go to drink goat milk.");
+      }
     }
 
     private void AllowAttackTimer()

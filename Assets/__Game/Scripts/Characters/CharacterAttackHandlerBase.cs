@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters
@@ -10,15 +11,28 @@ namespace Assets.__Game.Scripts.Characters
     [SerializeField] private Collider leftFootCollider;
     [SerializeField] private Collider rightFootCollider;
 
-    private void Start()
-    {
+    protected List<Collider> _colliders = new List<Collider>();
+
+    private void Awake() {
+      AddCollidersToList();
+    }
+
+    private void Start() {
       DisableAttackTriggers();
     }
 
-    public void EnableAttackTriggers(int value)
-    {
-      switch (value)
-      {
+    private void AddCollidersToList() {
+      _colliders.Add(leftHandCollider);
+      _colliders.Add(rightHandCollider);
+      _colliders.Add(leftFootCollider);
+      _colliders.Add(rightFootCollider);
+    }
+
+    // Left it. Maybe needs for code through colliders activasion
+    public void EnableAttackTriggers(int value) {
+      DisableAttackTriggers();
+
+      switch (value) {
         case 0:
           leftHandCollider.enabled = true;
           break;
@@ -34,12 +48,10 @@ namespace Assets.__Game.Scripts.Characters
       }
     }
 
-    public void DisableAttackTriggers()
-    {
-      leftHandCollider.enabled = false;
-      rightHandCollider.enabled = false;
-      leftFootCollider.enabled = false;
-      rightFootCollider.enabled = false;
+    public void DisableAttackTriggers() {
+      foreach (Collider collider in _colliders) {
+        collider.enabled = false;
+      }
     }
   }
 }
