@@ -4748,7 +4748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 50
   <Power>k__BackingField: 25
-  deathTime: 5
+  <DeathTime>k__BackingField: 7.5
   <EnemyLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 256
@@ -4818,7 +4818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minEnableDelay: 0.3
   maxEnableDelay: 0.5
-  disableDelay: 5.75
+  disableDelay: 7
   RagdollObject: {fileID: 2354465571941495414}
   puppetMaster: {fileID: 4920037264003663662}
 --- !u!114 &7331638501585553659

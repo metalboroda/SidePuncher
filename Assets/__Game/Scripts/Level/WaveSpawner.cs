@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using UnityEngine;
-using Lean.Pool;
-using UnityEngine.AddressableAssets;
-using Assets.__Game.Scripts.Characters.Enemy;
-using System.Collections.Generic;
+﻿using Assets.__Game.Scripts.Characters.Enemy;
 using Assets.__Game.Scripts.EventBus;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
 using static Assets.__Game.Scripts.EventBus.EventStructs;
 
 namespace Assets.__Game.Scripts.Level
@@ -22,35 +21,28 @@ namespace Assets.__Game.Scripts.Level
 
     private EventBinding<EnemyDead> _enemyDeathEvent;
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
       _enemyDeathEvent = new EventBinding<EnemyDead>(RemoveDeadEnemyFromList);
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
       _enemyDeathEvent.Remove(RemoveDeadEnemyFromList);
     }
 
-    private void Start()
-    {
+    private void Start() {
       StartCoroutine(SpawnWaves());
     }
 
-    private IEnumerator SpawnWaves()
-    {
-      while (true)
-      {
-        if (_wavesPassed >= waves.Length)
-        {
+    private IEnumerator SpawnWaves() {
+      while (true) {
+        if (_wavesPassed >= waves.Length) {
           yield return StartCoroutine(SpawnRandomWave());
 
           _wavesPassed++;
 
           EventBus<WaveCompleted>.Raise(new WaveCompleted { WaveCount = _wavesPassed });
         }
-        else
-        {
+        else {
           Wave currentWave = waves[_wavesPassed];
 
           yield return StartCoroutine(SpawnWave(currentWave));
@@ -64,11 +56,9 @@ namespace Assets.__Game.Scripts.Level
       }
     }
 
-    private IEnumerator SpawnRandomWave()
-    {
+    private IEnumerator SpawnRandomWave() {
       int randomIndex;
-      do
-      {
+      do {
         randomIndex = Random.Range(0, waves.Length);
       } while (randomIndex == _previousRandomWave);
 
@@ -79,12 +69,9 @@ namespace Assets.__Game.Scripts.Level
       yield return StartCoroutine(SpawnWave(randomWave));
     }
 
-    private IEnumerator SpawnWave(Wave currentWave)
-    {
-      foreach (WaveEnemy waveEnemy in currentWave.WaveEnemies)
-      {
-        for (int i = 0; i < waveEnemy.amount; i++)
-        {
+    private IEnumerator SpawnWave(Wave currentWave) {
+      foreach (WaveEnemy waveEnemy in currentWave.WaveEnemies) {
+        for (int i = 0; i < waveEnemy.amount; i++) {
           if (_spawnedEnemies.Count >= limitPerRow)
             yield return StartCoroutine(WaitForEnemiesCountBelow(limitPerRow));
 
@@ -96,34 +83,38 @@ namespace Assets.__Game.Scripts.Level
       yield return StartCoroutine(CheckWaveCompletion());
     }
 
-    private IEnumerator SpawnEnemyAsync(GameObject enemy)
-    {
+    private IEnumerator SpawnEnemyAsync(GameObject enemy) {
       var enemyHandle = Addressables.LoadAssetAsync<GameObject>($"Prefabs/Characters/{enemy.name}");
 
       yield return enemyHandle;
 
-      GameObject enemyObject = LeanPool.Spawn(enemyHandle.Result);
-      EnemySpawnInitializer enemyInit = enemyObject.GetComponentInChildren<EnemySpawnInitializer>();
-      GameObject spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+      #region Pool
+      //GameObject enemyObject = LeanPool.Spawn(enemyHandle.Result);
+      #endregion
 
-      enemyInit.SpawnInit(spawnPoint.transform.position, spawnPoint.transform.rotation);
+      GameObject spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+      GameObject enemyObject = Instantiate(enemyHandle.Result, spawnPoint.transform.position, spawnPoint.transform.rotation);
+
+      #region Pool
+      //EnemySpawnInitializer enemyInit = enemyObject.GetComponentInChildren<EnemySpawnInitializer>();
+
+      //enemyInit.PoolSpawnInit(spawnPoint.transform.position, spawnPoint.transform.rotation);
+      #endregion
+
       _spawnedEnemies.Add(enemyObject);
     }
 
-    private IEnumerator WaitForEnemiesCountBelow(int targetCount)
-    {
+    private IEnumerator WaitForEnemiesCountBelow(int targetCount) {
       while (_spawnedEnemies.Count >= targetCount)
         yield return null;
     }
 
-    private IEnumerator CheckWaveCompletion()
-    {
+    private IEnumerator CheckWaveCompletion() {
       while (_spawnedEnemies.Count > 0)
         yield return null;
     }
 
-    private void RemoveDeadEnemyFromList(EnemyDead enemyDeathEvent)
-    {
+    private void RemoveDeadEnemyFromList(EnemyDead enemyDeathEvent) {
       GameObject deadEnemy = enemyDeathEvent.GameObject;
 
       if (_spawnedEnemies.Contains(deadEnemy))

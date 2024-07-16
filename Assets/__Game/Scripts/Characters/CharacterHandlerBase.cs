@@ -9,9 +9,8 @@ namespace Assets.__Game.Scripts.Characters
 
     [field: SerializeField] public int MaxHealth { get; private set; } = 100;
     [field: SerializeField] public int Power { get; private set; } = 25;
-
-    [Space]
-    [SerializeField] private float deathTime;
+    [field: Space]
+    [field: SerializeField] public float DeathTime { get; private set; } = 7.5f;
 
     [field: Space]
     [field: SerializeField] public LayerMask EnemyLayer { get; private set; }
@@ -39,7 +38,7 @@ namespace Assets.__Game.Scripts.Characters
       CurrentHealth = MaxHealth;
     }
 
-    public virtual void Death(float delay) { }
+    public virtual void Death(float delay = 10f) { }
 
     public virtual void Victory() { }
   }

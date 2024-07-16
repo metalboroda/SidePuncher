@@ -1,5 +1,6 @@
 using Assets.__Game.Scripts.Characters.Enemy.EnemyStates;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Assets.__Game.Scripts.Characters.Enemy
 {
@@ -12,7 +13,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
       _enemyController = GetComponent<EnemyController>();
     }
 
-    public void SpawnInit(Vector3 position, Quaternion rotation)
+    public void PoolSpawnInit(Vector3 position, Quaternion rotation)
     {
       _enemyController.FiniteStateMachine.ChangeStateWithDelay(new EnemyMovementState(_enemyController), 0.1f, this);
       _enemyController.EnemyHandler.SwitchModelVisibility(false);
