@@ -31,6 +31,8 @@ namespace Assets.__Game.Scripts.EventBus
     #endregion
 
     #region Enemy
+    public struct EnemyDamaged : IEvent { }
+
     public struct EnemyDead : IEvent
     {
       public GameObject GameObject;

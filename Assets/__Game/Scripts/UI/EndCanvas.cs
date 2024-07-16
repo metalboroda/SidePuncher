@@ -10,7 +10,7 @@ namespace Assets.__Game.Scripts.UI
   public class EndCanvas : MonoBehaviour
   {
     [SerializeField] private Button restartButton;
-    [SerializeField] private Button exitButton;
+    [SerializeField] private Button mainMenuButton;
     [Space]
     [SerializeField] private TextMeshProUGUI waveLabelCounterText;
 
@@ -33,7 +33,7 @@ namespace Assets.__Game.Scripts.UI
         EventBus<UIButtonPressed>.Raise(new UIButtonPressed { Button = UIButtonEnums.Restart });
       });
 
-      exitButton.onClick.AddListener(() => {
+      mainMenuButton.onClick.AddListener(() => {
         EventBus<UIButtonPressed>.Raise(new UIButtonPressed { Button = UIButtonEnums.MainMenu });
       });
     }

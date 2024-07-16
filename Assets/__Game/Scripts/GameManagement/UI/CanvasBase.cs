@@ -37,7 +37,7 @@ namespace Assets.__Game.Scripts.GameManagement.UI
 
     protected virtual void UpdateSFXButtonVisuals() { }
 
-    private void LoadSettings() {
+    protected void LoadSettings() {
       if (GameSettings == null) {
         GameSettings = new GameSettings();
       }

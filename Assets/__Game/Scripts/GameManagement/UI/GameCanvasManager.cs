@@ -2,6 +2,7 @@ using Assets.__Game.Scripts.EventBus;
 using Assets.__Game.Scripts.Game.GameStates;
 using Assets.__Game.Scripts.Services;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using static Assets.__Game.Scripts.EventBus.EventStructs;
 
@@ -51,12 +52,15 @@ namespace Assets.__Game.Scripts.GameManagement.UI
       switch (stateChanged.State) {
         case GameplayState:
           EnableCanvas(_gameplayCanvas);
+          EnableCursor(false);
           break;
         case GamePauseState:
           EnableCanvas(_pauseCanvas);
+          EnableCursor(true);
           break;
         case GameEndState:
           EnableCanvas(_endCanvas);
+          EnableCursor(true);
           break;
       }
     }
@@ -71,6 +75,17 @@ namespace Assets.__Game.Scripts.GameManagement.UI
       }
 
       canvasToEnable.SetActive(true);
+    }
+
+    private void EnableCursor(bool enable) {
+      if (enable) {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+      }
+      else {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+      }
     }
   }
 }

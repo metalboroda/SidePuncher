@@ -45,10 +45,15 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
       _enemyController.FiniteStateMachine.ChangeState(new EnemyHitState(_enemyController));
 
+      EventBus<EnemyDamaged>.Raise(new EnemyDamaged());
+
       if (CurrentHealth <= 0) {
         CapsuleCollider.enabled = false;
+
         CurrentHealth = 0;
+
         _enemyController.FiniteStateMachine.ChangeState(new EnemyDeathState(_enemyController));
+
         EnemyDead?.Invoke();
 
         EventBus<EnemyDead>.Raise(new EnemyDead() {

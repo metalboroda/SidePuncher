@@ -15,13 +15,20 @@ namespace Assets.__Game.Scripts.GameManagement
     [Space]
     [SerializeField] private float musicMaxVolume = 0f;
     [SerializeField] private float sfxMaxVolume = 0f;
+    [Header("UI Sounds")]
+    [SerializeField] private AudioClip _buttonCLickClip;
+
+    private AudioSource _audioSource;
 
     private GameSettings _gameSettings;
 
     private EventBinding<MusicSwitched> _musicSwitchedEvent;
     private EventBinding<SFXSwitched> _sfxSwitchedEvent;
+    private EventBinding<UIButtonPressed> _uiButtonPressedEvent;
 
     private void Awake() {
+      _audioSource = GetComponent<AudioSource>();
+
       if (Instance != null && Instance != this) {
         Destroy(gameObject);
       }
@@ -39,11 +46,13 @@ namespace Assets.__Game.Scripts.GameManagement
     private void OnEnable() {
       _musicSwitchedEvent = new EventBinding<MusicSwitched>(SwitchMusicVolume);
       _sfxSwitchedEvent = new EventBinding<SFXSwitched>(SwitchSFXVolume);
+      _uiButtonPressedEvent = new EventBinding<UIButtonPressed>(PlayButtonCLickSound);
     }
 
     private void OnDisable() {
       _musicSwitchedEvent?.Remove(SwitchMusicVolume);
       _sfxSwitchedEvent?.Remove(SwitchSFXVolume);
+      _uiButtonPressedEvent?.Remove(PlayButtonCLickSound);
     }
 
     private void Start() {
@@ -90,6 +99,10 @@ namespace Assets.__Game.Scripts.GameManagement
       }
 
       SettingsManager.SaveSettings(_gameSettings);
+    }
+
+    private void PlayButtonCLickSound(UIButtonPressed uiButtonPressed) {
+      _audioSource.PlayOneShot(_buttonCLickClip);
     }
   }
 }

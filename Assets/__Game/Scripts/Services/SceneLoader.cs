@@ -1,5 +1,7 @@
+using Assets.__Game.Resources.Scripts.StateMachine;
 using Assets.__Game.Scripts.EventBus;
 using Assets.__Game.Scripts.Game;
+using Assets.__Game.Scripts.Game.GameStates;
 using Assets.__Game.Scripts.Utils;
 using System;
 using UnityEngine;
@@ -10,11 +12,13 @@ namespace Assets.__Game.Scripts.Services
   public class SceneLoader
   {
     private GameBootstrapper _gameBootstrapper;
+    private FiniteStateMachine _finiteStateMachine;
 
     private EventBinding<EventStructs.UIButtonPressed> _uiButtonPressed;
 
     public SceneLoader(GameBootstrapper gameBootstrapper) {
       _gameBootstrapper = gameBootstrapper;
+      _finiteStateMachine = _gameBootstrapper.FiniteStateMachine;
 
       _uiButtonPressed = new EventBinding<EventStructs.UIButtonPressed>(OnUIButtonPressed);
     }
@@ -46,16 +50,17 @@ namespace Assets.__Game.Scripts.Services
 
     private void OnUIButtonPressed(EventStructs.UIButtonPressed uiButtonPressed) {
       switch (uiButtonPressed.Button) {
-        case Enums.UIButtonEnums.None:
-          break;
         case Enums.UIButtonEnums.StartGame:
-          LoadScene(Hashes.GameScene);
+          LoadSceneAsync(Hashes.GameScene,
+            () => { _finiteStateMachine.ChangeState(new GameplayState(_gameBootstrapper)); });
           break;
         case Enums.UIButtonEnums.MainMenu:
-          LoadScene(Hashes.MainMenuScene);
+          LoadSceneAsync(Hashes.MainMenuScene,
+            () => { _finiteStateMachine.ChangeState(new GameMainMenuState(_gameBootstrapper)); });
           break;
         case Enums.UIButtonEnums.Restart:
-          RestartScene();
+          RestartSceneAsync(
+            () => { _finiteStateMachine.ChangeState(new GameplayState(_gameBootstrapper)); });
           break;
       }
     }

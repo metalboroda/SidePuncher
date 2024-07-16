@@ -7,10 +7,16 @@ namespace Assets.__Game.Scripts.GameManagement
 {
   public class CameraManager : MonoBehaviour
   {
-    [Header("Punch Reaction Settings")]
-    [SerializeField] private float punchReactionDuration = 0.15f;
+    [Header("Punch Reaction")]
+    [SerializeField] private float punchReactionDuration = 0.1f;
     [SerializeField] private Vector3 punchReactionDirection = new Vector3(0.1f, 0.1f, 0f);
+    [Header("Hit Reaction")]
+    [SerializeField] private float hitReactionDuration = 0.25f;
+    [SerializeField] private Vector3 hitReactionDirection = new Vector3(0.2f, 0.2f, 0f);
+    [Header("")]
+    [SerializeField] private int vibrato = 50;
 
+    private EventBinding<EnemyDamaged> _enemyDamagedEvent;
     private EventBinding<PlayerDamaged> _playerDamagedEvent;
 
     private Camera _mainCamera;
@@ -20,16 +26,23 @@ namespace Assets.__Game.Scripts.GameManagement
     }
 
     private void OnEnable() {
-      _playerDamagedEvent = new EventBinding<PlayerDamaged>(PunchCamera);
+      _enemyDamagedEvent = new EventBinding<EnemyDamaged>(PunchCamera);
+      _playerDamagedEvent = new EventBinding<PlayerDamaged>(HitCamera);
     }
 
     private void OnDisable() {
-      _playerDamagedEvent.Remove(PunchCamera);
+      _enemyDamagedEvent.Remove(PunchCamera);
+      _playerDamagedEvent.Remove(HitCamera);
     }
 
     private void PunchCamera() {
       _mainCamera.transform.DOPunchPosition(
-        punchReactionDirection, punchReactionDuration, 50).SetEase(Ease.OutQuad).SetAutoKill(true);
+        punchReactionDirection, punchReactionDuration, vibrato).SetEase(Ease.OutQuad).SetAutoKill(true);
+    }
+
+    private void HitCamera() {
+      _mainCamera.transform.DOPunchPosition(
+        hitReactionDirection, hitReactionDuration, vibrato).SetEase(Ease.OutQuad).SetAutoKill(true);
     }
   }
 }

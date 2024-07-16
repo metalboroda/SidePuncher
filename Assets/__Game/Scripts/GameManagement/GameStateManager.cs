@@ -28,8 +28,6 @@ namespace Assets.__Game.Scripts.GameManagement
 
     private void OnUIButtonPressed(EventStructs.UIButtonPressed uiButtonPressed) {
       switch (uiButtonPressed.Button) {
-        case Enums.UIButtonEnums.None:
-          break;
         case Enums.UIButtonEnums.StartGame:
           _finiteStateMachine.ChangeState(new GameplayState(_gameBootstrapper));
           break;
@@ -43,12 +41,6 @@ namespace Assets.__Game.Scripts.GameManagement
           else if (_finiteStateMachine.CurrentState is GamePauseState) {
             _finiteStateMachine.ChangeState(new GameplayState(_gameBootstrapper));
           }
-          break;
-        case Enums.UIButtonEnums.MainMenu:
-          _finiteStateMachine.ChangeState(new GameMainMenuState(_gameBootstrapper));
-          break;
-        case Enums.UIButtonEnums.Restart:
-          _finiteStateMachine.ChangeState(new GameplayState(_gameBootstrapper));
           break;
       }
     }

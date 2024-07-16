@@ -11,19 +11,23 @@ namespace Assets.__Game.Scripts.UI
   {
     [SerializeField] private Button continueButton;
     [SerializeField] private Button restartButton;
-    [SerializeField] private Button exitButton;
+    [SerializeField] private Button mainMenuButton;
     [Space]
     [SerializeField] private Button musicButton;
     [SerializeField] private GameObject musicOnIcon;
     [SerializeField] private GameObject musicOffIcon;
-    [SerializeField] private Button pauseSFXButton;
+    [SerializeField] private Button sfxButton;
     [SerializeField] private GameObject sfxOnIcon;
     [SerializeField] private GameObject sfxOffIcon;
 
     protected override void Awake() {
       base.Awake();
+    }
 
+    private void Start() {
       SubscribeButtons();
+      UpdateMusicButtonVisuals();
+      UpdateSFXButtonVisuals();
     }
 
     private void SubscribeButtons() {
@@ -35,12 +39,21 @@ namespace Assets.__Game.Scripts.UI
         EventBus<UIButtonPressed>.Raise(new UIButtonPressed { Button = UIButtonEnums.Restart });
       });
 
-      exitButton.onClick.AddListener(() => {
+      mainMenuButton.onClick.AddListener(() => {
         EventBus<UIButtonPressed>.Raise(new UIButtonPressed { Button = UIButtonEnums.MainMenu });
       });
 
-      musicButton.onClick.AddListener(SwitchMusicVolumeButton);
-      pauseSFXButton.onClick.AddListener(SwitchSFXVolumeButton);
+      musicButton.onClick.AddListener(() => {
+        SwitchMusicVolumeButton();
+
+        EventBus<UIButtonPressed>.Raise(new UIButtonPressed());
+      });
+
+      sfxButton.onClick.AddListener(() => {
+        SwitchSFXVolumeButton();
+
+        EventBus<UIButtonPressed>.Raise(new UIButtonPressed());
+      });
     }
 
     protected override void UpdateMusicButtonVisuals() {
