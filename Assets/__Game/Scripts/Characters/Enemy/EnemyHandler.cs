@@ -15,6 +15,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     [Space]
     [SerializeField] private int healthRecoveryValue = 10;
 
+    private CapsuleCollider _capsuleCollider;
     private Renderer[] _renderers;
 
     private EnemyController _enemyController;
@@ -25,6 +26,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
       base.Awake();
 
       _enemyController = GetComponent<EnemyController>();
+      _capsuleCollider = GetComponent<CapsuleCollider>();
       _renderers = transform.root.GetComponentsInChildren<Renderer>();
     }
 
@@ -72,8 +74,11 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     }
 
     public override void Victory() {
-      if (_enemyController.FiniteStateMachine.CurrentState is not EnemyDeathState)
+      if (_enemyController.FiniteStateMachine.CurrentState is not EnemyDeathState) {
         _enemyController.FiniteStateMachine.ChangeState(new EnemyVictoryState(_enemyController));
+
+        _capsuleCollider.enabled = false;
+      }
     }
 
     public void SwitchModelVisibility(bool enable, float delay = 0) {
