@@ -15,48 +15,45 @@ namespace Assets.__Game.Scripts.Characters
     [SerializeField] protected float CrossDur = 0.2f;
     [Space]
     [SerializeField] protected float AnimationEndTime = 0.8f;
+    [SerializeField] protected float AttackCrossDivision = 1.5f;
 
     private Coroutine _animationEndRoutine;
 
     protected Animator Animator;
 
-    protected virtual void Awake()
-    {
+    protected virtual void Awake() {
       Animator = GetComponent<Animator>();
     }
 
-    public void PlayRandomIdleAnimation()
-    {
+    public void PlayRandomIdleAnimation() {
       PlayCrossfade(AnimationsSO.GetRandomIdleAnimation());
     }
 
-    public void PlayRandomWalkAnimation()
-    {
+    public void PlayRandomWalkAnimation() {
       PlayCrossfade(AnimationsSO.GetRandomWalkAnimation());
     }
 
-    public void PlayRandomHitAnimation()
-    {
+    public virtual void PlayRandomAttackAnimation() {
+      OnAnimtionEnds(AnimationEndTime, PlayRandomIdleAnimation);
+    }
+
+    public void PlayRandomHitAnimation() {
       PlayCrossfade(AnimationsSO.GetRandomHitAnimation());
     }
 
-    public void PlayRandomVictoryAnimation()
-    {
+    public void PlayRandomVictoryAnimation() {
       PlayCrossfade(AnimationsSO.GetRandomVictoryAnimation());
     }
 
-    public void PlayRandomDeathAnimation()
-    {
+    public void PlayRandomDeathAnimation() {
       PlayCrossfade(AnimationsSO.GetRandomDeathAnimation());
     }
 
-    public void PlayRandomDyingAnimation()
-    {
+    public void PlayRandomDyingAnimation() {
       PlayCrossfade(AnimationsSO.GetRandomDyingAnimation());
     }
 
-    public void DeathRandomRotation()
-    {
+    public void DeathRandomRotation() {
       int rand = Random.Range(50, 70);
       Vector3 eulerAngle = transform.rotation.eulerAngles;
       float rotationDuration = 0.15f;
@@ -66,33 +63,29 @@ namespace Assets.__Game.Scripts.Characters
       transform.DORotate(eulerAngle, rotationDuration);
     }
 
-    public void PlayCrossfade(string animationName)
-    {
+    #region Utils
+    public void PlayCrossfade(string animationName) {
       Animator.CrossFadeInFixedTime(animationName, CrossDur);
     }
 
-    public void OnAnimtionEnds(float endPercent, Action action = null)
-    {
+    public void OnAnimtionEnds(float endPercent, Action action = null) {
       if (_animationEndRoutine != null)
         StopCoroutine(_animationEndRoutine);
 
       _animationEndRoutine = StartCoroutine(DoWaitForAnimationToEnd(endPercent, action));
     }
 
-    private IEnumerator DoWaitForAnimationToEnd(float endPercent, Action callback)
-    {
+    private IEnumerator DoWaitForAnimationToEnd(float endPercent, Action callback) {
       yield return new WaitForSeconds(CrossDur);
 
-      while (Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < endPercent)
-      {
+      while (Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < endPercent) {
         yield return null;
       }
 
       callback?.Invoke();
     }
 
-    public void StopCoroutines()
-    {
+    public void StopCoroutines() {
       if (_animationEndRoutine != null)
         StopCoroutine(_animationEndRoutine);
     }
@@ -147,6 +140,7 @@ namespace Assets.__Game.Scripts.Characters
       }
       return false;
     }*/
+    #endregion
     #endregion
   }
 }

@@ -6,27 +6,24 @@ namespace Assets.__Game.Scripts.Characters.Player
   {
     private PlayerAttackHandler _playerAttackHandler;
 
-    protected override void Awake()
-    {
+    protected override void Awake() {
       base.Awake();
 
       _playerAttackHandler = GetComponent<PlayerAttackHandler>();
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
       _playerAttackHandler.AttackTriggered += PlayRandomAttackAnimation;
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
       _playerAttackHandler.AttackTriggered -= PlayRandomAttackAnimation;
     }
 
-    public void PlayRandomAttackAnimation()
-    {
-      Animator.CrossFadeInFixedTime(AnimationsSO.GetRandomAttackAnimation(), CrossDur / 1.5f);
-      OnAnimtionEnds(AnimationEndTime, PlayRandomIdleAnimation);
+    public override void PlayRandomAttackAnimation() {
+      Animator.CrossFadeInFixedTime(AnimationsSO.GetRandomAttackAnimation(), CrossDur / AttackCrossDivision);
+
+      base.PlayRandomAttackAnimation();
     }
   }
 }

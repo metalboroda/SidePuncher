@@ -6,27 +6,24 @@ namespace Assets.__Game.Scripts.Characters.Enemy
   {
     private EnemyController _enemyController;
 
-    protected override void Awake()
-    {
+    protected override void Awake() {
       base.Awake();
 
       _enemyController = GetComponent<EnemyController>();
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
       _enemyController.EnemyAttackHandler.AttackTriggered += PlayRandomAttackAnimation;
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
       _enemyController.EnemyAttackHandler.AttackTriggered -= PlayRandomAttackAnimation;
     }
 
-    public void PlayRandomAttackAnimation()
-    {
+    public override void PlayRandomAttackAnimation() {
       Animator.CrossFadeInFixedTime(AnimationsSO.GetRandomAttackAnimation(), CrossDur);
-      OnAnimtionEnds(AnimationEndTime, PlayRandomIdleAnimation);
+
+      base.PlayRandomAttackAnimation();
     }
   }
 }
