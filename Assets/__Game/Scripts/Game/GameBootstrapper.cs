@@ -38,6 +38,11 @@ namespace Assets.__Game.Scripts.Game
       FiniteStateMachine.Init(new GameMainMenuState(this));
     }
 
+    private void OnDestroy() {
+      GameStateManager.Dispose();
+      SceneLoader.Dispose();
+    }
+
     private void InitializeSingleton() {
       FiniteStateMachine = new FiniteStateMachine();
       GameStateManager = new GameStateManager(this);

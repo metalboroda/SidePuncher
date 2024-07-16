@@ -10,13 +10,20 @@ namespace Assets.__Game.Scripts.GameManagement
     private GameBootstrapper _gameBootstrapper;
     private FiniteStateMachine _finiteStateMachine;
 
-    private EventBinding<EventStructs.UIButtonPressed> _uiButtonPressed;
+    private EventBinding<EventStructs.UIButtonPressed> _uiButtonPressedEvent;
+    private EventBinding<EventStructs.PlayerDead> _playerDeadEvent;
 
     public GameStateManager(GameBootstrapper gameBootstrapper) {
       _gameBootstrapper = gameBootstrapper;
       _finiteStateMachine = gameBootstrapper.FiniteStateMachine;
 
-      _uiButtonPressed = new EventBinding<EventStructs.UIButtonPressed>(OnUIButtonPressed);
+      _uiButtonPressedEvent = new EventBinding<EventStructs.UIButtonPressed>(OnUIButtonPressed);
+      _playerDeadEvent = new EventBinding<EventStructs.PlayerDead>(OnPlayerDead);
+    }
+
+    public void Dispose() {
+      _uiButtonPressedEvent.Remove(OnUIButtonPressed);
+      _playerDeadEvent.Remove(OnPlayerDead);
     }
 
     private void OnUIButtonPressed(EventStructs.UIButtonPressed uiButtonPressed) {
@@ -44,6 +51,10 @@ namespace Assets.__Game.Scripts.GameManagement
           _finiteStateMachine.ChangeState(new GameplayState(_gameBootstrapper));
           break;
       }
+    }
+
+    private void OnPlayerDead() {
+      _finiteStateMachine.ChangeState(new GameEndState(_gameBootstrapper));
     }
   }
 }

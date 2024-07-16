@@ -19,6 +19,10 @@ namespace Assets.__Game.Scripts.Services
       _uiButtonPressed = new EventBinding<EventStructs.UIButtonPressed>(OnUIButtonPressed);
     }
 
+    public void Dispose() {
+      _uiButtonPressed.Remove(OnUIButtonPressed);
+    }
+
     public void LoadScene(string sceneName) {
       SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }

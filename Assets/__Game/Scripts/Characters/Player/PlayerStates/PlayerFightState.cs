@@ -22,6 +22,8 @@ namespace Assets.__Game.Scripts.Characters.Player.PlayerStates
     {
       _inputService.LeftAttackTriggered -= PlayerAttackHandler.LeftAttack;
       _inputService.RightAttackTriggered -= PlayerAttackHandler.RightAttack;
+
+      _inputService.Dispose();
     }
   }
 }

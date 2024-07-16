@@ -37,6 +37,10 @@ namespace Assets.__Game.Scripts.GameManagement.UI
       _stateChangedEvent.Remove(CanvasDependsOnState);
     }
 
+    private void OnDestroy() {
+      _inputService.Dispose();
+    }
+
     private void AddCanvasesToList() {
       _canvases.Add(_gameplayCanvas);
       _canvases.Add(_pauseCanvas);

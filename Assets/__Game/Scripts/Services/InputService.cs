@@ -23,6 +23,15 @@ namespace Assets.__Game.Scripts.Services
       _inputActions.OnFeet.RightAttack.performed += OnRightAttack;
     }
 
+    public void Dispose() {
+      _inputActions.Disable();
+
+      _inputActions.Navigation.Pause.performed -= OnPausePressed;
+
+      _inputActions.OnFeet.LeftAttack.performed -= OnLeftAttack;
+      _inputActions.OnFeet.RightAttack.performed -= OnRightAttack;
+    }
+
     public void OnPausePressed(InputAction.CallbackContext context)
     {
       PausePressed?.Invoke();
@@ -36,16 +45,6 @@ namespace Assets.__Game.Scripts.Services
     public void OnRightAttack(InputAction.CallbackContext context)
     {
       RightAttackTriggered?.Invoke();
-    }
-
-    public void Dispose()
-    {
-      _inputActions.Disable();
-
-      _inputActions.Navigation.Pause.performed -= OnPausePressed;
-
-      _inputActions.OnFeet.LeftAttack.performed -= OnLeftAttack;
-      _inputActions.OnFeet.RightAttack.performed -= OnRightAttack;
     }
   }
 }
