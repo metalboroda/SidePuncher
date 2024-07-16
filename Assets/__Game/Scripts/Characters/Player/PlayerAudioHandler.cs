@@ -1,5 +1,6 @@
-using EventBus;
+using Assets.__Game.Scripts.EventBus;
 using UnityEngine;
+using static Assets.__Game.Scripts.EventBus.EventStructs;
 
 namespace Assets.__Game.Scripts.Characters.Player
 {

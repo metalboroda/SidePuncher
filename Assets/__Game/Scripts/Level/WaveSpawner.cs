@@ -3,8 +3,9 @@ using UnityEngine;
 using Lean.Pool;
 using UnityEngine.AddressableAssets;
 using Assets.__Game.Scripts.Characters.Enemy;
-using EventBus;
 using System.Collections.Generic;
+using Assets.__Game.Scripts.EventBus;
+using static Assets.__Game.Scripts.EventBus.EventStructs;
 
 namespace Assets.__Game.Scripts.Level
 {

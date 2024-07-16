@@ -10,14 +10,14 @@ namespace Assets.__Game.Scripts.Game.GameStates
 
     public override void Enter()
     {
-      InputService.PausePressed += () => { GameStateMachine.ChangeState(new GameplayState(GameBootstrapper)); };
+      InputService.PausePressed += () => { FiniteStateMachine.ChangeState(new GameplayState(GameBootstrapper)); };
 
       Time.timeScale = 0f;
     }
 
     public override void Exit()
     {
-      InputService.PausePressed -= () => { GameStateMachine.ChangeState(new GameplayState(GameBootstrapper)); };
+      InputService.PausePressed -= () => { FiniteStateMachine.ChangeState(new GameplayState(GameBootstrapper)); };
 
       Time.timeScale = 1f;
     }

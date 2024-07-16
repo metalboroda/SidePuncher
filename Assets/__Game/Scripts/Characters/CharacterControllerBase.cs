@@ -1,4 +1,4 @@
-using Assets.__Game.Scripts.Infrastructure;
+using Assets.__Game.Resources.Scripts.StateMachine;
 using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters
@@ -9,20 +9,17 @@ namespace Assets.__Game.Scripts.Characters
     public CharacterUIHandler CharacterUIHandler;
     public CharacterAudioHandler CharacterAudioHandler;
 
-    public StateMachine StateMachine;
+    public FiniteStateMachine StateMachine;
 
-    protected virtual void Awake()
-    {
-      StateMachine = new StateMachine();
+    protected virtual void Awake() {
+      StateMachine = new FiniteStateMachine();
     }
 
-    private void Update()
-    {
+    private void Update() {
       StateMachine.CurrentState.Update();
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
       StateMachine.CurrentState.FixedUpdate();
     }
   }

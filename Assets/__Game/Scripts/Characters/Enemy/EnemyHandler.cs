@@ -1,10 +1,11 @@
 ﻿using Assets.__Game.Scripts.Characters.Enemy.EnemyStates;
+using Assets.__Game.Scripts.EventBus;
 using Assets.__Game.Scripts.Interfaces;
-using EventBus;
 using Lean.Pool;
 using System;
 using System.Collections;
 using UnityEngine;
+using static Assets.__Game.Scripts.EventBus.EventStructs;
 
 namespace Assets.__Game.Scripts.Characters.Enemy
 {

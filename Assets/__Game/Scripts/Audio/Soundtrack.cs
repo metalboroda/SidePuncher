@@ -12,70 +12,73 @@ namespace Assets.__Game.Scripts.Audio
     public static Soundtrack Instance { get; private set; }
 
     [SerializeField] private AudioMixer musicMixer;
-
     [Space]
     [SerializeField] private List<AudioClip> soundtracks = new List<AudioClip>();
 
-    private List<int> _previousTracks = new List<int>();
-
     private AudioSource _audioSource;
-
     private GameSettings _gameSettings;
+    private List<AudioClip> _shuffledTracks;
+    private int _currentTrackIndex = 0;
 
-    private void Awake()
-    {
+    private void Awake() {
       _audioSource = GetComponent<AudioSource>();
 
-      if (Instance == null)
-      {
-        Instance = this;
-
-        DontDestroyOnLoad(gameObject);
-      }
-      else
-      {
+      if (Instance != null && Instance != this) {
         Destroy(gameObject);
+      }
+      else {
+        lock (typeof(Soundtrack)) {
+          if (Instance == null) {
+            Instance = this;
+
+            DontDestroyOnLoad(gameObject);
+          }
+        }
       }
     }
 
-    private void Start()
-    {
+    private void Start() {
+      LoadSettings();
+      ShuffleTracks();
       StartCoroutine(DoPlaySoundtracks());
     }
 
-    private IEnumerator DoPlaySoundtracks()
-    {
-      while (true)
-      {
-        int randomIndex = GetRandomTrackIndex();
+    private void LoadSettings() {
+      if (_gameSettings == null)
+        _gameSettings = new GameSettings();
 
-        _audioSource.clip = soundtracks[randomIndex];
-        _audioSource.Play();
+      _gameSettings = SettingsManager.LoadSettings<GameSettings>();
+    }
 
-        while (_audioSource.isPlaying)
-        {
-          yield return null;
-        }
+    private void ShuffleTracks() {
+      _shuffledTracks = new List<AudioClip>(soundtracks);
 
-        _previousTracks.Add(randomIndex);
+      for (int i = 0; i < _shuffledTracks.Count; i++) {
+        AudioClip temp = _shuffledTracks[i];
+        int randomIndex = Random.Range(0, _shuffledTracks.Count);
 
-        if (_previousTracks.Count > 2)
-        {
-          _previousTracks.RemoveAt(0);
-        }
+        _shuffledTracks[i] = _shuffledTracks[randomIndex];
+        _shuffledTracks[randomIndex] = temp;
       }
     }
 
-    private int GetRandomTrackIndex()
-    {
-      int randomIndex;
+    private IEnumerator DoPlaySoundtracks() {
+      while (true) {
+        if (_currentTrackIndex >= _shuffledTracks.Count) {
+          ShuffleTracks();
 
-      do
-      {
-        randomIndex = Random.Range(0, soundtracks.Count);
-      } while (_previousTracks.Contains(randomIndex));
+          _currentTrackIndex = 0;
+        }
 
-      return randomIndex;
+        _audioSource.clip = _shuffledTracks[_currentTrackIndex];
+        _audioSource.Play();
+
+        while (_audioSource.isPlaying) {
+          yield return null;
+        }
+
+        _currentTrackIndex++;
+      }
     }
   }
 }

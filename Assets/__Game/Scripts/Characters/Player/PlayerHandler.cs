@@ -1,8 +1,9 @@
 using Assets.__Game.Scripts.Characters.Player.PlayerStates;
+using Assets.__Game.Scripts.EventBus;
 using Assets.__Game.Scripts.Interfaces;
-using EventBus;
 using System;
 using UnityEngine;
+using static Assets.__Game.Scripts.EventBus.EventStructs;
 
 namespace Assets.__Game.Scripts.Characters.Player
 {
