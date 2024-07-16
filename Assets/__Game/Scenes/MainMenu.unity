@@ -499,8 +499,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 16f28b03ea10daa4ab6bedd3b7fdd934, type: 2}
-  musicMaxVolume: -10
-  sfxMaxVolume: 0
+  musicMaxVolume: -3
+  sfxMaxVolume: -2
 --- !u!1 &417976027
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 417976028}
   m_Layer: 0
-  m_Name: ---DD---
+  m_Name: ---DDOL---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2231,10 +2231,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicMixer: {fileID: 24100000, guid: 16f28b03ea10daa4ab6bedd3b7fdd934, type: 2}
   soundtracks:
-  - {fileID: 8300000, guid: 1aa7e76d1297bb74ca48d6cc9bc791f8, type: 3}
-  - {fileID: 8300000, guid: 3866d76bd3b2b4543ba311d439e4dbd8, type: 3}
-  - {fileID: 8300000, guid: ac6da16063267324eba2be95a9c0d800, type: 3}
-  - {fileID: 8300000, guid: 873e2291e3bbe7949a22d7c24ff1d84c, type: 3}
+  - {fileID: 8300000, guid: 4ede659412cd9db44a45b2beb41cbced, type: 3}
+  - {fileID: 8300000, guid: f801a8636b075194bae58222c7e81b83, type: 3}
+  - {fileID: 8300000, guid: dcba050b9614af4479cb01a72679cc97, type: 3}
+  - {fileID: 8300000, guid: 2c32aebc925a40f4e9df977c22334ec6, type: 3}
+  - {fileID: 8300000, guid: 3ebcce4086a47874ea94c8ae3cfb7dd6, type: 3}
 --- !u!82 &1670405680
 AudioSource:
   m_ObjectHideFlags: 0
