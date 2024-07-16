@@ -13,6 +13,8 @@ namespace Assets.__Game.Scripts.Characters
 
     [Header("Param's")]
     [SerializeField] protected float CrossDur = 0.2f;
+    [Space]
+    [SerializeField] protected float AnimationEndTime = 0.8f;
 
     private Coroutine _animationEndRoutine;
 
