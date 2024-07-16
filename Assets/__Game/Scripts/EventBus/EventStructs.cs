@@ -1,4 +1,5 @@
-﻿using Assets.__Game.Scripts.Infrastructure;
+﻿using Assets.__Game.Scripts.Enums;
+using Assets.__Game.Scripts.Infrastructure;
 using UnityEngine;
 
 namespace Assets.__Game.Scripts.EventBus
@@ -9,6 +10,18 @@ namespace Assets.__Game.Scripts.EventBus
     public struct StateChanged : IEvent
     {
       public State State;
+    }
+    #endregion
+
+    #region Settings
+    public struct MusicSwitched : IEvent { }
+    public struct SFXSwitched : IEvent { }
+    #endregion
+
+    #region UI
+    public struct UIButtonPressed : IEvent
+    {
+      public UIButtonEnums Button;
     }
     #endregion
 
@@ -30,11 +43,6 @@ namespace Assets.__Game.Scripts.EventBus
     {
       public int WaveCount;
     }
-    #endregion
-
-    #region Settings
-    public struct MusicSwitched : IEvent { }
-    public struct SFXSwitched : IEvent { }
     #endregion
   }
 }

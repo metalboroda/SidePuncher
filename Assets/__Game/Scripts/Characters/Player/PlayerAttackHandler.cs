@@ -57,7 +57,7 @@ namespace Assets.__Game.Scripts.Characters.Player
         _rotationTween = transform.DORotateQuaternion(targetRotation, rotationDuration).SetAutoKill(true);
       }
       catch {
-        Debug.LogWarning("DOTween got crazy. \n I think I need to do something with it. \n But now I'll go to drink goat milk.");
+        Debug.Log("DOTween got crazy. \n I think I need to do something with it. But now I'll go to drink goat milk.");
       }
     }
 

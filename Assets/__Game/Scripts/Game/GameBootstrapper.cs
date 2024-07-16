@@ -1,6 +1,7 @@
 ﻿using Assets.__Game.Resources.Scripts.StateMachine;
+using Assets.__Game.Scripts.Game.GameStates;
+using Assets.__Game.Scripts.GameManagement;
 using Assets.__Game.Scripts.Services;
-using Assets.__Game.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.__Game.Scripts.Game
@@ -10,6 +11,7 @@ namespace Assets.__Game.Scripts.Game
     public static GameBootstrapper Instance { get; private set; }
 
     public FiniteStateMachine FiniteStateMachine { get; private set; }
+    public GameStateManager GameStateManager { get; private set; }
     public SceneLoader SceneLoader { get; private set; }
 
     private static readonly object _lock = new object();
@@ -32,13 +34,14 @@ namespace Assets.__Game.Scripts.Game
       DontDestroyOnLoad(gameObject);
     }
 
-    private void InitializeSingleton() {
-      FiniteStateMachine = new FiniteStateMachine();
-      SceneLoader = new SceneLoader();
+    private void Start() {
+      FiniteStateMachine.Init(new MainMenuState(this));
     }
 
-    private void Start() {
-      SceneLoader.LoadScene(Hashes.MainMenuScene);
+    private void InitializeSingleton() {
+      FiniteStateMachine = new FiniteStateMachine();
+      GameStateManager = new GameStateManager(this);
+      SceneLoader = new SceneLoader(this);
     }
   }
 }

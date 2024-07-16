@@ -2245,7 +2245,7 @@ MonoBehaviour:
   hasOnPlay: 0
   hasOnUpdate: 0
   hasOnStepComplete: 0
-  hasOnComplete: 0
+  hasOnComplete: 1
   hasOnTweenCreated: 0
   hasOnRewind: 0
   onStart:
@@ -2262,7 +2262,19 @@ MonoBehaviour:
       m_Calls: []
   onComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1726788697}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onTweenCreated:
     m_PersistentCalls:
       m_Calls: []
@@ -2272,8 +2284,8 @@ MonoBehaviour:
   targetIsSelf: 1
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
-  delay: 0.15
-  duration: 1
+  delay: 3
+  duration: 2
   easeType: 1
   easeCurve:
     serializedVersion: 2
@@ -2349,7 +2361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4934,6 +4946,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnimationsSO: {fileID: 11400000, guid: 4053e3dc399a5c6408e90b1ed06a274e, type: 2}
   CrossDur: 0.1
+  AnimationEndTime: 0.8
+  AttackCrossDivision: 1.5
 --- !u!1 &5786690371503374678
 GameObject:
   m_ObjectHideFlags: 0
@@ -5483,10 +5497,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
   <Power>k__BackingField: 25
-  deathTime: 0
+  <DeathTime>k__BackingField: 7.5
   <EnemyLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 512
+  <AllyLayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
   CapsuleCollider: {fileID: 0}
 --- !u!1 &7563361393647250775
 GameObject:
@@ -6319,6 +6336,6 @@ SceneRoots:
   - {fileID: 690871157}
   - {fileID: 417976028}
   - {fileID: 1764107199}
-  - {fileID: 1670405681}
   - {fileID: 388722418}
+  - {fileID: 1670405681}
   - {fileID: 597448069}

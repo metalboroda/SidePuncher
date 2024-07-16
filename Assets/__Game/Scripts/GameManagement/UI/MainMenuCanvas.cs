@@ -1,18 +1,16 @@
+using Assets.__Game.Scripts.EventBus;
 using Assets.__Game.Scripts.Game;
-using Assets.__Game.Scripts.Game.GameStates;
 using Assets.__Game.Scripts.Services;
-using Assets.__Game.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.UI;
+using static Assets.__Game.Scripts.EventBus.EventStructs;
 
 namespace Assets.__Game.Scripts.GameManagement.UI
 {
-  public class MainMenuUIManager : UIManagerBase
+  public class MainMenuCanvas : UIManagerBase
   {
-    [Header("Buttons")]
     [SerializeField] private Button playBtn;
     [Header("Audio")]
-    [Space]
     [SerializeField] private Button musicButton;
     [SerializeField] private GameObject musicOnIcon;
     [SerializeField] private GameObject musicOffIcon;
@@ -39,9 +37,7 @@ namespace Assets.__Game.Scripts.GameManagement.UI
 
     private void SubscribeButtons() {
       playBtn.onClick.AddListener(() => {
-        _sceneLoader.LoadSceneAsync(Hashes.GameScene, () => {
-          _gameBootstrapper.FiniteStateMachine.ChangeState(new GameplayState(_gameBootstrapper));
-        });
+        EventBus<UIButtonPressed>.Raise(new UIButtonPressed { Button = Enums.UIButtonEnums.StartGame });
       });
 
       musicButton.onClick.AddListener(SwitchMusicVolumeButton);

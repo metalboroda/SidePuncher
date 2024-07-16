@@ -2,8 +2,6 @@
 {
   public class MainMenuState : GameBaseState
   {
-    public MainMenuState(GameBootstrapper gameBootstrapper) : base(gameBootstrapper)
-    {
-    }
+    public MainMenuState(GameBootstrapper gameBootstrapper) : base(gameBootstrapper) { }
   }
 }
