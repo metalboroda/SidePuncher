@@ -54,11 +54,14 @@ namespace Assets.__Game.Scripts.Characters
     }
 
     public void DeathRandomRotation() {
-      int rand = Random.Range(50, 70);
+      int minRotation = 50;
+      int maxRotation = 70;
+
+      int randRotation = Random.Range(minRotation, maxRotation);
       Vector3 eulerAngle = transform.rotation.eulerAngles;
       float rotationDuration = 0.15f;
 
-      eulerAngle.y += Random.Range(-rand, rand);
+      eulerAngle.y += Random.Range(-randRotation, randRotation);
 
       transform.DORotate(eulerAngle, rotationDuration);
     }
