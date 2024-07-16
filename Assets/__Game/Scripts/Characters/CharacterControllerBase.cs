@@ -9,18 +9,18 @@ namespace Assets.__Game.Scripts.Characters
     public CharacterUIHandler CharacterUIHandler;
     public CharacterAudioHandler CharacterAudioHandler;
 
-    public FiniteStateMachine StateMachine;
+    public FiniteStateMachine FiniteStateMachine;
 
     protected virtual void Awake() {
-      StateMachine = new FiniteStateMachine();
+      FiniteStateMachine = new FiniteStateMachine();
     }
 
     private void Update() {
-      StateMachine.CurrentState.Update();
+      FiniteStateMachine.CurrentState.Update();
     }
 
     private void FixedUpdate() {
-      StateMachine.CurrentState.FixedUpdate();
+      FiniteStateMachine.CurrentState.FixedUpdate();
     }
   }
 }

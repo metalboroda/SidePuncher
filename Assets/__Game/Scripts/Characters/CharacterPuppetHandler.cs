@@ -8,6 +8,8 @@ namespace Assets.__Game.Scripts.Characters
   {
     [SerializeField] private float minEnableDelay = 0.25f;
     [SerializeField] private float maxEnableDelay = 0.75f;
+    [Space]
+    [SerializeField] private float disableDelay = 5.75f;
 
     [Space]
     public GameObject RagdollObject;
@@ -38,8 +40,6 @@ namespace Assets.__Game.Scripts.Characters
 
     private IEnumerator DoDisableRagdollObject()
     {
-      float disableDelay = 5.75f;
-
       yield return new WaitForSeconds(disableDelay);
 
       RagdollObject.SetActive(false);

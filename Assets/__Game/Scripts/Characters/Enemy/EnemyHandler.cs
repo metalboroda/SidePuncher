@@ -49,13 +49,13 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     {
       CurrentHealth -= damage;
 
-      _enemyController.StateMachine.ChangeState(new EnemyHitState(_enemyController));
+      _enemyController.FiniteStateMachine.ChangeState(new EnemyHitState(_enemyController));
 
       if (CurrentHealth <= 0)
       {
         CapsuleCollider.enabled = false;
         CurrentHealth = 0;
-        _enemyController.StateMachine.ChangeState(new EnemyDeathState(_enemyController));
+        _enemyController.FiniteStateMachine.ChangeState(new EnemyDeathState(_enemyController));
         EnemyDead?.Invoke();
 
         EventBus<EnemyDead>.Raise(new EnemyDead()
@@ -73,8 +73,8 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     public override void Victory()
     {
-      if (_enemyController.StateMachine.CurrentState is not EnemyDeathState)
-        _enemyController.StateMachine.ChangeState(new EnemyVictoryState(_enemyController));
+      if (_enemyController.FiniteStateMachine.CurrentState is not EnemyDeathState)
+        _enemyController.FiniteStateMachine.ChangeState(new EnemyVictoryState(_enemyController));
     }
 
     public void SwitchModelVisibility(bool enable, float delay = 0)

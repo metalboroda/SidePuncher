@@ -1,5 +1,4 @@
 using Assets.__Game.Scripts.Characters.Player.PlayerStates;
-using Assets.__Game.Scripts.Infrastructure;
 
 namespace Assets.__Game.Scripts.Characters.Player
 {
@@ -10,14 +9,12 @@ namespace Assets.__Game.Scripts.Characters.Player
     public PlayerAnimationHandler PlayerAnimationHandler;
     public CharacterPuppetHandler CharacterPuppetHandler;
 
-    protected override void Awake()
-    {
+    protected override void Awake() {
       base.Awake();
     }
 
-    private void Start()
-    {
-      StateMachine.Init(new PlayerFightState(this));
+    private void Start() {
+      FiniteStateMachine.Init(new PlayerFightState(this));
     }
   }
 }

@@ -2482,6 +2482,9 @@ MonoBehaviour:
   <EnemyLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 512
+  <AllyLayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 256
   CapsuleCollider: {fileID: 0}
 --- !u!114 &2751107105811738737
 MonoBehaviour:
@@ -2531,6 +2534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minEnableDelay: 0.3
   maxEnableDelay: 0.5
+  disableDelay: 5.75
   RagdollObject: {fileID: 8466362905793800789}
   puppetMaster: {fileID: 8483927367354305181}
 --- !u!114 &1534344699183406436

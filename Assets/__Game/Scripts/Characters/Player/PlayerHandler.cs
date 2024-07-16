@@ -45,7 +45,7 @@ namespace Assets.__Game.Scripts.Characters.Player
       {
         CurrentHealth = 0;
         CapsuleCollider.enabled = false;
-        _playerController.StateMachine.ChangeState(new PlayerDeathState(_playerController));
+        _playerController.FiniteStateMachine.ChangeState(new PlayerDeathState(_playerController));
       }
     }
 

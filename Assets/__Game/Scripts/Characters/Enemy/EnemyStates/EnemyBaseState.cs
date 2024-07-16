@@ -1,4 +1,6 @@
-﻿using Assets.__Game.Scripts.Infrastructure;
+﻿using Assets.__Game.Resources.Scripts.StateMachine;
+using Assets.__Game.Scripts.Components;
+using Assets.__Game.Scripts.Infrastructure;
 
 namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
 {
@@ -12,8 +14,10 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
     protected CharacterPuppetHandler CharacterPuppetHandler;
     protected CharacterAudioHandler CharacterAudioHandler;
 
-    public EnemyBaseState(EnemyController enemyController)
-    {
+    protected FiniteStateMachine FiniteStateMachine;
+    protected MovementComponent MovementComponent;
+
+    public EnemyBaseState(EnemyController enemyController) {
       EnemyController = enemyController;
       EnemyHandler = EnemyController.EnemyHandler;
       EnemyAttackHandler = EnemyController.EnemyAttackHandler;
@@ -21,6 +25,9 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
       EnemyAnimationHandler = EnemyController.EnemyAnimationHandler;
       CharacterPuppetHandler = EnemyController.CharacterPuppetHandler;
       CharacterAudioHandler = EnemyController.CharacterAudioHandler;
+
+      FiniteStateMachine = EnemyController.FiniteStateMachine;
+      MovementComponent = EnemyMovementHandler.MovementComponent;
     }
   }
 }

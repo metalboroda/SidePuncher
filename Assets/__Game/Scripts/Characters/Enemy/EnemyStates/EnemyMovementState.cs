@@ -4,22 +4,18 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
 {
   public class EnemyMovementState : EnemyBaseState
   {
-    private MovementComponent _movementComponent;
-
     public EnemyMovementState(EnemyController enemyController) : base(enemyController) { }
 
-    public override void Enter()
-    {
-      _movementComponent = new MovementComponent();
-
+    public override void Enter() {
       EnemyAnimationHandler.PlayRandomWalkAnimation();
     }
 
-    public override void Update()
-    {
-      _movementComponent.MoveForward(EnemyMovementHandler.MovementSpeed, EnemyMovementHandler.transform);
-      EnemyMovementHandler.RaycastAndState(EnemyHandler.EnemyLayer, EnemyController.ToFightState);
-      EnemyMovementHandler.RaycastAndState(EnemyMovementHandler.AllyLayer, EnemyController.ToIdleState);
+    public override void Update() {
+      MovementComponent.MoveForward(EnemyMovementHandler.MovementSpeed, EnemyMovementHandler.transform);
+      EnemyMovementHandler.RaycastAndState(EnemyHandler.EnemyLayer,
+        () => { FiniteStateMachine.ChangeState(new EnemyFightState(EnemyController)); });
+      EnemyMovementHandler.RaycastAndState(EnemyHandler.AllyLayer,
+        () => { FiniteStateMachine.ChangeState(new EnemyIdleState(EnemyController)); });
     }
   }
 }

@@ -11,8 +11,9 @@ namespace Assets.__Game.Scripts.Audio
   {
     public static Soundtrack Instance { get; private set; }
 
+    [Header("References")]
     [SerializeField] private AudioMixer musicMixer;
-    [Space]
+    [Header("Clips")]
     [SerializeField] private List<AudioClip> soundtracks = new List<AudioClip>();
 
     private AudioSource _audioSource;
@@ -44,8 +45,9 @@ namespace Assets.__Game.Scripts.Audio
     }
 
     private void LoadSettings() {
-      if (_gameSettings == null)
+      if (_gameSettings == null) {
         _gameSettings = new GameSettings();
+      }
 
       _gameSettings = SettingsManager.LoadSettings<GameSettings>();
     }

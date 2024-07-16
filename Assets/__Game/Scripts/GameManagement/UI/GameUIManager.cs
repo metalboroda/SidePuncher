@@ -1,7 +1,6 @@
 using Assets.__Game.Scripts.EventBus;
 using Assets.__Game.Scripts.Game;
 using Assets.__Game.Scripts.Game.GameStates;
-using Assets.__Game.Scripts.Managers;
 using Assets.__Game.Scripts.Utils;
 using DG.Tweening;
 using System.Collections;
@@ -12,7 +11,7 @@ using UnityEngine.UI;
 using static Assets.__Game.Scripts.EventBus.EventStructs;
 using PauseState = Assets.__Game.Scripts.Game.GameStates.PauseState;
 
-namespace Assets.__Game.Scripts.GameManagement
+namespace Assets.__Game.Scripts.GameManagement.UI
 {
   public class GameUIManager : UIManagerBase
   {

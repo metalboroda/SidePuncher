@@ -15,14 +15,13 @@ namespace Assets.__Game.Scripts.Characters
 
     [field: Space]
     [field: SerializeField] public LayerMask EnemyLayer { get; private set; }
+    [field: SerializeField] public LayerMask AllyLayer { get; private set; }
 
     private int _currentHealth;
 
-    public int CurrentHealth
-    {
+    public int CurrentHealth {
       get => _currentHealth;
-      set
-      {
+      set {
         _currentHealth = value;
 
         HealthChanged?.Invoke(_currentHealth);
@@ -32,13 +31,11 @@ namespace Assets.__Game.Scripts.Characters
     [HideInInspector]
     public CapsuleCollider CapsuleCollider;
 
-    protected virtual void Awake()
-    {
+    protected virtual void Awake() {
       CapsuleCollider = GetComponent<CapsuleCollider>();
     }
 
-    protected virtual void Start()
-    {
+    protected virtual void Start() {
       CurrentHealth = MaxHealth;
     }
 

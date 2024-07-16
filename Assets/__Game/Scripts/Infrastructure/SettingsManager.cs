@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 namespace Assets.__Game.Scripts.Infrastructure
@@ -6,15 +7,13 @@ namespace Assets.__Game.Scripts.Infrastructure
   {
     private const string settingsFileName = "settings.json";
 
-    public static T LoadSettings<T>()
-    {
-      T settings = default;
+    public static T LoadSettings<T>() where T : new() {
+      T settings = new T();
 
       string filePath = Application.persistentDataPath + "/" + settingsFileName;
 
-      if (System.IO.File.Exists(filePath))
-      {
-        string json = System.IO.File.ReadAllText(filePath);
+      if (File.Exists(filePath)) {
+        string json = File.ReadAllText(filePath);
 
         settings = JsonUtility.FromJson<T>(json);
       }
@@ -22,12 +21,11 @@ namespace Assets.__Game.Scripts.Infrastructure
       return settings;
     }
 
-    public static void SaveSettings<T>(T settings)
-    {
+    public static void SaveSettings<T>(T settings) {
       string json = JsonUtility.ToJson(settings);
       string filePath = Application.persistentDataPath + "/" + settingsFileName;
 
-      System.IO.File.WriteAllText(filePath, json);
+      File.WriteAllText(filePath, json);
     }
   }
 }

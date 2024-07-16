@@ -4,19 +4,17 @@
   {
     public EnemyIdleState(EnemyController enemyController) : base(enemyController) { }
 
-    public override void Enter()
-    {
+    public override void Enter() {
       EnemyAnimationHandler.PlayRandomIdleAnimation();
     }
 
-    public override void Update()
-    {
+    public override void Update() {
       CheckIfCanMoveForward();
     }
 
-    private void CheckIfCanMoveForward()
-    {
-      EnemyMovementHandler.RaycastAndState(EnemyMovementHandler.AllyLayer, null, EnemyController.ToMovementState);
+    private void CheckIfCanMoveForward() {
+      EnemyMovementHandler.RaycastAndState(EnemyHandler.AllyLayer, null,
+        () => { FiniteStateMachine.ChangeState(new EnemyMovementState(EnemyController)); });
     }
   }
 }

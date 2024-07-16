@@ -4752,6 +4752,9 @@ MonoBehaviour:
   <EnemyLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 256
+  <AllyLayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 512
   CapsuleCollider: {fileID: 0}
   healthRecoveryValue: 5
 --- !u!114 &6323924879684928012
@@ -4801,9 +4804,6 @@ MonoBehaviour:
   <MovementSpeed>k__BackingField: 1.5
   rayPoint: {fileID: 4321220027616762334}
   rayDistance: 0.9
-  AllyLayer:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!114 &8834490250029677215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4818,6 +4818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minEnableDelay: 0.3
   maxEnableDelay: 0.5
+  disableDelay: 5.75
   RagdollObject: {fileID: 2354465571941495414}
   puppetMaster: {fileID: 4920037264003663662}
 --- !u!114 &7331638501585553659

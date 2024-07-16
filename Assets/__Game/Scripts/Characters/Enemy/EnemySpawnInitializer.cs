@@ -14,7 +14,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
 
     public void SpawnInit(Vector3 position, Quaternion rotation)
     {
-      _enemyController.StateMachine.ChangeStateWithDelay(new EnemyMovementState(_enemyController), 0.1f, this);
+      _enemyController.FiniteStateMachine.ChangeStateWithDelay(new EnemyMovementState(_enemyController), 0.1f, this);
       _enemyController.EnemyHandler.SwitchModelVisibility(false);
       transform.position = position;
       transform.rotation = rotation;

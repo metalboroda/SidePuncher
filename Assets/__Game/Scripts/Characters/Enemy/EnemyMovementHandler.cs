@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.__Game.Scripts.Components;
+using System;
 using UnityEngine;
 
 namespace Assets.__Game.Scripts.Characters.Enemy
@@ -10,20 +11,22 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     [Header("Enemy detection params")]
     [SerializeField] private Transform rayPoint;
     [SerializeField] private float rayDistance;
-    public LayerMask AllyLayer;
 
-    public void RaycastAndState(LayerMask layerMask, Action trueAction = null, Action falseACtion = null)
-    {
+    public MovementComponent MovementComponent { get; private set; }
+
+    private void Awake() {
+      MovementComponent = new MovementComponent();
+    }
+
+    public void RaycastAndState(LayerMask layerMask, Action trueAction = null, Action falseACtion = null) {
       Vector3 origin = rayPoint.position;
       Vector3 direction = transform.forward;
       RaycastHit hit;
 
-      if (Physics.Raycast(origin, direction, out hit, rayDistance, layerMask))
-      {
+      if (Physics.Raycast(origin, direction, out hit, rayDistance, layerMask)) {
         trueAction?.Invoke();
       }
-      else
-      {
+      else {
         falseACtion?.Invoke();
       }
     }
