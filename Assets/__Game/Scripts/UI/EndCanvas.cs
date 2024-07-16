@@ -1,20 +1,17 @@
-using Assets.__Game.Scripts.Game.GameStates;
-using Assets.__Game.Scripts.Game;
-using Assets.__Game.Scripts.Utils;
+using Assets.__Game.Scripts.Enums;
+using Assets.__Game.Scripts.EventBus;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static Assets.__Game.Scripts.EventBus.EventStructs;
-using Assets.__Game.Scripts.EventBus;
-using Assets.__Game.Scripts.Enums;
 
-namespace Assets.__Game.Scripts.GameManagement.UI
+namespace Assets.__Game.Scripts.UI
 {
   public class EndCanvas : MonoBehaviour
   {
-    [SerializeField] private GameObject endCanvas;
-    [SerializeField] private Button endRestartButton;
-    [SerializeField] private Button endExitButton;
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button exitButton;
+    [Space]
     [SerializeField] private TextMeshProUGUI waveLabelCounterText;
 
     private EventBinding<WaveCompleted> _waveCompletedEvent;
@@ -32,11 +29,11 @@ namespace Assets.__Game.Scripts.GameManagement.UI
     }
 
     private void SubscribeButtons() {
-      endRestartButton.onClick.AddListener(() => {
+      restartButton.onClick.AddListener(() => {
         EventBus<UIButtonPressed>.Raise(new UIButtonPressed { Button = UIButtonEnums.Restart });
       });
 
-      endExitButton.onClick.AddListener(() => {
+      exitButton.onClick.AddListener(() => {
         EventBus<UIButtonPressed>.Raise(new UIButtonPressed { Button = UIButtonEnums.MainMenu });
       });
     }

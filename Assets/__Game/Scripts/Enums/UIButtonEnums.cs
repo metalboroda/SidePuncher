@@ -4,6 +4,7 @@ namespace Assets.__Game.Scripts.Enums
   {
     None,
     StartGame,
+    Continue,
     Pause,
     MainMenu,
     Restart

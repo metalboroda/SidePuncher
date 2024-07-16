@@ -1,13 +1,14 @@
 using Assets.__Game.Scripts.EventBus;
 using Assets.__Game.Scripts.Game;
+using Assets.__Game.Scripts.GameManagement.UI;
 using Assets.__Game.Scripts.Services;
 using UnityEngine;
 using UnityEngine.UI;
 using static Assets.__Game.Scripts.EventBus.EventStructs;
 
-namespace Assets.__Game.Scripts.GameManagement.UI
+namespace Assets.__Game.Scripts.UI
 {
-  public class MainMenuCanvas : UIManagerBase
+  public class MainMenuCanvas : CanvasBase
   {
     [SerializeField] private Button playBtn;
     [Header("Audio")]
@@ -50,8 +51,8 @@ namespace Assets.__Game.Scripts.GameManagement.UI
         return;
       }
 
-      musicOnIcon.SetActive(_gameSettings.IsMusicOn);
-      musicOffIcon.SetActive(!_gameSettings.IsMusicOn);
+      musicOnIcon.SetActive(GameSettings.IsMusicOn);
+      musicOffIcon.SetActive(!GameSettings.IsMusicOn);
     }
 
     protected override void UpdateSFXButtonVisuals() {
@@ -60,8 +61,8 @@ namespace Assets.__Game.Scripts.GameManagement.UI
         return;
       }
 
-      sfxOnIcon.SetActive(_gameSettings.IsSFXOn);
-      sfxOffIcon.SetActive(!_gameSettings.IsSFXOn);
+      sfxOnIcon.SetActive(GameSettings.IsSFXOn);
+      sfxOffIcon.SetActive(!GameSettings.IsSFXOn);
     }
   }
 }

@@ -9,14 +9,11 @@ namespace Assets.__Game.Scripts.Game.GameStates
     protected GameBootstrapper GameBootstrapper;
     protected FiniteStateMachine FiniteStateMachine;
     protected SceneLoader SceneLoader;
-    protected InputService InputService;
 
-    public GameBaseState(GameBootstrapper gameBootstrapper)
-    {
+    public GameBaseState(GameBootstrapper gameBootstrapper) {
       GameBootstrapper = gameBootstrapper;
       FiniteStateMachine = GameBootstrapper.FiniteStateMachine;
       SceneLoader = GameBootstrapper.SceneLoader;
-      InputService = new InputService();
     }
   }
 }

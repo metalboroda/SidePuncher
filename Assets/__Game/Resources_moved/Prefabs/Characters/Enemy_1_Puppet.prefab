@@ -4748,7 +4748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 50
   <Power>k__BackingField: 25
-  <DeathTime>k__BackingField: 7.5
+  <DeathTime>k__BackingField: 10
   <EnemyLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 256
@@ -4789,6 +4789,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnimationsSO: {fileID: 11400000, guid: 4053e3dc399a5c6408e90b1ed06a274e, type: 2}
   CrossDur: 0.2
+  AnimationEndTime: 0.8
+  AttackCrossDivision: 1.5
+  undergroundY: -5
+  undergroundDelay: 8
+  undergroundSpeed: 1
 --- !u!114 &3172467777240914252
 MonoBehaviour:
   m_ObjectHideFlags: 0

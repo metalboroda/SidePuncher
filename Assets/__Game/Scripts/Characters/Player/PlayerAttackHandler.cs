@@ -18,36 +18,31 @@ namespace Assets.__Game.Scripts.Characters.Player
     private float _lastAttackTime;
     private Tweener _rotationTween;
 
-    private void Update()
-    {
+    private void Update() {
       AllowAttackTimer();
     }
 
-    public void LeftAttack()
-    {
+    public void LeftAttack() {
       if (_canAttack == false) return;
 
       SmoothRotateY(yRotationLeft);
       OnAttack();
     }
 
-    public void RightAttack()
-    {
+    public void RightAttack() {
       if (_canAttack == false) return;
 
       SmoothRotateY(yRotationRight);
       OnAttack();
     }
 
-    private void OnAttack()
-    {
+    private void OnAttack() {
       AttackTriggered?.Invoke();
       _canAttack = false;
       _lastAttackTime = Time.time;
     }
 
-    private void SmoothRotateY(float y)
-    {
+    private void SmoothRotateY(float y) {
       // DOTween goes crazy after restart
       try {
         Quaternion targetRotation = Quaternion.Euler(transform.rotation.x, y, transform.rotation.z);
@@ -61,8 +56,7 @@ namespace Assets.__Game.Scripts.Characters.Player
       }
     }
 
-    private void AllowAttackTimer()
-    {
+    private void AllowAttackTimer() {
       if (_canAttack == false && Time.time - _lastAttackTime >= allowAttackTime)
         _canAttack = true;
     }

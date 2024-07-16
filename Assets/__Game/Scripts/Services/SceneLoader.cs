@@ -19,23 +19,40 @@ namespace Assets.__Game.Scripts.Services
       _uiButtonPressed = new EventBinding<EventStructs.UIButtonPressed>(OnUIButtonPressed);
     }
 
+    public void LoadScene(string sceneName) {
+      SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+    }
+
     public void LoadSceneAsync(string sceneName, Action callback) {
       SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single).completed += (AsyncOperation asyncOp) => {
         callback?.Invoke();
       };
     }
 
-    public void LoadScene(string sceneName) {
-      SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+    public void RestartScene() {
+      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 
-    public void RestartScene() {
-      SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    public void RestartSceneAsync(Action callback) {
+      SceneManager.LoadSceneAsync(
+        SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single).completed += (AsyncOperation asyncOp) => {
+          callback?.Invoke();
+        };
     }
 
     private void OnUIButtonPressed(EventStructs.UIButtonPressed uiButtonPressed) {
-      if (uiButtonPressed.Button == Enums.UIButtonEnums.StartGame) {
-        LoadScene(Hashes.GameScene);
+      switch (uiButtonPressed.Button) {
+        case Enums.UIButtonEnums.None:
+          break;
+        case Enums.UIButtonEnums.StartGame:
+          LoadScene(Hashes.GameScene);
+          break;
+        case Enums.UIButtonEnums.MainMenu:
+          LoadScene(Hashes.MainMenuScene);
+          break;
+        case Enums.UIButtonEnums.Restart:
+          RestartScene();
+          break;
       }
     }
   }

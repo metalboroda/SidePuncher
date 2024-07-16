@@ -22,13 +22,16 @@ MonoBehaviour:
         keys:
         - GlobalObjectId_V1-2-47f7f8d32a864e54a934c6370c95ab58-1872570350-0
         - GlobalObjectId_V1-2-47f7f8d32a864e54a934c6370c95ab58-1576242735-0
+        - GlobalObjectId_V1-2-47f7f8d32a864e54a934c6370c95ab58-690871156-0
         values:
         - iColor: 9
           icon: 
         - iColor: 5
           icon: 
+        - iColor: 7
+          icon: 
       goDatasByInstanceId:
-        keys: d8790000c6790000a67900002a970000f8960000169c0000e49b0000
+        keys: d8790000c6790000a67900002a970000f8960000169c0000e49b0000c0d600008ed600004e5901001c59010080a501004ea50100c2d6010090d601002ef50100fcf40100902402005e2402002e440200fc4302007cb7020046b702004cc2020016c20200b4c602007ec602003ad7020004d7020054db02001edb0200e8e10200b2e10200fae50200c4e50200f4fd0200befd02006600030030000300d8020300a2020300d41a03009e1a0300a22303006c2303001e300300e82f030096320300603203007c37030046370300863b0300503b030016460300e04503000c760300d6750300167a0300e0790300b87f0300827f03002a7f0300
         values:
         - iColor: 9
           icon: 
@@ -44,6 +47,116 @@ MonoBehaviour:
           icon: 
         - iColor: 5
           icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 7
+          icon: 
     - goDatasByGlobalId:
         keys: []
         values: []
@@ -54,15 +167,84 @@ MonoBehaviour:
         keys:
         - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-1259624128-0
         - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-404174381-0
+        - GlobalObjectId_V1-2-99c9720ab356a0642a771bea13969a05-636879816-0
         values:
         - iColor: 9
           icon: 
         - iColor: 5
+          icon: 
+        - iColor: 7
           icon: 
       goDatasByInstanceId:
-        keys: 0acf00007ace0000
+        keys: 0acf00007ace0000bedb00003adb00009ec001001ac001002cf20100aef101001e270200a02602006eb40200ecb30200e0c402005ec40200c4d5020042d50200dcd902005ad902006ee00200ecdf02007ce40200fae30200681d0300e61c03002e220300ac210300103a03008e3903009674030014740300a07803001e780300aa7c0300287c0300587c0300
         values:
         - iColor: 9
           icon: 
         - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 9
+          icon: 
+        - iColor: 5
+          icon: 
+        - iColor: 7
           icon: 

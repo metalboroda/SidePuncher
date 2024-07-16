@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 90870923}
   - component: {fileID: 90870922}
   - component: {fileID: 90870921}
+  - component: {fileID: 90870924}
   m_Layer: 0
   m_Name: EndCanvas
   m_TagString: Untagged
@@ -427,6 +428,21 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &90870924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90870919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94021a8ebd29d44c8d6c6a8274c3f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restartButton: {fileID: 380604140}
+  exitButton: {fileID: 387289187}
+  waveLabelCounterText: {fileID: 136862469}
 --- !u!1 &136862467
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,8 +702,8 @@ MonoBehaviour:
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
   delay: 1
-  duration: 2
-  easeType: 1
+  duration: 1.5
+  easeType: 7
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -1091,7 +1107,7 @@ GameObject:
   - component: {fileID: 289738689}
   - component: {fileID: 289738688}
   m_Layer: 0
-  m_Name: Off
+  m_Name: MusicOff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1727,6 +1743,7 @@ GameObject:
   - component: {fileID: 447259619}
   - component: {fileID: 447259618}
   - component: {fileID: 447259617}
+  - component: {fileID: 447259620}
   m_Layer: 0
   m_Name: PauseCanvas
   m_TagString: Untagged
@@ -1819,6 +1836,27 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &447259620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447259615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22a8547fc35219449da685f0483a7b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  continueButton: {fileID: 1771771413}
+  restartButton: {fileID: 2021718157}
+  exitButton: {fileID: 1238828833}
+  musicButton: {fileID: 834467528}
+  musicOnIcon: {fileID: 1983404591}
+  musicOffIcon: {fileID: 289738686}
+  pauseSFXButton: {fileID: 1509553736}
+  sfxOnIcon: {fileID: 789383647}
+  sfxOffIcon: {fileID: 1827761524}
 --- !u!1 &582294704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,6 +1869,7 @@ GameObject:
   - component: {fileID: 582294708}
   - component: {fileID: 582294707}
   - component: {fileID: 582294706}
+  - component: {fileID: 582294709}
   m_Layer: 0
   m_Name: GameplayCanvas
   m_TagString: Untagged
@@ -1923,6 +1962,24 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &582294709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582294704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f59cef46f2069f45a6a4ad9b64581f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageVignette: {fileID: 1575922731}
+  damageMaxFade: 0.15
+  damageDuration: 0.1
+  waveCounterText: {fileID: 1316892987}
+  waveFadeDuration: 0.25
+  waveFadeDelay: 2
 --- !u!1 &588796895
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,7 +2152,7 @@ GameObject:
   - component: {fileID: 789383650}
   - component: {fileID: 789383649}
   m_Layer: 0
-  m_Name: On
+  m_Name: SFXOn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2840,7 +2897,7 @@ GameObject:
   - component: {fileID: 1316892988}
   - component: {fileID: 1316892987}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: WaveCounterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3248,8 +3305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7c950ae589ce6459f809eeaadfbfee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  punchDuration: 0.15
-  punchDirection: {x: 0.1, y: 0.1, z: 0}
+  punchReactionDuration: 0.15
+  punchReactionDirection: {x: 0.1, y: 0.1, z: 0}
 --- !u!1 &1468858601
 GameObject:
   m_ObjectHideFlags: 0
@@ -3576,7 +3633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.7176471, g: 0.10980392, b: 0.10980392, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4117,7 +4174,7 @@ GameObject:
   - component: {fileID: 1827761527}
   - component: {fileID: 1827761526}
   m_Layer: 0
-  m_Name: Off
+  m_Name: SFXOff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4270,7 +4327,7 @@ GameObject:
   - component: {fileID: 1983404594}
   - component: {fileID: 1983404593}
   m_Layer: 0
-  m_Name: On
+  m_Name: MusicOn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4605,9 +4662,9 @@ SceneRoots:
   - {fileID: 597104025}
   - {fileID: 1468858602}
   - {fileID: 439544508}
-  - {fileID: 636879817}
-  - {fileID: 943325372}
   - {fileID: 404174382}
+  - {fileID: 943325372}
+  - {fileID: 636879817}
   - {fileID: 1551174951}
   - {fileID: 184572234}
   - {fileID: 212323287}

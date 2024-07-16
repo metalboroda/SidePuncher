@@ -7,9 +7,9 @@ namespace Assets.__Game.Scripts.GameManagement
 {
   public class CameraManager : MonoBehaviour
   {
-    [Header("Punch param's")]
-    [SerializeField] private float punchDuration = 0.25f;
-    [SerializeField] private Vector3 punchDirection = new Vector3(0.2f, 0.2f, 0f);
+    [Header("Punch Reaction Settings")]
+    [SerializeField] private float punchReactionDuration = 0.15f;
+    [SerializeField] private Vector3 punchReactionDirection = new Vector3(0.1f, 0.1f, 0f);
 
     private EventBinding<PlayerDamaged> _playerDamagedEvent;
 
@@ -29,7 +29,7 @@ namespace Assets.__Game.Scripts.GameManagement
 
     private void PunchCamera() {
       _mainCamera.transform.DOPunchPosition(
-        punchDirection, punchDuration, 50).SetEase(Ease.OutQuad).SetAutoKill(true);
+        punchReactionDirection, punchReactionDuration, 50).SetEase(Ease.OutQuad).SetAutoKill(true);
     }
   }
 }

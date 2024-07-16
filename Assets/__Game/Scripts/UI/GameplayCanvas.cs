@@ -5,18 +5,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Assets.__Game.Scripts.EventBus.EventStructs;
 
-namespace Assets.__Game.Scripts.GameManagement.UI
+namespace Assets.__Game.Scripts.UI
 {
   public class GameplayCanvas : MonoBehaviour
   {
-    [SerializeField] private GameObject gameCanvas;
     [SerializeField] private Image damageVignette;
     [SerializeField] private float damageMaxFade = 0.15f;
     [SerializeField] private float damageDuration = 0.1f;
     [Header("Wave")]
     [SerializeField] private TextMeshProUGUI waveCounterText;
     [SerializeField] private float waveFadeDuration = 0.25f;
-    [SerializeField] private float waveFadeDelay = 1f;
+    [SerializeField] private float waveFadeInDelay = 0.5f;
+    [SerializeField] private float waveFadeOutDelay = 2.5f;
 
     private EventBinding<PlayerDamaged> _playerDamagedEvent;
     private EventBinding<WaveCompleted> _waveCompletedEvent;
@@ -45,8 +45,9 @@ namespace Assets.__Game.Scripts.GameManagement.UI
 
       Sequence sequence = DOTween.Sequence();
 
+      sequence.SetDelay(waveFadeInDelay);
       sequence.Append(waveCounterText.DOFade(1, waveFadeDuration));
-      sequence.AppendInterval(waveFadeDelay);
+      sequence.AppendInterval(waveFadeOutDelay);
       sequence.Append(waveCounterText.DOFade(0, waveFadeDuration));
     }
   }

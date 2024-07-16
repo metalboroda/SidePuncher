@@ -13,9 +13,13 @@ namespace Assets.__Game.Scripts.Characters
 
     [Header("Param's")]
     [SerializeField] protected float CrossDur = 0.2f;
-    [Space]
-    [SerializeField] protected float AnimationEndTime = 0.8f;
-    [SerializeField] protected float AttackCrossDivision = 1.5f;
+    [field: Space]
+    [field: SerializeField] public float AnimationEndTime = 0.8f;
+    [field: SerializeField] public float AttackCrossDivision = 1.5f;
+    [Header("Underground Animation")]
+    [SerializeField] private float undergroundY = -5f;
+    [SerializeField] private float undergroundDelay = 7.25f;
+    [SerializeField] private float undergroundSpeed = 5f;
 
     private Coroutine _animationEndRoutine;
 
@@ -23,6 +27,10 @@ namespace Assets.__Game.Scripts.Characters
 
     protected virtual void Awake() {
       Animator = GetComponent<Animator>();
+    }
+
+    private void OnDestroy() {
+      DOTween.Kill(transform);
     }
 
     public void PlayRandomIdleAnimation() {
@@ -64,6 +72,12 @@ namespace Assets.__Game.Scripts.Characters
       eulerAngle.y += Random.Range(-randRotation, randRotation);
 
       transform.DORotate(eulerAngle, rotationDuration);
+    }
+
+    public void UndergroundAnimation() {
+      transform.DOMoveY(undergroundY, undergroundSpeed)
+        .SetDelay(undergroundDelay)
+        .SetSpeedBased(true);
     }
 
     #region Utils

@@ -24,6 +24,8 @@ namespace Assets.__Game.Resources.Scripts.StateMachine
       CurrentState.Exit();
       CurrentState = newState;
       CurrentState.Enter();
+
+      EventBus<EventStructs.StateChanged>.Raise(new EventStructs.StateChanged { State = CurrentState });
     }
 
     public void ChangeStateWithDelay(State newState, float delay, MonoBehaviour monoBehaviour) {

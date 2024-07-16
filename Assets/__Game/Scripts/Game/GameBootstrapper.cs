@@ -35,7 +35,7 @@ namespace Assets.__Game.Scripts.Game
     }
 
     private void Start() {
-      FiniteStateMachine.Init(new MainMenuState(this));
+      FiniteStateMachine.Init(new GameMainMenuState(this));
     }
 
     private void InitializeSingleton() {
