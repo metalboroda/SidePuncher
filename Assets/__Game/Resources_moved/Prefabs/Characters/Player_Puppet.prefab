@@ -2478,7 +2478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
   <Power>k__BackingField: 25
-  deathTime: 0
+  <DeathTime>k__BackingField: 7.5
   <EnemyLayer>k__BackingField:
     serializedVersion: 2
     m_Bits: 512
@@ -2520,6 +2520,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnimationsSO: {fileID: 11400000, guid: 4053e3dc399a5c6408e90b1ed06a274e, type: 2}
   CrossDur: 0.1
+  AnimationEndTime: 0.8
+  AttackCrossDivision: 1.5
+  undergroundY: -5
+  undergroundDelay: 7.25
+  undergroundSpeed: 5
 --- !u!114 &1866179658415802142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,7 +2565,7 @@ AudioSource:
   m_GameObject: {fileID: 3940116538902047895}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 4342033426434513009, guid: 16f28b03ea10daa4ab6bedd3b7fdd934,
+  OutputAudioMixerGroup: {fileID: 7471979066078209232, guid: 16f28b03ea10daa4ab6bedd3b7fdd934,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
