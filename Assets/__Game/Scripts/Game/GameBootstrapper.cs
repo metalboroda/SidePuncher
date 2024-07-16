@@ -39,8 +39,8 @@ namespace Assets.__Game.Scripts.Game
     }
 
     private void OnDestroy() {
-      GameStateManager.Dispose();
-      SceneLoader.Dispose();
+      GameStateManager?.Dispose();
+      SceneLoader?.Dispose();
     }
 
     private void InitializeSingleton() {
