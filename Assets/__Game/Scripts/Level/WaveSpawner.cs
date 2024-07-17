@@ -1,5 +1,4 @@
-﻿using Assets.__Game.Scripts.Characters.Enemy;
-using Assets.__Game.Scripts.EventBus;
+﻿using Assets.__Game.Scripts.EventBus;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,13 +18,16 @@ namespace Assets.__Game.Scripts.Level
     private readonly List<GameObject> _spawnedEnemies = new List<GameObject>();
     private int _previousRandomWave = -1;
 
+    private EventBinding<PlayerDead> _playerDeadEvent;
     private EventBinding<EnemyDead> _enemyDeathEvent;
 
     private void OnEnable() {
+      _playerDeadEvent = new EventBinding<PlayerDead>(OnPlayerDead);
       _enemyDeathEvent = new EventBinding<EnemyDead>(RemoveDeadEnemyFromList);
     }
 
     private void OnDisable() {
+      _playerDeadEvent.Remove(OnPlayerDead);
       _enemyDeathEvent.Remove(RemoveDeadEnemyFromList);
     }
 
@@ -119,6 +121,10 @@ namespace Assets.__Game.Scripts.Level
 
       if (_spawnedEnemies.Contains(deadEnemy))
         _spawnedEnemies.Remove(deadEnemy);
+    }
+
+    private void OnPlayerDead() {
+      EventBus<WaveCompleted>.Raise(new WaveCompleted { WaveCount = _wavesPassed });
     }
   }
 }

@@ -18,9 +18,7 @@ namespace Assets.__Game.Scripts.UI
 
     private void Awake() {
       SubscribeButtons();
-    }
 
-    private void OnEnable() {
       _waveCompletedEvent = new EventBinding<WaveCompleted>(DisplayEndWaveCounter);
     }
 
