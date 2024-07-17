@@ -10,6 +10,9 @@ namespace Assets.__Game.Scripts.Characters.Enemy.EnemyStates
 
     public override void Update() {
       EnemyAttackHandler.AttackWithRate();
+
+      EnemyMovementHandler.RaycastAndState(EnemyHandler.EnemyLayer, null,
+        () => { FiniteStateMachine.ChangeState(new EnemyMovementState(EnemyController)); });
     }
   }
 }

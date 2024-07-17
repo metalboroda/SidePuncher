@@ -11,7 +11,7 @@ namespace Assets.__Game.Scripts.Characters
     [SerializeField] private Collider leftFootCollider;
     [SerializeField] private Collider rightFootCollider;
 
-    protected List<Collider> _colliders = new List<Collider>();
+    protected List<Collider> Colliders = new List<Collider>();
 
     private void Awake() {
       AddCollidersToList();
@@ -22,13 +22,12 @@ namespace Assets.__Game.Scripts.Characters
     }
 
     private void AddCollidersToList() {
-      _colliders.Add(leftHandCollider);
-      _colliders.Add(rightHandCollider);
-      _colliders.Add(leftFootCollider);
-      _colliders.Add(rightFootCollider);
+      Colliders.Add(leftHandCollider);
+      Colliders.Add(rightHandCollider);
+      Colliders.Add(leftFootCollider);
+      Colliders.Add(rightFootCollider);
     }
 
-    // Left it. Maybe needs for code through colliders activasion
     public void EnableAttackTriggers(int value) {
       DisableAttackTriggers();
 
@@ -49,7 +48,7 @@ namespace Assets.__Game.Scripts.Characters
     }
 
     public void DisableAttackTriggers() {
-      foreach (Collider collider in _colliders) {
+      foreach (Collider collider in Colliders) {
         collider.enabled = false;
       }
     }

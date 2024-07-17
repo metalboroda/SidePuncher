@@ -17,8 +17,9 @@ namespace Assets.__Game.Resources.Scripts.StateMachine
       EventBus<EventStructs.StateChanged>.Raise(new EventStructs.StateChanged { State = CurrentState });
     }
 
-    public void ChangeState(State newState) {
-      if (newState == CurrentState) return;
+    public void ChangeState(State newState, bool overrideState = false) {
+      if (overrideState == false)
+        if (newState == CurrentState) return;
 
       PreviousState = CurrentState;
       CurrentState.Exit();

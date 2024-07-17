@@ -35,6 +35,7 @@ namespace Assets.__Game.Scripts.EventBus
 
     public struct EnemyDead : IEvent
     {
+      public int ID;
       public GameObject GameObject;
       public int HealthRecoveryValue;
     }

@@ -45,7 +45,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
     public void Damage(int damage) {
       CurrentHealth -= damage;
 
-      _enemyController.FiniteStateMachine.ChangeState(new EnemyHitState(_enemyController));
+      _enemyController.FiniteStateMachine.ChangeState(new EnemyHitState(_enemyController), true);
 
       EventBus<EnemyDamaged>.Raise(new EnemyDamaged());
 
@@ -59,6 +59,7 @@ namespace Assets.__Game.Scripts.Characters.Enemy
         EnemyDead?.Invoke();
 
         EventBus<EnemyDead>.Raise(new EnemyDead() {
+          ID = transform.GetInstanceID(),
           GameObject = transform.root.gameObject,
           HealthRecoveryValue = healthRecoveryValue,
         });

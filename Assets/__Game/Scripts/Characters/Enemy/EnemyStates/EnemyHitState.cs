@@ -8,7 +8,7 @@
       EnemyAnimationHandler.PlayRandomHitAnimation();
       CharacterAudioHandler.PlayRandomDamageSound();
       EnemyAnimationHandler.StopCoroutines();
-      EnemyAnimationHandler.OnAnimtionEnds(0.8f,
+      EnemyAnimationHandler.OnAnimtionEnds(EnemyAnimationHandler.AnimationEndTime,
         () => { FiniteStateMachine.ChangeState(new EnemyFightState(EnemyController)); });
     }
   }
