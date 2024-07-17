@@ -4756,7 +4756,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   CapsuleCollider: {fileID: 0}
-  healthRecoveryValue: 5
+  healthRecoveryValue: 10
 --- !u!114 &6323924879684928012
 MonoBehaviour:
   m_ObjectHideFlags: 0

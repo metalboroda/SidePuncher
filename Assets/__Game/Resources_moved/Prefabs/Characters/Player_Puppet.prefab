@@ -2476,7 +2476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3719df64c5c7784ea370f6e74da1e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 999
+  <MaxHealth>k__BackingField: 100
   <Power>k__BackingField: 25
   <DeathTime>k__BackingField: 7.5
   <EnemyLayer>k__BackingField:
